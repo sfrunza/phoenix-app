@@ -15,11 +15,11 @@ const SidebarNav = ({ pages }) => {
 
   const {
     landings: landingPages,
-    secondary: secondaryPages,
+    pricing: pricingPages,
     services: servicesPages,
     account: accountPages,
     portfolio: portfolioPages,
-    blog: blogPages,
+    faq: faqPages,
   } = pages;
 
   return (
@@ -53,10 +53,10 @@ const SidebarNav = ({ pages }) => {
           <NavItem title={'About us'} items={accountPages} />
         </Box>
         <Box>
-          <NavItem title={'Pages'} items={secondaryPages} />
+          <NavItem title={'Pricing'} items={pricingPages} />
         </Box>
         <Box>
-          <NavItem title={'Blog'} items={blogPages} />
+          <NavItem title={'FAQ'} items={faqPages} />
         </Box>
         <Box>
           <NavItem title={'Client login'} items={portfolioPages} />

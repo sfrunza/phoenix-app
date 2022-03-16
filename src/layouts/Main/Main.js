@@ -14,7 +14,7 @@ import { Topbar, Sidebar, Footer } from './components';
 
 import pages from '../navigation';
 
-const Main = ({ children, colorInvert = false }) => {
+const Main = ({ children }) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
@@ -54,7 +54,7 @@ const Main = ({ children, colorInvert = false }) => {
           <Topbar
             onSidebarOpen={handleSidebarOpen}
             pages={pages}
-            colorInvert={colorInvert}
+            colorInvert={false}
           />
         </Container>
       </AppBar>

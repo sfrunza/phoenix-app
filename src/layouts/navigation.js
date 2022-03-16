@@ -29,6 +29,18 @@ const pages = {
       href: '/about',
     },
   ],
+  faq: [
+    {
+      title: 'FAQ',
+      href: '/faq',
+    },
+  ],
+  pricing: [
+    {
+      title: 'Pricing',
+      href: '/pricing',
+    },
+  ],
   secondary: [
     {
       title: 'Help Center: Overview',

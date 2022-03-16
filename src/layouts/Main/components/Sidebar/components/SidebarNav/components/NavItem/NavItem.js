@@ -52,7 +52,7 @@ const NavItem = ({ title, items }) => {
             <Typography
               fontWeight={hasActiveLink() ? 600 : 400}
               color={hasActiveLink() ? 'primary' : 'text.primary'}
-              sx={{ padding: '10px 0px' }}
+              sx={{ padding: '12px 0px', cursor: 'pointer' }}
             >
               {title}
             </Typography>

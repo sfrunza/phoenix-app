@@ -23,10 +23,7 @@ export default class MyDocument extends Document {
             href="https://assets.maccarianagency.com/favicons/thefront/favicon.ico"
           />
           <meta name="theme-color" content="#ffffff" />
-          <meta
-            name="description"
-            content="A modern design system for your new landing and web pages."
-          />
+          <meta name="description" content="The #1 moving company in Boston." />
           <meta
             name="robots"
             content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
@@ -37,21 +34,23 @@ export default class MyDocument extends Document {
             property="og:image"
             content="https://assets.maccarianagency.com/screenshots/the-front/social.png"
           />
-          <meta
-            property="og:title"
-            content="theFront | UI Kit by Maccarian Agency."
-          />
+          <meta property="og:title" content="Phoenix Moving Company." />
           <meta
             property="og:description"
-            content="A modern design system for your new landing and web pages."
+            content="The #1 moving company in Boston."
           />
           <meta
             property="og:url"
             content="https://thefront.maccarianagency.com/"
           />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
             rel="stylesheet"
           />
         </Head>
