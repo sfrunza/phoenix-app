@@ -73,6 +73,8 @@ const NavItem = ({ title, id, items, colorInvert = false }) => {
             alignItems={'center'}
             aria-describedby={id}
             sx={{ cursor: 'pointer' }}
+            component={'a'}
+            href={items[0].href}
           >
             <Typography
               fontWeight={openedPopoverId === id || hasActiveLink() ? 700 : 400}
@@ -112,39 +114,41 @@ const NavItem = ({ title, id, items, colorInvert = false }) => {
           {items.map((p, i) => (
             <Grid item key={i} xs={items.length > 12 ? 6 : 12}>
               <Link href={p.href}>
-                <Button
-                  fullWidth
-                  sx={{
-                    justifyContent: 'flex-start',
-                    color:
-                      activeLink === p.href
-                        ? theme.palette.primary.main
-                        : theme.palette.text.primary,
-                    backgroundColor:
-                      activeLink === p.href
-                        ? alpha(theme.palette.primary.main, 0.1)
-                        : 'transparent',
-                    fontWeight: activeLink === p.href ? 600 : 400,
-                  }}
-                >
-                  {p.title}
-                  {p.isNew && (
-                    <Box
-                      padding={0.5}
-                      display={'inline-flex'}
-                      borderRadius={1}
-                      bgcolor={'primary.main'}
-                      marginLeft={2}
-                    >
-                      <Typography
-                        variant={'caption'}
-                        sx={{ color: 'common.white', lineHeight: 1 }}
+                <a>
+                  <Button
+                    fullWidth
+                    sx={{
+                      justifyContent: 'flex-start',
+                      color:
+                        activeLink === p.href
+                          ? theme.palette.primary.main
+                          : theme.palette.text.primary,
+                      backgroundColor:
+                        activeLink === p.href
+                          ? alpha(theme.palette.primary.main, 0.1)
+                          : 'transparent',
+                      fontWeight: activeLink === p.href ? 600 : 400,
+                    }}
+                  >
+                    {p.title}
+                    {p.isNew && (
+                      <Box
+                        padding={0.5}
+                        display={'inline-flex'}
+                        borderRadius={1}
+                        bgcolor={'primary.main'}
+                        marginLeft={2}
                       >
-                        new
-                      </Typography>
-                    </Box>
-                  )}
-                </Button>
+                        <Typography
+                          variant={'caption'}
+                          sx={{ color: 'common.white', lineHeight: 1 }}
+                        >
+                          new
+                        </Typography>
+                      </Box>
+                    )}
+                  </Button>
+                </a>
               </Link>
             </Grid>
           ))}

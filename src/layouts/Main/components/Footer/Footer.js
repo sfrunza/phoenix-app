@@ -40,24 +40,28 @@ const Footer = () => {
           <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
             <Box sx={{ marginTop: { xs: 3, md: 1 } }} marginRight={2}>
               <Link href="/">
-                <Typography
-                  color="text.primary"
-                  variant={'subtitle2'}
-                  sx={{ cursor: 'pointer' }}
-                >
-                  Home
-                </Typography>
+                <a>
+                  <Typography
+                    color="text.primary"
+                    variant={'subtitle2'}
+                    sx={{ cursor: 'pointer' }}
+                  >
+                    Home
+                  </Typography>
+                </a>
               </Link>
             </Box>
             <Box sx={{ marginTop: { xs: 3, md: 1 } }} marginRight={2}>
               <Link href="/company-terms">
-                <Typography
-                  color="text.primary"
-                  variant={'subtitle2'}
-                  sx={{ cursor: 'pointer' }}
-                >
-                  Terms
-                </Typography>
+                <a>
+                  <Typography
+                    color="text.primary"
+                    variant={'subtitle2'}
+                    sx={{ cursor: 'pointer' }}
+                  >
+                    Terms
+                  </Typography>
+                </a>
               </Link>
             </Box>
             <Box sx={{ marginTop: { xs: 3, md: 1 } }}>
