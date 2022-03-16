@@ -31,7 +31,11 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
       width={1}
     >
       <Link href="/">
-        <Box display={'flex'} width={{ xs: 150, md: 200 }}>
+        <Box
+          display={'flex'}
+          width={{ xs: 150, md: 200 }}
+          sx={{ cursor: 'pointer' }}
+        >
           <Image
             src={mode === 'light' && !colorInvert ? logo : logoWhite}
             height={150}

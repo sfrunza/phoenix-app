@@ -18,10 +18,25 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
+          <link rel="shortcut icon" href="/favicon.ico" />
           <link
-            rel="shortcut icon"
-            href="https://assets.maccarianagency.com/favicons/thefront/favicon.ico"
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
           />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <link rel="manifest" href="/site.webmanifest" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="description" content="The #1 moving company in Boston." />
           <meta
@@ -30,19 +45,16 @@ export default class MyDocument extends Document {
           />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="website" />
-          <meta
+          {/* <meta
             property="og:image"
             content="https://assets.maccarianagency.com/screenshots/the-front/social.png"
-          />
+          /> */}
           <meta property="og:title" content="Phoenix Moving Company." />
           <meta
             property="og:description"
             content="The #1 moving company in Boston."
           />
-          <meta
-            property="og:url"
-            content="https://thefront.maccarianagency.com/"
-          />
+          <meta property="og:url" content="https://phoenix-app.vercel.app/" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
