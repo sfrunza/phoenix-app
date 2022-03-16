@@ -29,7 +29,7 @@ const Hero = () => {
       minHeight={{ xs: 400, sm: 500, md: 600 }}
       display={'flex'}
       alignItems={'center'}
-      marginTop={-13}
+      // marginTop={-13}
       paddingTop={13}
       id="agency__portfolio-item--js-scroll"
     >

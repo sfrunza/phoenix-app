@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
-
+import logo from '../../../../../../assets/logos/logo.png';
+import logoWhite from '../../../../../../assets/logos/logo-white.png';
+import Image from 'next/image';
+import Link from 'next/link';
 import NavItem from './components/NavItem';
 
 const SidebarNav = ({ pages }) => {
@@ -13,7 +16,7 @@ const SidebarNav = ({ pages }) => {
   const {
     landings: landingPages,
     secondary: secondaryPages,
-    company: companyPages,
+    services: servicesPages,
     account: accountPages,
     portfolio: portfolioPages,
     blog: blogPages,
@@ -22,43 +25,41 @@ const SidebarNav = ({ pages }) => {
   return (
     <Box>
       <Box width={1} paddingX={2} paddingY={1}>
-        <Box
-          display={'flex'}
-          component="a"
-          href="/"
-          title="theFront"
-          width={{ xs: 100, md: 120 }}
-        >
+        <Link href="/">
           <Box
-            component={'img'}
-            src={
-              mode === 'light'
-                ? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-                : 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
-            }
-            height={1}
-            width={1}
-          />
-        </Box>
+            display={'flex'}
+            component="a"
+            href="/"
+            title="theFront"
+            width={{ xs: 100, md: 120 }}
+          >
+            <Image
+              src={mode === 'light' ? logo : logoWhite}
+              height={150}
+              width={500}
+              alt="Phoenix Moving Logo"
+            />
+          </Box>
+        </Link>
       </Box>
       <Box paddingX={2} paddingY={2}>
         <Box>
-          <NavItem title={'Landings'} items={landingPages} />
+          <NavItem title={'Home'} items={landingPages} />
         </Box>
         <Box>
-          <NavItem title={'Company'} items={companyPages} />
+          <NavItem title={'Services'} items={servicesPages} />
+        </Box>
+        <Box>
+          <NavItem title={'About us'} items={accountPages} />
         </Box>
         <Box>
           <NavItem title={'Pages'} items={secondaryPages} />
         </Box>
         <Box>
-          <NavItem title={'Account'} items={accountPages} />
-        </Box>
-        <Box>
           <NavItem title={'Blog'} items={blogPages} />
         </Box>
         <Box>
-          <NavItem title={'Portfolio'} items={portfolioPages} />
+          <NavItem title={'Client login'} items={portfolioPages} />
         </Box>
         <Box marginTop={2}>
           <Button

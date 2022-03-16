@@ -4,6 +4,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
+import logo from '../../../../assets/logos/logo.png';
+import logoWhite from '../../../../assets/logos/logo-white.png';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { NavItem } from './components';
 
@@ -13,7 +17,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
   const {
     landings: landingPages,
     secondary: secondaryPages,
-    company: companyPages,
+    services: servicesPages,
     account: accountPages,
     portfolio: portfolioPages,
     blog: blogPages,
@@ -26,28 +30,21 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
       alignItems={'center'}
       width={1}
     >
-      <Box
-        display={'flex'}
-        component="a"
-        href="/"
-        title="theFront"
-        width={{ xs: 100, md: 120 }}
-      >
-        <Box
-          component={'img'}
-          src={
-            mode === 'light' && !colorInvert
-              ? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-              : 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
-          }
-          height={1}
-          width={1}
-        />
-      </Box>
+      <Link href="/">
+        <Box display={'flex'} width={{ xs: 150, md: 200 }}>
+          <Image
+            src={mode === 'light' && !colorInvert ? logo : logoWhite}
+            height={150}
+            width={500}
+            alt="Phoenix Moving Logo"
+          />
+        </Box>
+      </Link>
+
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
         <Box>
           <NavItem
-            title={'Landings'}
+            title={'Home'}
             id={'landing-pages'}
             items={landingPages}
             colorInvert={colorInvert}
@@ -55,15 +52,15 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={'Company'}
-            id={'company-pages'}
-            items={companyPages}
+            title={'Services'}
+            id={'services-pages'}
+            items={servicesPages}
             colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={'Account'}
+            title={'About us'}
             id={'account-pages'}
             items={accountPages}
             colorInvert={colorInvert}
@@ -87,22 +84,15 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
         </Box>
         <Box marginLeft={4}>
           <NavItem
-            title={'Portfolio'}
+            title={'Client login'}
             id={'portfolio-pages'}
             items={portfolioPages}
             colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
-          <Button
-            variant="contained"
-            color="primary"
-            component="a"
-            target="blank"
-            href="https://mui.com/store/items/the-front-landing-page/"
-            size="large"
-          >
-            Buy now
+          <Button variant="contained" color="primary">
+            Get started
           </Button>
         </Box>
       </Box>

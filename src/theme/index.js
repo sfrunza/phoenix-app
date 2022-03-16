@@ -7,9 +7,12 @@ const getTheme = (mode, themeToggler) =>
   responsiveFontSizes(
     createTheme({
       palette: mode === 'light' ? light : dark,
+      shape: {
+        borderRadius: 10,
+      },
       shadows: shadows(mode),
       typography: {
-        fontFamily: '"Inter", sans-serif',
+        fontFamily: '"Poppins", sans-serif',
         button: {
           textTransform: 'none',
           fontWeight: 'medium',
@@ -23,10 +26,12 @@ const getTheme = (mode, themeToggler) =>
         MuiButton: {
           styleOverrides: {
             root: {
-              fontWeight: 400,
-              borderRadius: 5,
-              paddingTop: 10,
-              paddingBottom: 10,
+              // fontWeight: 500,
+              // paddingTop: 18,
+              // paddingBottom: 18,
+              // paddingRight: 32,
+              // paddingLeft: 32,
+              // boxShadow: '0 4px 14px 0 rgb(0 0 0 / 10%)',
             },
             containedSecondary: mode === 'light' ? { color: 'white' } : {},
           },

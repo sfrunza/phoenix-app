@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { alpha, useTheme } from "@mui/material/styles";
-import Popover from "@mui/material/Popover";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Link from "next/link";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import { alpha, useTheme } from '@mui/material/styles';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Link from 'next/link';
 
 const NavItem = ({ title, id, items, colorInvert = false }) => {
   const theme = useTheme();
@@ -25,39 +25,65 @@ const NavItem = ({ title, id, items, colorInvert = false }) => {
     setOpenedPopoverId(null);
   };
 
-  const [activeLink, setActiveLink] = useState("");
+  const [activeLink, setActiveLink] = useState('');
   useEffect(() => {
-    setActiveLink(window && window.location ? window.location.pathname : "");
+    setActiveLink(window && window.location ? window.location.pathname : '');
   }, []);
 
-  const hasActiveLink = () => items.find((i) => i.href === activeLink);
-  const linkColor = colorInvert ? "common.white" : "text.primary";
+  const hasActiveLink = () => {
+    if (items.length >= 2) {
+      return items.find((i) => i.href === activeLink);
+    } else {
+      return items[0].href === activeLink;
+    }
+  };
+  const linkColor = colorInvert ? 'common.white' : 'text.primary';
 
   return (
     <Box>
-      <Box
-        display={"flex"}
-        alignItems={"center"}
-        aria-describedby={id}
-        sx={{ cursor: "pointer" }}
-        onClick={(e) => handleClick(e, id)}
-      >
-        <Typography
-          fontWeight={openedPopoverId === id || hasActiveLink() ? 700 : 400}
-          color={linkColor}
+      {items.length > 1 ? (
+        <Box
+          display={'flex'}
+          alignItems={'center'}
+          aria-describedby={id}
+          sx={{ cursor: 'pointer' }}
+          onClick={(e) => handleClick(e, id)}
         >
-          {title}
-        </Typography>
-        <ExpandMoreIcon
-          sx={{
-            marginLeft: theme.spacing(1 / 4),
-            width: 16,
-            height: 16,
-            transform: openedPopoverId === id ? "rotate(180deg)" : "none",
-            color: linkColor,
-          }}
-        />
-      </Box>
+          <Typography
+            fontWeight={openedPopoverId === id || hasActiveLink() ? 700 : 400}
+            color={linkColor}
+            variant="body2"
+          >
+            {title}
+          </Typography>
+          <ExpandMoreIcon
+            sx={{
+              marginLeft: theme.spacing(1 / 4),
+              width: 16,
+              height: 16,
+              transform: openedPopoverId === id ? 'rotate(180deg)' : 'none',
+              color: linkColor,
+            }}
+          />
+        </Box>
+      ) : (
+        <Link href={items[0].href}>
+          <Box
+            display={'flex'}
+            alignItems={'center'}
+            aria-describedby={id}
+            sx={{ cursor: 'pointer' }}
+          >
+            <Typography
+              fontWeight={openedPopoverId === id || hasActiveLink() ? 700 : 400}
+              color={linkColor}
+              variant="body2"
+            >
+              {title}
+            </Typography>
+          </Box>
+        </Link>
+      )}
       <Popover
         elevation={3}
         id={id}
@@ -65,23 +91,20 @@ const NavItem = ({ title, id, items, colorInvert = false }) => {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
+          vertical: 'bottom',
+          horizontal: 'center',
         }}
         transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
+          vertical: 'top',
+          horizontal: 'center',
         }}
         sx={{
-          ".MuiPaper-root": {
+          '.MuiPaper-root': {
             maxWidth: items.length > 12 ? 350 : 250,
             padding: 2,
             marginTop: 2,
-            borderTopRightRadius: 0,
-            borderTopLeftRadius: 0,
-            borderBottomRightRadius: 8,
-            borderBottomLeftRadius: 8,
-            borderTop: `3px solid ${theme.palette.primary.main}`,
+            boxShadow:
+              'rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px',
           },
         }}
       >
@@ -90,11 +113,9 @@ const NavItem = ({ title, id, items, colorInvert = false }) => {
             <Grid item key={i} xs={items.length > 12 ? 6 : 12}>
               <Link href={p.href}>
                 <Button
-                  // component={"a"}
-                  // href={p.href}
                   fullWidth
                   sx={{
-                    justifyContent: "flex-start",
+                    justifyContent: 'flex-start',
                     color:
                       activeLink === p.href
                         ? theme.palette.primary.main
@@ -102,7 +123,7 @@ const NavItem = ({ title, id, items, colorInvert = false }) => {
                     backgroundColor:
                       activeLink === p.href
                         ? alpha(theme.palette.primary.main, 0.1)
-                        : "transparent",
+                        : 'transparent',
                     fontWeight: activeLink === p.href ? 600 : 400,
                   }}
                 >
@@ -110,14 +131,14 @@ const NavItem = ({ title, id, items, colorInvert = false }) => {
                   {p.isNew && (
                     <Box
                       padding={0.5}
-                      display={"inline-flex"}
+                      display={'inline-flex'}
                       borderRadius={1}
-                      bgcolor={"primary.main"}
+                      bgcolor={'primary.main'}
                       marginLeft={2}
                     >
                       <Typography
-                        variant={"caption"}
-                        sx={{ color: "common.white", lineHeight: 1 }}
+                        variant={'caption'}
+                        sx={{ color: 'common.white', lineHeight: 1 }}
                       >
                         new
                       </Typography>

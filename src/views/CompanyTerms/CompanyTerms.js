@@ -70,7 +70,7 @@ const CompanyTerms = () => {
               <Grid item xs={12} md={3}>
                 <Box
                   position={'sticky'}
-                  top={theme.spacing(10)}
+                  top={theme.spacing(12)}
                   className={'sticky'}
                 >
                   <ContactCard />

@@ -2,9 +2,12 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
+import Link from 'next/link';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
+import logo from '../../../../assets/logos/logo.png';
+import logoWhite from '../../../../assets/logos/logo-white.png';
+import Image from 'next/image';
 
 const Footer = () => {
   const theme = useTheme();
@@ -25,65 +28,61 @@ const Footer = () => {
             component="a"
             href="/"
             title="theFront"
-            width={80}
+            width={130}
           >
-            <Box
-              component={'img'}
-              src={
-                mode === 'light'
-                  ? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-                  : 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
-              }
-              height={1}
-              width={1}
+            <Image
+              src={mode === 'light' ? logo : logoWhite}
+              height={150}
+              width={500}
+              alt="Phoenix Moving Logo"
             />
           </Box>
           <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
-            <Box marginTop={1} marginRight={2}>
-              <Link
-                underline="none"
-                component="a"
-                href="/"
-                color="text.primary"
-                variant={'subtitle2'}
-              >
-                Home
+            <Box sx={{ marginTop: { xs: 3, md: 1 } }} marginRight={2}>
+              <Link href="/">
+                <Typography
+                  color="text.primary"
+                  variant={'subtitle2'}
+                  sx={{ cursor: 'pointer' }}
+                >
+                  Home
+                </Typography>
               </Link>
             </Box>
-            <Box marginTop={1} marginRight={2}>
-              <Link
-                underline="none"
-                component="a"
-                href="/docs/introduction"
-                color="text.primary"
-                variant={'subtitle2'}
-              >
-                Documentation
+            <Box sx={{ marginTop: { xs: 3, md: 1 } }} marginRight={2}>
+              <Link href="/company-terms">
+                <Typography
+                  color="text.primary"
+                  variant={'subtitle2'}
+                  sx={{ cursor: 'pointer' }}
+                >
+                  Terms
+                </Typography>
               </Link>
             </Box>
-            <Box marginTop={1}>
+            <Box sx={{ marginTop: { xs: 3, md: 1 } }}>
               <Button
                 variant="outlined"
                 color="primary"
                 component="a"
                 target="blank"
-                href="https://mui.com/store/items/the-front-landing-page/"
+                href="/"
                 size="small"
               >
-                Purchase now
+                Book now
               </Button>
             </Box>
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} marginTop={3}>
         <Typography
           align={'center'}
           variant={'subtitle2'}
           color="text.secondary"
           gutterBottom
         >
-          &copy; theFront. 2021, Maccarian. All rights reserved
+          &copy; PhoenixMoving. 2022. All rights reserved
         </Typography>
         <Typography
           align={'center'}

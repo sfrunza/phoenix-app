@@ -24,8 +24,8 @@ const Hero = () => {
         background:
           'url(https://assets.maccarianagency.com/backgrounds/img26.jpg) no-repeat center',
         backgroundSize: 'cover',
-        marginTop: -13,
-        paddingTop: 13,
+        // marginTop: -15,
+        paddingTop: 15,
       }}
     >
       <Box
@@ -37,7 +37,7 @@ const Hero = () => {
           bottom: 0,
           width: 1,
           height: 1,
-          background: alpha(theme.palette.primary.dark, 0.3),
+          background: alpha(theme.palette.primary.dark, 0.2),
           zIndex: 1,
         }}
       />

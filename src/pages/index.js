@@ -1,8 +1,8 @@
 import React from 'react';
-import IndexView from 'views/IndexView';
+import Rental from 'views/Rental';
 
 const IndexPage = () => {
-  return <IndexView />;
+  return <Rental />;
 };
 
 export default IndexPage;

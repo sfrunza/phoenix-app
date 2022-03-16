@@ -1,164 +1,32 @@
 const pages = {
   landings: [
     {
-      title: 'Mobile App',
-      href: '/mobile-app',
-    },
-    {
-      title: 'Desktop App',
-      href: '/desktop-app',
-    },
-    {
-      title: 'Startup',
-      href: '/startup',
-    },
-    {
-      title: 'Expo',
-      href: '/expo',
-    },
-    {
-      title: 'Marketing',
+      title: 'Home',
       href: '/',
     },
-    {
-      title: 'Service',
-      href: '/service',
-    },
-    {
-      title: 'Enterprise',
-      href: '/enterprise',
-    },
-    {
-      title: 'Cloud Hosting',
-      href: '/cloud-hosting',
-    },
-    {
-      title: 'Design Company',
-      href: '/design-company',
-    },
-    {
-      title: 'Web Basic',
-      href: '/web-basic',
-    },
-    {
-      title: 'Overview',
-      href: '/home',
-    },
-    {
-      title: 'Agency',
-      href: '/agency',
-    },
-    {
-      title: 'E-Learning',
-      href: '/e-learning',
-    },
-    {
-      title: 'Coworking',
-      href: '/coworking',
-    },
-    {
-      title: 'Rental',
-      href: '/rental',
-    },
-    {
-      title: 'Job Listing',
-      href: '/job-listing',
-    },
-    {
-      title: 'Logistics',
-      href: '/logistics',
-    },
-    {
-      title: 'E-commerce',
-      href: '/e-commerce',
-    },
   ],
-  company: [
+  services: [
     {
-      title: 'Career Lising',
+      title: 'Local Moving',
       href: '/career-listing',
     },
     {
-      title: 'Job Opening',
+      title: 'Interstate Moving',
       href: '/career-opening',
     },
     {
-      title: 'Customer Stories',
+      title: 'Packing Services',
       href: '/customers',
     },
     {
-      title: 'Hire Us',
+      title: 'Storage Solutions',
       href: '/hire-us',
-    },
-    {
-      title: 'About: Startup',
-      href: '/about-side-cover',
-    },
-    {
-      title: 'About',
-      href: '/about',
-    },
-    {
-      title: 'Pricing',
-      href: '/pricing',
-    },
-    {
-      title: 'Terms',
-      href: '/company-terms',
-    },
-    {
-      title: 'Contact: Map',
-      href: '/contact-sidebar-map',
-    },
-    {
-      title: 'Contact: Minimal',
-      href: '/contact-page-cover',
-    },
-    {
-      title: 'Contact: Startup',
-      href: '/contact-page',
     },
   ],
   account: [
     {
-      title: 'General Settings',
-      href: '/account-general',
-    },
-    {
-      title: 'Security Settings',
-      href: '/account-security',
-    },
-    {
-      title: 'Notifications Options',
-      href: '/account-notifications',
-    },
-    {
-      title: 'Billing Options',
-      href: '/account-billing',
-    },
-    {
-      title: 'Sign up: Simple',
-      href: '/signup-simple',
-    },
-    {
-      title: 'Sign up: Cover',
-      href: '/signup-cover',
-    },
-    {
-      title: 'Sign in: Simple',
-      href: '/signin-simple',
-    },
-    {
-      title: 'Sign in: Cover',
-      href: '/signin-cover',
-    },
-    {
-      title: 'Password: Simple',
-      href: '/password-reset-simple',
-    },
-    {
-      title: 'Password: Cover',
-      href: '/password-reset-cover',
+      title: 'About us',
+      href: '/about',
     },
   ],
   secondary: [
@@ -207,20 +75,8 @@ const pages = {
   ],
   portfolio: [
     {
-      title: 'Grid View',
-      href: '/portfolio-grid',
-    },
-    {
-      title: 'Masonry',
-      href: '/portfolio-masonry',
-    },
-    {
-      title: 'Basic',
-      href: '/portfolio-page',
-    },
-    {
-      title: 'Parallax',
-      href: '/agency',
+      title: 'Client login',
+      href: '/signin-cover',
     },
   ],
 };
