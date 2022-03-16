@@ -17,10 +17,7 @@ const validationSchema = yup.object({
     .min(2, 'Please enter a valid full name')
     .max(50, 'Please enter a valid full name')
     .required('Please specify your full name'),
-  message: yup
-    .string()
-    .trim()
-    .required('Please specify your message'),
+  message: yup.string().trim().required('Please specify your message'),
   email: yup
     .string()
     .trim()

@@ -8,13 +8,13 @@ import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 import Container from 'components/Container';
-import TopNav from 'components/TopNav';
+// import TopNav from 'components/TopNav';
 
 import { Topbar, Sidebar, Footer } from './components';
 
 import pages from '../navigation';
 
-const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
+const Main = ({ children, colorInvert = false }) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
@@ -39,16 +39,10 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
 
   return (
     <Box>
-      {/* <Box bgcolor={bgcolor} position={'relative'} zIndex={theme.zIndex.appBar}>
-        <Container paddingTop={'8px !important'} paddingBottom={'0 !important'}>
-          <TopNav colorInvert={colorInvert} />
-        </Container>
-      </Box> */}
       <AppBar
         position={'sticky'}
         sx={{
           top: 0,
-          // backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
           backgroundColor: theme.palette.background.paper,
           minHeight: 64,
           display: 'flex',
@@ -60,8 +54,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
           <Topbar
             onSidebarOpen={handleSidebarOpen}
             pages={pages}
-            // colorInvert={trigger ? false : colorInvert}
-            colorInvert={false}
+            colorInvert={colorInvert}
           />
         </Container>
       </AppBar>

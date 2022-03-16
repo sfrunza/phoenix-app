@@ -48,9 +48,7 @@ const ChangeLog = () => {
         <BlockItem
           versionTitle="v4.6.0"
           date="December 17, 2021"
-          list={[
-            'Update npm dependencies to the latest versions',
-          ]}
+          list={['Update npm dependencies to the latest versions']}
         />
       </Container>
       <Container paddingTop={'0 !important'}>

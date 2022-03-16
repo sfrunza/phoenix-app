@@ -111,9 +111,10 @@ const Reviews = () => {
             '& .slick-slide img': {
               objectFit: 'cover',
             },
-            '& .slick-list, & .slick-slider, & .slick-track, & .slick-slide > div': {
-              height: { xs: 'auto', md: 1 },
-            },
+            '& .slick-list, & .slick-slider, & .slick-track, & .slick-slide > div':
+              {
+                height: { xs: 'auto', md: 1 },
+              },
             '& .slick-prev, & .slick-next': {
               zIndex: 2,
               bottom: 0,

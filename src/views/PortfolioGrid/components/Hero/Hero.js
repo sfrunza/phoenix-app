@@ -37,7 +37,8 @@ const Hero = () => {
             loop={true}
             backSpeed={50}
             backDelay={1500}
-          /> */}asdasdasd
+          /> */}
+          asdasdasd
         </Typography>
       </Box>
     </Box>
