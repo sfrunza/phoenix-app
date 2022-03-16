@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from 'next/link';
 
-const NavItem = ({ title, id, items, colorInvert = false }) => {
+const NavItem = ({ title, id, items }) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -37,7 +37,7 @@ const NavItem = ({ title, id, items, colorInvert = false }) => {
       return items[0].href === activeLink;
     }
   };
-  const linkColor = colorInvert ? 'common.white' : 'text.primary';
+  const linkColor = 'text.primary';
 
   return (
     <Box>
@@ -162,7 +162,6 @@ NavItem.propTypes = {
   title: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
-  colorInvert: PropTypes.bool,
 };
 
 export default NavItem;

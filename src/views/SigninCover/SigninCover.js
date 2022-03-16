@@ -10,7 +10,7 @@ import { Form } from './components';
 const SigninCover = () => {
   const theme = useTheme();
   return (
-    <Main>
+    <Main title="Client Login">
       <Box
         sx={{
           width: 1,

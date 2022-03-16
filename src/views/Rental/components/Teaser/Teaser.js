@@ -64,6 +64,7 @@ const Teaser = () => {
               src={
                 'https://assets.maccarianagency.com/svg/illustrations/drawkit-illustration5.svg'
               }
+              alt="drawkit-illustration"
               width={1}
               height={1}
               sx={{

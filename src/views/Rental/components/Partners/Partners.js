@@ -17,7 +17,7 @@ const Partners = () => {
           color={'secondary'}
           align={'center'}
         >
-          Trusted by compkanies like
+          Phoenix Moving has been featured in
         </Typography>
       </Box>
       <Box display="flex" flexWrap="wrap" justifyContent={'center'}>

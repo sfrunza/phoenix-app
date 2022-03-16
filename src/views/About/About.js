@@ -17,7 +17,7 @@ import {
 
 const About = () => {
   return (
-    <Main colorInvert={true}>
+    <Main colorInvert={true} title="About us">
       <Hero />
       <Container>
         <Story />

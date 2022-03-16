@@ -26,7 +26,7 @@ const getTheme = (mode, themeToggler) =>
         MuiButton: {
           styleOverrides: {
             root: {
-              // fontWeight: 500,
+              fontWeight: 600,
               // paddingTop: 18,
               // paddingBottom: 18,
               // paddingRight: 32,

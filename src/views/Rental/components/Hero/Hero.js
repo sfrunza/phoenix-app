@@ -37,7 +37,7 @@ const Hero = () => {
           bottom: 0,
           width: 1,
           height: 1,
-          background: alpha(theme.palette.primary.dark, 0.2),
+          background: alpha('#000', 0.2),
           zIndex: 1,
         }}
       />
@@ -90,6 +90,7 @@ const Hero = () => {
                     color="primary"
                     size="medium"
                     fullWidth
+                    label="Search"
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
@@ -130,38 +131,6 @@ const Hero = () => {
             </form>
             <Box marginY={4} marginX={{ xs: -3, sm: -6 }}>
               <Divider />
-            </Box>
-            <Box>
-              <Typography component="p" variant="body2" align="left">
-                By clicking on "Get Started" you agree to our{' '}
-                <Box
-                  component="a"
-                  href=""
-                  color={theme.palette.text.primary}
-                  fontWeight={'700'}
-                >
-                  Privacy Policy
-                </Box>
-                ,{' '}
-                <Box
-                  component="a"
-                  href=""
-                  color={theme.palette.text.primary}
-                  fontWeight={'700'}
-                >
-                  Data Policy
-                </Box>{' '}
-                and{' '}
-                <Box
-                  component="a"
-                  href=""
-                  color={theme.palette.text.primary}
-                  fontWeight={'700'}
-                >
-                  Cookie Policy
-                </Box>
-                .
-              </Typography>
             </Box>
           </Box>
         </Box>

@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 import { NavItem } from './components';
 
-const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
+const Topbar = ({ onSidebarOpen, pages }) => {
   const theme = useTheme();
   const { mode } = theme.palette;
   const {
@@ -33,13 +33,12 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
       <Link href="/">
         <Box
           display={'flex'}
-          width={{ xs: 150, md: 200 }}
+          width={{ xs: 150, md: 170 }}
           sx={{ cursor: 'pointer' }}
         >
           <Image
-            src={mode === 'light' && !colorInvert ? logo : logoWhite}
-            height={150}
-            width={500}
+            src={mode === 'light' ? logo : logoWhite}
+            objectFit="contain"
             alt="Phoenix Moving Logo"
           />
         </Box>
@@ -47,19 +46,13 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
 
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
         <Box>
-          <NavItem
-            title={'Home'}
-            id={'landing-pages'}
-            items={landingPages}
-            colorInvert={colorInvert}
-          />
+          <NavItem title={'Home'} id={'landing-pages'} items={landingPages} />
         </Box>
         <Box marginLeft={4}>
           <NavItem
             title={'Services'}
             id={'services-pages'}
             items={servicesPages}
-            colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
@@ -67,7 +60,6 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
             title={'About us'}
             id={'account-pages'}
             items={accountPages}
-            colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
@@ -75,23 +67,16 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
             title={'Pricing'}
             id={'pricing-pages'}
             items={pricingPages}
-            colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
-          <NavItem
-            title={'FAQ'}
-            id={'faq-pages'}
-            items={faqPages}
-            colorInvert={colorInvert}
-          />
+          <NavItem title={'FAQ'} id={'faq-pages'} items={faqPages} />
         </Box>
         <Box marginLeft={4}>
           <NavItem
             title={'Client login'}
             id={'portfolio-pages'}
             items={portfolioPages}
-            colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={4}>
@@ -122,7 +107,6 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert = false }) => {
 Topbar.propTypes = {
   onSidebarOpen: PropTypes.func,
   pages: PropTypes.object,
-  colorInvert: PropTypes.bool,
 };
 
 export default Topbar;

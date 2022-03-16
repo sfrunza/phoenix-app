@@ -32,8 +32,7 @@ const Footer = () => {
           >
             <Image
               src={mode === 'light' ? logo : logoWhite}
-              height={150}
-              width={500}
+              objectFit="contain"
               alt="Phoenix Moving Logo"
             />
           </Box>

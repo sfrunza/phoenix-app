@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Head from 'next/head';
 
 import Container from 'components/Container';
 // import TopNav from 'components/TopNav';
@@ -14,7 +15,7 @@ import { Topbar, Sidebar, Footer } from './components';
 
 import pages from '../navigation';
 
-const Main = ({ children }) => {
+const Main = ({ title, description, children }) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
@@ -39,6 +40,10 @@ const Main = ({ children }) => {
 
   return (
     <Box>
+      <Head>
+        <title>{title ? `${title} - Phoenix Moving` : 'Phoenix Moving'}</title>
+        {description && <meta name="description" content={description}></meta>}
+      </Head>
       <AppBar
         position={'sticky'}
         sx={{
@@ -51,11 +56,7 @@ const Main = ({ children }) => {
         elevation={trigger ? 1 : 0}
       >
         <Container paddingY={1}>
-          <Topbar
-            onSidebarOpen={handleSidebarOpen}
-            pages={pages}
-            colorInvert={false}
-          />
+          <Topbar onSidebarOpen={handleSidebarOpen} pages={pages} />
         </Container>
       </AppBar>
       <Sidebar

@@ -9,7 +9,7 @@ import { Content, Footer, Headline } from './components';
 const Faq = () => {
   const theme = useTheme();
   return (
-    <Main>
+    <Main title="FAQ">
       <Box>
         <Box
           sx={{

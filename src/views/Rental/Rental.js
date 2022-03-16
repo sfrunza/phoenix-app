@@ -19,8 +19,11 @@ import {
 
 const Rental = () => {
   return (
-    <Main colorInvert={true}>
+    <Main>
       <Hero />
+      <Container>
+        <Partners />
+      </Container>
       <Box bgcolor={'alternate.main'}>
         <Container>
           <Search />
@@ -46,16 +49,13 @@ const Rental = () => {
         </Container>
       </Box>
       <Container>
-        <Partners />
+        <Advantages />
       </Container>
       <Box bgcolor={'alternate.main'}>
         <Container>
-          <Advantages />
+          <AskExpert />
         </Container>
       </Box>
-      <Container>
-        <AskExpert />
-      </Container>
     </Main>
   );
 };

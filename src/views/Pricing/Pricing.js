@@ -17,7 +17,7 @@ const Pricing = () => {
   const theme = useTheme();
 
   return (
-    <Main>
+    <Main title="Pricing">
       <MainSection />
       <Box bgcolor={'alternate.main'}>
         <Container>
