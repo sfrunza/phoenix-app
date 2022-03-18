@@ -9,7 +9,7 @@ import { Contact, Headline, Partners, Stories } from './components';
 const Customers = () => {
   const theme = useTheme();
   return (
-    <Main>
+    <Main title="Packing Services">
       <Box>
         <Box
           position={'relative'}

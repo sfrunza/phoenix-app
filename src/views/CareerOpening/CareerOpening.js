@@ -6,7 +6,7 @@ import { Application, Main as MainSection, Newsletter } from './components';
 
 const CareerOpening = () => {
   return (
-    <Main>
+    <Main title="Interstate Moving">
       <Container>
         <MainSection />
       </Container>

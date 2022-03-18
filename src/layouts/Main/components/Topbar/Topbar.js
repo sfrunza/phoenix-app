@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../../../../assets/logos/logo.png';
+import logo from '../../../../assets/logos/logo-o.png';
 import logoWhite from '../../../../assets/logos/logo-white.png';
 import Image from 'next/image';
 import Link from 'next/link';

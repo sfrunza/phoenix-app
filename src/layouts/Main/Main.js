@@ -9,7 +9,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Head from 'next/head';
 
 import Container from 'components/Container';
-// import TopNav from 'components/TopNav';
+import TopNav from 'components/TopNav';
 
 import { Topbar, Sidebar, Footer } from './components';
 
@@ -44,6 +44,17 @@ const Main = ({ title, description, children }) => {
         <title>{title ? `${title} - Phoenix Moving` : 'Phoenix Moving'}</title>
         {description && <meta name="description" content={description}></meta>}
       </Head>
+      <Box
+        position={'relative'}
+        zIndex={theme.zIndex.appBar}
+        sx={{
+          backgroundColor: theme.palette.background.paper,
+        }}
+      >
+        <Container paddingTop={'8px !important'} paddingBottom={'0 !important'}>
+          <TopNav />
+        </Container>
+      </Box>
       <AppBar
         position={'sticky'}
         sx={{
@@ -80,6 +91,8 @@ Main.propTypes = {
   children: PropTypes.node,
   colorInvert: PropTypes.bool,
   bgcolor: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
 };
 
 export default Main;

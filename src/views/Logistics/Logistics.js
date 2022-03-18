@@ -23,7 +23,7 @@ const Logistics = () => {
   const theme = useTheme();
 
   return (
-    <Main>
+    <Main title="Storage Solutions">
       <Box
         bgcolor={'alternate.main'}
         sx={{

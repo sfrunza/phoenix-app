@@ -17,7 +17,7 @@ import {
 
 const Enterprise = () => {
   return (
-    <Main>
+    <Main title={'Local Moving'}>
       <Box bgcolor={'alternate.main'} marginTop={-13} paddingTop={13}>
         <Container>
           <Hero />

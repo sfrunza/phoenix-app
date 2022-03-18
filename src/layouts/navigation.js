@@ -8,19 +8,19 @@ const pages = {
   services: [
     {
       title: 'Local Moving',
-      href: '/career-listing',
+      href: '/services/enterprise',
     },
     {
       title: 'Interstate Moving',
-      href: '/career-opening',
+      href: '/services/career-opening',
     },
     {
       title: 'Packing Services',
-      href: '/customers',
+      href: '/services/customers',
     },
     {
       title: 'Storage Solutions',
-      href: '/hire-us',
+      href: '/services/logistics',
     },
   ],
   account: [

@@ -7,9 +7,9 @@ const getTheme = (mode, themeToggler) =>
   responsiveFontSizes(
     createTheme({
       palette: mode === 'light' ? light : dark,
-      shape: {
-        borderRadius: 10,
-      },
+      // shape: {
+      //   borderRadius: 10,
+      // },
       shadows: shadows(mode),
       typography: {
         fontFamily: '"Poppins", sans-serif',
@@ -27,11 +27,7 @@ const getTheme = (mode, themeToggler) =>
           styleOverrides: {
             root: {
               fontWeight: 600,
-              // paddingTop: 18,
-              // paddingBottom: 18,
-              // paddingRight: 32,
-              // paddingLeft: 32,
-              // boxShadow: '0 4px 14px 0 rgb(0 0 0 / 10%)',
+              borderRadius: 10,
             },
             containedSecondary: mode === 'light' ? { color: 'white' } : {},
           },
@@ -57,6 +53,15 @@ const getTheme = (mode, themeToggler) =>
           styleOverrides: {
             root: {
               borderRadius: 8,
+            },
+          },
+        },
+        MuiTooltip: {
+          styleOverrides: {
+            tooltip: {
+              borderRadius: 10,
+              // backgroundColor: 'red',
+              padding: 8,
             },
           },
         },

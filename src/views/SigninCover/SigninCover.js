@@ -41,6 +41,7 @@ const SigninCover = () => {
                 maxWidth: { xs: '100%', md: '50%' },
                 order: { xs: 1, md: 2 },
                 minHeight: { xs: 'auto', md: 'calc(100vh - 58px)' },
+                display: { xs: 'none', md: 'block' },
               }}
             >
               <Box

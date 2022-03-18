@@ -13,7 +13,8 @@ export const light = {
     contrastText: '#fff',
   },
   secondary: {
-    main: '#3dcc80',
+    // main: '#3dcc80',
+    main: '#000',
     // light: '#ffb74d',
     // main: '#f9b934',
     // dark: '#FF9800',

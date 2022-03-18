@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import '../styles/index.css';
 
 import Page from '../components/Page';
 
@@ -10,6 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-image-lightbox/style.css';
 import 'aos/dist/aos.css';
+import '../styles/global.css';
 
 export default function App({ Component, pageProps }) {
   return (
