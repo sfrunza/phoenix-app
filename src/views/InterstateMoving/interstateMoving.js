@@ -5,7 +5,7 @@ import Main from 'layouts/Main';
 import Container from 'components/Container';
 import { Hero, Headline } from './components';
 
-const LocalMoving = () => {
+const InterstateMoving = () => {
   const theme = useTheme();
   return (
     <Main colorInvert={true} title="Local Moving">
@@ -19,4 +19,4 @@ const LocalMoving = () => {
   );
 };
 
-export default LocalMoving;
+export default InterstateMoving;
