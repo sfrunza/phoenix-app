@@ -5,8 +5,6 @@ import Button from '@mui/material/Button';
 import Link from 'next/link';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
-import logo from '../../../../assets/logos/logo.png';
-import logoWhite from '../../../../assets/logos/logo-white.png';
 import Image from 'next/image';
 
 const Footer = () => {
@@ -27,13 +25,15 @@ const Footer = () => {
             display={'flex'}
             component="a"
             href="/"
-            title="theFront"
+            title="PhoenixMoving"
             width={130}
           >
             <Image
-              src={mode === 'light' ? logo : logoWhite}
-              objectFit="contain"
+              src={mode === 'light' ? '/logo-o.png' : '/logo-white.png'}
               alt="Phoenix Moving Logo"
+              width={300}
+              height={100}
+              objectFit="contain"
             />
           </Box>
           <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>

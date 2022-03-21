@@ -60,7 +60,7 @@ const Main = ({ title, description, children }) => {
         sx={{
           top: 0,
           backgroundColor: theme.palette.background.paper,
-          minHeight: 64,
+          height: 54,
           display: 'flex',
           justifyContent: 'center',
         }}

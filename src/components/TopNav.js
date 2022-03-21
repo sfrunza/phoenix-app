@@ -31,6 +31,7 @@ const TopNav = ({ colorInvert = false }) => {
           >
             <Button
               variant={'outlined'}
+              aria-label="Yelp link"
               color={mode === 'light' ? 'primary' : 'secondary'}
               sx={{
                 borderRadius: 2,
@@ -55,6 +56,7 @@ const TopNav = ({ colorInvert = false }) => {
           >
             <Button
               variant={'outlined'}
+              aria-label="Google link"
               color={mode === 'light' ? 'primary' : 'secondary'}
               sx={{
                 borderRadius: 2,
@@ -79,6 +81,7 @@ const TopNav = ({ colorInvert = false }) => {
           >
             <Button
               variant={'outlined'}
+              aria-label="Facebook link"
               color={mode === 'light' ? 'primary' : 'secondary'}
               sx={{
                 borderRadius: 2,
@@ -103,7 +106,7 @@ const TopNav = ({ colorInvert = false }) => {
           >
             <Button
               variant={'outlined'}
-              aria-label="Dark mode toggler"
+              aria-label="Instagram link"
               color={mode === 'light' ? 'primary' : 'secondary'}
               sx={{
                 borderRadius: 2,

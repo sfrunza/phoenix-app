@@ -4,8 +4,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../../../../assets/logos/logo-o.png';
-import logoWhite from '../../../../assets/logos/logo-white.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -33,13 +31,15 @@ const Topbar = ({ onSidebarOpen, pages }) => {
       <Link href="/">
         <Box
           display={'flex'}
-          width={{ xs: 150, md: 170 }}
+          width={{ xs: 130, md: 150 }}
           sx={{ cursor: 'pointer' }}
         >
           <Image
-            src={mode === 'light' ? logo : logoWhite}
-            objectFit="contain"
+            src={mode === 'light' ? '/logo-o.png' : '/logo-white.png'}
             alt="Phoenix Moving Logo"
+            width={300}
+            height={100}
+            objectFit="contain"
           />
         </Box>
       </Link>
@@ -79,11 +79,11 @@ const Topbar = ({ onSidebarOpen, pages }) => {
             items={portfolioPages}
           />
         </Box>
-        <Box marginLeft={4}>
+        {/* <Box marginLeft={4}>
           <Button variant="contained" color="primary">
             Get started
           </Button>
-        </Box>
+        </Box> */}
       </Box>
       <Box sx={{ display: { xs: 'block', md: 'none' } }} alignItems={'center'}>
         <Button
@@ -93,7 +93,7 @@ const Topbar = ({ onSidebarOpen, pages }) => {
           sx={{
             borderRadius: 2,
             minWidth: 'auto',
-            padding: 1,
+            padding: 0.5,
             borderColor: alpha(theme.palette.divider, 0.2),
           }}
         >

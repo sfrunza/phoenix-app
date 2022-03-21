@@ -7,26 +7,34 @@ import { useTheme } from '@mui/material/styles';
 
 const mock = [
   {
-    title: 'Your brand platform',
+    title: 'Residential',
     description:
-      'Monetize your website and manage all guest interactions with your own brand, logo and domains.',
+      'From small apartments to large houses we treat your belongings with the utmost care and safekeeping.',
     illustration:
       'https://assets.maccarianagency.com/svg/illustrations/illustration4.svg',
     illustrationDark:
       'https://assets.maccarianagency.com/svg/illustrations/illustration4--dark.svg',
   },
   {
-    title: 'Mobile compatible platform',
+    title: 'Commercial',
     description:
-      'Introduce your brand-new mobile friendly website to your customers. Seamlessly integrates with WiFi hardware and marketing automation software.',
+      'Office moving services and corporate relocation for busy professionals and companies as well.',
     illustration:
       'https://assets.maccarianagency.com/svg/illustrations/illustration1.svg',
     illustrationDark:
       'https://assets.maccarianagency.com/svg/illustrations/illustration1--dark.svg',
   },
   {
-    label: 'Client portal access',
-    title: 'Simple customer dashboards',
+    title: 'Local Help',
+    description:
+      'Loading and unloading help. Moving help within house, building, office or apartment or condo complex.',
+    illustration:
+      'https://assets.maccarianagency.com/svg/illustrations/illustration2.svg',
+    illustrationDark:
+      'https://assets.maccarianagency.com/svg/illustrations/illustration2--dark.svg',
+  },
+  {
+    title: 'Packing',
     description:
       'Give sub-users access to a simplified dashboard with limited permission levels to offer remote management and real-time analytics.',
     illustration:
@@ -36,12 +44,12 @@ const mock = [
   },
 ];
 
-const Work = () => {
+const Story = () => {
   const theme = useTheme();
 
   return (
     <Box>
-      <Box marginBottom={10}>
+      {/* <Box marginBottom={10}>
         <Typography
           sx={{
             textTransform: 'uppercase',
@@ -86,7 +94,7 @@ const Work = () => {
             Contact us
           </Button>
         </Box>
-      </Box>
+      </Box> */}
       <Grid container spacing={4}>
         {mock.map((item, i) => (
           <Grid
@@ -166,4 +174,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Story;

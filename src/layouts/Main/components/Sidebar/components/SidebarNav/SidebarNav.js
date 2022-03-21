@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
-import logo from '../../../../../../assets/logos/logo.png';
-import logoWhite from '../../../../../../assets/logos/logo-white.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import NavItem from './components/NavItem';
@@ -30,11 +28,11 @@ const SidebarNav = ({ pages }) => {
             display={'flex'}
             component="a"
             href="/"
-            title="theFront"
+            title="PhoenixMoving"
             width={{ xs: 100, md: 120 }}
           >
             <Image
-              src={mode === 'light' ? logo : logoWhite}
+              src={mode === 'light' ? '/logo-o.png' : '/logo-white.png'}
               height={150}
               width={500}
               alt="Phoenix Moving Logo"
