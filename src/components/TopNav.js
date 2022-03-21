@@ -75,7 +75,7 @@ const TopNav = ({ colorInvert = false }) => {
           <Link
             underline="none"
             component="a"
-            href="https://www.instagram.com/"
+            href="https://www.facebook.com/"
             target="_blank"
             color={colorInvert ? 'common.white' : 'text.primary'}
           >

@@ -68,7 +68,7 @@ const Hero = () => {
       <Container position={'relative'} zIndex={2}>
         <Box>
           <Typography
-            variant="h2"
+            variant="h4"
             gutterBottom
             sx={{
               fontWeight: 900,

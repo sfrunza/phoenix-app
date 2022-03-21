@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import Container from 'components/Container';
 
-const Hero = () => {
+const Hero = ({ bgImage, title, subtitle }) => {
   useEffect(() => {
     const jarallaxInit = async () => {
       const jarallaxElems = document.querySelectorAll('.jarallax');
@@ -29,9 +30,6 @@ const Hero = () => {
       minHeight={{ xs: 400, sm: 500, md: 600 }}
       display={'flex'}
       alignItems={'center'}
-      // marginTop={-13}
-      paddingTop={13}
-      id="agency__portfolio-item--js-scroll"
     >
       <Box
         className={'jarallax-img'}
@@ -48,8 +46,7 @@ const Hero = () => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
-          backgroundImage:
-            'url(https://previews.123rf.com/images/ewastudio/ewastudio1709/ewastudio170900098/85302166-tr%C3%A1fico-en-un-camino-alem%C3%A1n-coches-conduciendo-en-la-carretera.jpg)',
+          backgroundImage: `url(${bgImage})`,
         }}
       />
       <Box
@@ -76,7 +73,7 @@ const Hero = () => {
               textTransform: 'uppercase',
             }}
           >
-            Interstate Moving
+            {title}
           </Typography>
           <Typography
             variant="h6"
@@ -86,13 +83,18 @@ const Hero = () => {
               color: 'common.white',
             }}
           >
-            Flat Rate Moving. Gas, mileage, tolls, insurance are included. No
-            hidden fees.
+            {subtitle}
           </Typography>
         </Box>
       </Container>
     </Box>
   );
+};
+
+Hero.propTypes = {
+  bgImage: PropTypes.string,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
 };
 
 export default Hero;

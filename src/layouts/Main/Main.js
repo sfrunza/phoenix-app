@@ -7,16 +7,18 @@ import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import Container from 'components/Container';
-import TopNav from 'components/TopNav';
+// import TopNav from 'components/TopNav';
 
-import { Topbar, Sidebar, Footer } from './components';
+import { Topbar, Sidebar, Footer, ServicesTopBar } from './components';
 
 import pages from '../navigation';
 
 const Main = ({ title, description, children }) => {
   const theme = useTheme();
+  const router = useRouter();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
@@ -44,7 +46,7 @@ const Main = ({ title, description, children }) => {
         <title>{title ? `${title} - Phoenix Moving` : 'Phoenix Moving'}</title>
         {description && <meta name="description" content={description}></meta>}
       </Head>
-      <Box
+      {/* <Box
         position={'relative'}
         zIndex={theme.zIndex.appBar}
         sx={{
@@ -54,7 +56,7 @@ const Main = ({ title, description, children }) => {
         <Container paddingTop={'8px !important'} paddingBottom={'0 !important'}>
           <TopNav />
         </Container>
-      </Box>
+      </Box> */}
       <AppBar
         position={'sticky'}
         sx={{
@@ -70,6 +72,7 @@ const Main = ({ title, description, children }) => {
           <Topbar onSidebarOpen={handleSidebarOpen} pages={pages} />
         </Container>
       </AppBar>
+      {router.route.includes('services') && <ServicesTopBar />}
       <Sidebar
         onClose={handleSidebarClose}
         open={open}

@@ -50,7 +50,7 @@ const NavItem = ({ title, id, items }) => {
           onClick={(e) => handleClick(e, id)}
         >
           <Typography
-            fontWeight={openedPopoverId === id || hasActiveLink() ? 700 : 400}
+            fontWeight={openedPopoverId === id || hasActiveLink() ? 600 : 500}
             color={linkColor}
             variant="body2"
           >
@@ -77,7 +77,7 @@ const NavItem = ({ title, id, items }) => {
             href={items[0].href}
           >
             <Typography
-              fontWeight={openedPopoverId === id || hasActiveLink() ? 700 : 400}
+              fontWeight={openedPopoverId === id || hasActiveLink() ? 600 : 500}
               color={linkColor}
               variant="body2"
             >
@@ -127,7 +127,7 @@ const NavItem = ({ title, id, items }) => {
                         activeLink === p.href
                           ? alpha(theme.palette.primary.main, 0.1)
                           : 'transparent',
-                      fontWeight: activeLink === p.href ? 600 : 400,
+                      fontWeight: activeLink === p.href ? 600 : 500,
                     }}
                   >
                     {p.title}

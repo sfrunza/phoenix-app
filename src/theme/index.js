@@ -7,12 +7,12 @@ const getTheme = (mode, themeToggler) =>
   responsiveFontSizes(
     createTheme({
       palette: mode === 'light' ? light : dark,
-      // shape: {
-      //   borderRadius: 10,
-      // },
+      shape: {
+        borderRadius: 10,
+      },
       shadows: shadows(mode),
       typography: {
-        // fontFamily: '"Poppins", sans-serif',
+        fontFamily: '"Poppins", sans-serif',
         fontDisplay: 'swap',
         h1: {
           // fontWeight: 600,

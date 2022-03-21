@@ -24,9 +24,12 @@ const Topbar = ({ onSidebarOpen, pages }) => {
   return (
     <Box
       display={'flex'}
-      justifyContent={'space-between'}
+      // justifyContent={'space-between'}
       alignItems={'center'}
       width={1}
+      sx={{
+        justifyContent: { xs: 'space-between', md: 'center' },
+      }}
     >
       <Link href="/">
         <Box
@@ -44,7 +47,14 @@ const Topbar = ({ onSidebarOpen, pages }) => {
         </Box>
       </Link>
 
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
+      <Box
+        sx={{
+          display: { xs: 'none', md: 'flex' },
+          flex: '6 1 0%',
+          justifyContent: 'center',
+        }}
+        alignItems={'center'}
+      >
         <Box>
           <NavItem title={'Home'} id={'landing-pages'} items={landingPages} />
         </Box>
@@ -72,18 +82,27 @@ const Topbar = ({ onSidebarOpen, pages }) => {
         <Box marginLeft={4}>
           <NavItem title={'FAQ'} id={'faq-pages'} items={faqPages} />
         </Box>
-        <Box marginLeft={4}>
+        {/* <Box marginLeft={4}>
+          <NavItem
+            title={'Client login'}
+            id={'portfolio-pages'}
+            items={portfolioPages}
+          />
+        </Box> */}
+      </Box>
+      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
+        <Box>
           <NavItem
             title={'Client login'}
             id={'portfolio-pages'}
             items={portfolioPages}
           />
         </Box>
-        {/* <Box marginLeft={4}>
+        <Box marginLeft={2}>
           <Button variant="contained" color="primary">
             Get started
           </Button>
-        </Box> */}
+        </Box>
       </Box>
       <Box sx={{ display: { xs: 'block', md: 'none' } }} alignItems={'center'}>
         <Button

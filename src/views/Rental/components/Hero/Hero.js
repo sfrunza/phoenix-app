@@ -32,11 +32,11 @@ const Hero = () => {
       data-jarallax
       data-speed="0.2"
       position={'relative'}
-      minHeight={{ xs: 400, sm: 500, md: 600 }}
+      minHeight={{ xs: 500, sm: 500, md: 600 }}
       display={'flex'}
       alignItems={'center'}
       // marginTop={-13}
-      paddingTop={13}
+      // paddingTop={13}
       id="home--js-scroll"
     >
       <Box
