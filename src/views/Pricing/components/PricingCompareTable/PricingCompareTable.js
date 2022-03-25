@@ -1,7 +1,6 @@
 import React from 'react';
-import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
@@ -14,75 +13,87 @@ import Paper from '@mui/material/Paper';
 
 const features = [
   {
-    title: '1 User',
+    title: '2 movers & truck',
     id: 1,
   },
   {
-    title: '1 App',
+    title: '3 movers & truck',
     id: 2,
   },
   {
-    title: 'Integrations',
+    title: '4 movers & truck',
     id: 3,
   },
   {
-    title: 'Google Ads',
+    title: 'additional mover',
     id: 4,
   },
   {
-    title: 'SSO via Google',
+    title: 'additional truck',
     id: 5,
   },
-  {
-    title: 'API access',
-    id: 6,
-  },
-  {
-    title: 'Facebook Ads',
-    id: 7,
-  },
 ];
 
-const pricing = [
-  {
-    title: 'Starter',
-    price: {
-      monthly: 22,
-      annual: 210,
+const PricingCompareTable = ({ prices }) => {
+  let disc = [
+    prices.two_men[0],
+    prices.three_men[0],
+    prices.four_men[0],
+    prices.add_men[0],
+    prices.add_truck[0],
+  ];
+  let reg = [
+    prices.two_men[1],
+    prices.three_men[1],
+    prices.four_men[1],
+    prices.add_men[1],
+    prices.add_truck[1],
+  ];
+  let peak = [
+    prices.two_men[2],
+    prices.three_men[2],
+    prices.four_men[2],
+    prices.add_men[2],
+    prices.add_truck[2],
+  ];
+  const pricing = [
+    {
+      title: 'Discounted',
+      price: {
+        monthly: 22,
+        annual: 210,
+      },
+      features: prices ? disc : [90, 140, 190, 50, 40],
+      isHighlighted: false,
+      btnText: 'Book online',
     },
-    features: [1, 2, 3, 7],
-    isHighlighted: false,
-    btnText: 'Get Starter',
-  },
-  {
-    title: 'Pro',
-    price: {
-      annual: 420,
-      monthly: 44,
+    {
+      title: 'Regular',
+      price: {
+        annual: 420,
+        monthly: 44,
+      },
+      features: prices ? reg : [131230, 12380, 22330, 2350, 2340],
+      isHighlighted: false,
+      btnText: 'Book online',
     },
-    features: [1, 3, 4, 5],
-    isHighlighted: true,
-    btnText: 'Get Pro',
-  },
-  {
-    title: 'Enterprise',
-    price: {
-      annual: 740,
-      monthly: 77,
+    {
+      title: 'Peak',
+      price: {
+        annual: 740,
+        monthly: 77,
+      },
+      features: prices ? peak : [150, 210, 270, 50, 40],
+      isHighlighted: false,
+      btnText: 'Book online',
     },
-    features: [1, 2, 3, 4, 5, 6, 7],
-    isHighlighted: false,
-    btnText: 'Contact us',
-  },
-];
+  ];
 
-const PricingCompareTable = () => {
-  const theme = useTheme();
   return (
     <Box>
       <Box marginBottom={4}>
         <Typography fontWeight={700} variant={'h4'}>
-          Compare the options
+          Pricing table
         </Typography>
       </Box>
       <Box>
@@ -93,7 +104,7 @@ const PricingCompareTable = () => {
             </caption>
             <TableHead>
               <TableRow>
-                <TableCell>Features</TableCell>
+                <TableCell></TableCell>
                 {pricing.map((item, i) => (
                   <TableCell align="center" key={i}>
                     <Typography
@@ -106,93 +117,34 @@ const PricingCompareTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {features.map((feature) => (
+              {features.map((feature, i) => (
                 <TableRow key={feature.id}>
                   <TableCell component="th" scope="row">
                     {feature.title}
                   </TableCell>
                   <TableCell align="center">
                     <Box display={'flex'} justifyContent={'center'}>
-                      {pricing[0].features.indexOf(feature.id) !== -1 ? (
-                        <Box
-                          component={Avatar}
-                          bgcolor={theme.palette.secondary.main}
-                          width={20}
-                          height={20}
-                        >
-                          <svg
-                            width={12}
-                            height={12}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </Box>
-                      ) : (
-                        ''
-                      )}
+                      <Typography color="text.secondary">
+                        {pricing[0].features[i]}
+                      </Typography>
                     </Box>
                   </TableCell>
                   <TableCell align="center">
                     <Box display={'flex'} justifyContent={'center'}>
-                      {pricing[1].features.indexOf(feature.id) !== -1 ? (
-                        <Box
-                          component={Avatar}
-                          bgcolor={theme.palette.secondary.main}
-                          width={20}
-                          height={20}
-                        >
-                          <svg
-                            width={12}
-                            height={12}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </Box>
-                      ) : (
-                        ''
-                      )}
+                      <Box display={'flex'} justifyContent={'center'}>
+                        <Typography color="text.secondary">
+                          {pricing[1].features[i]}
+                        </Typography>
+                      </Box>
                     </Box>
                   </TableCell>
                   <TableCell align="center">
                     <Box display={'flex'} justifyContent={'center'}>
-                      {pricing[2].features.indexOf(feature.id) !== -1 ? (
-                        <Box
-                          component={Avatar}
-                          bgcolor={theme.palette.secondary.main}
-                          width={20}
-                          height={20}
-                        >
-                          <svg
-                            width={12}
-                            height={12}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </Box>
-                      ) : (
-                        ''
-                      )}
+                      <Box display={'flex'} justifyContent={'center'}>
+                        <Typography color="text.secondary">
+                          {pricing[2].features[i]}
+                        </Typography>
+                      </Box>
                     </Box>
                   </TableCell>
                 </TableRow>
@@ -202,7 +154,6 @@ const PricingCompareTable = () => {
                 {pricing.map((item, i) => (
                   <TableCell align="center" key={i}>
                     <Button
-                      size={'large'}
                       variant={item.isHighlighted ? 'contained' : 'outlined'}
                     >
                       {item.btnText}
@@ -216,6 +167,10 @@ const PricingCompareTable = () => {
       </Box>
     </Box>
   );
+};
+
+PricingCompareTable.propTypes = {
+  prices: PropTypes.object.isRequired,
 };
 
 export default PricingCompareTable;

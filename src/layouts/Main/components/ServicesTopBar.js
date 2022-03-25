@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from 'next/link';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
@@ -10,6 +11,9 @@ import { useRouter } from 'next/router';
 
 const ServicesTopBar = () => {
   const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+    defaultMatches: true,
+  });
   // const { mode } = theme.palette;
   const router = useRouter();
 
@@ -32,9 +36,14 @@ const ServicesTopBar = () => {
       name: 'Storage',
       href: '/services/storage-solutions',
     },
+    {
+      name: 'Junk',
+      href: '/services/junk-removal',
+      isNew: true,
+    },
   ];
 
-  const linkColor = 'text.primary';
+  const linkColor = 'text.secondary';
 
   return (
     <AppBar
@@ -54,9 +63,10 @@ const ServicesTopBar = () => {
           <Box
             sx={{
               display: 'flex',
-              flex: '6 1 0%',
+              flex: '5 1 0%',
               justifyContent: { xs: 'left', md: 'center' },
             }}
+            ml={isMd ? 7 : 0}
             alignItems={'center'}
           >
             {links.map((route, i) => {
@@ -68,16 +78,39 @@ const ServicesTopBar = () => {
                     sx={{ cursor: 'pointer' }}
                     component={'a'}
                     href={route.href}
-                    marginLeft={i === 0 ? 0 : 4}
+                    marginLeft={i === 0 ? 0 : isMd ? 4 : 3}
                   >
                     <Typography
-                      fontWeight={500}
                       color={
-                        currentRoute === route.href ? 'primary' : linkColor
+                        currentRoute === route.href ? 'text.primary' : linkColor
                       }
+                      // variant={isMd ? 'body1' : 'body2'}
                       variant="body2"
                     >
                       {route.name}
+                      {route.isNew && (
+                        <Box
+                          // padding={0.5}
+                          display={'inline-flex'}
+                          // borderRadius={1}
+                          // bgcolor={'primary.main'}
+                          marginLeft={0.5}
+                          component="span"
+                        >
+                          <Typography
+                            variant={'caption'}
+                            sx={{
+                              color: 'primary.main',
+                              lineHeight: 1,
+                              position: 'relative',
+                              top: -7,
+                              fontSize: 10,
+                            }}
+                          >
+                            new
+                          </Typography>
+                        </Box>
+                      )}
                     </Typography>
                   </Box>
                 </Link>

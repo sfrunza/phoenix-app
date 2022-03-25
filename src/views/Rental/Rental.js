@@ -8,19 +8,25 @@ import {
   Advantages,
   Articles,
   AskExpert,
-  FeaturedProperties,
+  FeaturedProducts,
   Hero,
   Partners,
   Places,
   Reviews,
   Search,
   Teaser,
+  Cities,
 } from './components';
 
 const Rental = () => {
   return (
     <Main>
       <Hero />
+      <Box bgcolor={'alternate.main'}>
+        <Container>
+          <Cities />
+        </Container>
+      </Box>
       <Container>
         <Partners />
       </Container>
@@ -35,9 +41,9 @@ const Rental = () => {
       <Container sx={{ paddingTop: '0 !important' }}>
         <Articles />
       </Container>
-      <Box bgcolor={'alternate.main'}>
+      <Box bgcolor={'primary.main'}>
         <Container>
-          <FeaturedProperties />
+          <FeaturedProducts />
         </Container>
       </Box>
       <Container>

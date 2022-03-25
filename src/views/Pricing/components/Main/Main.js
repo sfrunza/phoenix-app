@@ -19,27 +19,36 @@ import Container from 'components/Container';
 
 const mock = [
   {
-    title: 'Starter',
-    subtitle: 'Is perfect for individual developers',
+    title: '2 movers',
+    subtitle: 'studio / 1 bedroom',
     price: { monthly: '$22', annual: '$190' },
-    features: ['1 User', '1 App', 'Integrations'],
-    isHighlighted: false,
-  },
-  {
-    title: 'Pro',
-    subtitle: 'For teams and advanced developers',
-    price: { monthly: '$44', annual: '$390' },
     features: [
-      'All in Starter plan',
+      'All features',
+      'Email support',
       'Google Ads',
       'SSO via Google',
       'API access',
+      'Facebook Ads',
+    ],
+    isHighlighted: false,
+  },
+  {
+    title: '3 movers',
+    subtitle: '2-3 bedroom',
+    price: { monthly: '$44', annual: '$390' },
+    features: [
+      'All features',
+      'Email support',
+      'Google Ads',
+      'SSO via Google',
+      'API access',
+      'Facebook Ads',
     ],
     isHighlighted: true,
   },
   {
-    title: 'Enterprise',
-    subtitle: 'Ideal for corporate companyes',
+    title: '4 movers',
+    subtitle: '3+ bedroom',
     price: { monthly: '$77', annual: '$690' },
     features: [
       'All features',
@@ -80,14 +89,14 @@ const Main = () => {
           }}
         >
           <Typography
-            variant="subtitle2"
+            variant="subtitle1"
             sx={{
-              fontWeight: 700,
+              // fontWeight: 500,
               color:
                 pricingOption === 'annual' ? 'common.white' : 'text.primary',
             }}
           >
-            Annual
+            Local Move
           </Typography>
         </ToggleButton>
         <ToggleButton
@@ -102,14 +111,14 @@ const Main = () => {
           }}
         >
           <Typography
-            variant="subtitle2"
+            variant="subtitle1"
             sx={{
-              fontWeight: 700,
+              // fontWeight: 500,
               color:
                 pricingOption !== 'annual' ? 'common.white' : 'text.primary',
             }}
           >
-            Monthly
+            Interstate Move
           </Typography>
         </ToggleButton>
       </ToggleButtonGroup>
@@ -143,7 +152,7 @@ const Main = () => {
               <Typography
                 variant="h6"
                 component="p"
-                color="text.primary"
+                color="text.secondary"
                 align={'center'}
               >
                 We are founded by a leading academic and researcher in the field
@@ -195,8 +204,9 @@ const Main = () => {
                       variant={'subtitle1'}
                       color={'text.secondary'}
                       fontWeight={700}
+                      ml={1}
                     >
-                      {pricingOption === 'annual' ? '/y' : '/mo'}
+                      {pricingOption === 'annual' ? '/hour' : 'flat rate'}
                     </Typography>
                   </Box>
                   <Grid container spacing={1}>

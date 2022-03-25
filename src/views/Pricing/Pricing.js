@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -13,9 +14,8 @@ import {
   PricingCompareTable,
 } from './components';
 
-const Pricing = () => {
+const Pricing = ({ prices }) => {
   const theme = useTheme();
-
   return (
     <Main title="Pricing">
       <MainSection />
@@ -25,7 +25,7 @@ const Pricing = () => {
         </Container>
       </Box>
       <Container>
-        <PricingCompareTable />
+        <PricingCompareTable prices={prices} />
       </Container>
       <Container maxWidth={400} paddingY={'0 !important'}>
         <Divider />
@@ -62,6 +62,10 @@ const Pricing = () => {
       </Box>
     </Main>
   );
+};
+
+Pricing.propTypes = {
+  prices: PropTypes.object.isRequired,
 };
 
 export default Pricing;

@@ -22,6 +22,11 @@ const pages = {
       title: 'Storage Solutions',
       href: '/services/storage-solutions',
     },
+    {
+      title: 'Junk Removal',
+      href: '/services/storage-solutions',
+      isNew: true,
+    },
   ],
   account: [
     {

@@ -23,7 +23,7 @@ const Headline = ({ title }) => {
       <Link href="/">
         <a>
           <Button variant="contained" disableElevation>
-            Get a Free Quote
+            Get a free quote
           </Button>
         </a>
       </Link>

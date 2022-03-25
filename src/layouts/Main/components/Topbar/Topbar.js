@@ -98,11 +98,11 @@ const Topbar = ({ onSidebarOpen, pages }) => {
             items={portfolioPages}
           />
         </Box>
-        <Box marginLeft={2}>
+        {/* <Box marginLeft={2}>
           <Button variant="contained" color="primary">
             Get started
           </Button>
-        </Box>
+        </Box> */}
       </Box>
       <Box sx={{ display: { xs: 'block', md: 'none' } }} alignItems={'center'}>
         <Button

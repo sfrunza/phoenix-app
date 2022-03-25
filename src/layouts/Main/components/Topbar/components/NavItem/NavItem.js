@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { alpha, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -37,7 +37,7 @@ const NavItem = ({ title, id, items }) => {
       return items[0].href === activeLink;
     }
   };
-  const linkColor = 'text.primary';
+  const linkColor = hasActiveLink() ? 'text.primary' : 'text.secondary';
 
   return (
     <Box>
@@ -50,9 +50,9 @@ const NavItem = ({ title, id, items }) => {
           onClick={(e) => handleClick(e, id)}
         >
           <Typography
-            fontWeight={openedPopoverId === id || hasActiveLink() ? 600 : 500}
+            // fontWeight={openedPopoverId === id || hasActiveLink() ? 600 : 500}
             color={linkColor}
-            variant="body2"
+            // variant="body1"
           >
             {title}
           </Typography>
@@ -77,9 +77,9 @@ const NavItem = ({ title, id, items }) => {
             href={items[0].href}
           >
             <Typography
-              fontWeight={openedPopoverId === id || hasActiveLink() ? 600 : 500}
+              // fontWeight={openedPopoverId === id || hasActiveLink() ? 600 : 500}
               color={linkColor}
-              variant="body2"
+              // variant="body1"
             >
               {title}
             </Typography>
@@ -119,15 +119,11 @@ const NavItem = ({ title, id, items }) => {
                     fullWidth
                     sx={{
                       justifyContent: 'flex-start',
+                      fontSize: '1rem',
                       color:
                         activeLink === p.href
-                          ? theme.palette.primary.main
-                          : theme.palette.text.primary,
-                      backgroundColor:
-                        activeLink === p.href
-                          ? alpha(theme.palette.primary.main, 0.1)
-                          : 'transparent',
-                      fontWeight: activeLink === p.href ? 600 : 500,
+                          ? theme.palette.text.primary
+                          : theme.palette.text.secondary,
                     }}
                   >
                     {p.title}
@@ -135,13 +131,19 @@ const NavItem = ({ title, id, items }) => {
                       <Box
                         padding={0.5}
                         display={'inline-flex'}
-                        borderRadius={1}
+                        borderRadius={0.6}
                         bgcolor={'primary.main'}
                         marginLeft={2}
                       >
                         <Typography
                           variant={'caption'}
-                          sx={{ color: 'common.white', lineHeight: 1 }}
+                          sx={{
+                            color: 'common.white',
+                            lineHeight: 1,
+                            position: 'relative',
+                            top: -1,
+                            fontSize: 10,
+                          }}
                         >
                           new
                         </Typography>

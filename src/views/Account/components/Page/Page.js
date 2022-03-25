@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 
 import Container from 'components/Container';
 
@@ -75,39 +76,42 @@ const Page = ({ children }) => {
                 }}
               >
                 {pages.map((item) => (
-                  <ListItem
-                    key={item.id}
-                    component={'a'}
-                    href={item.href}
-                    disableGutters
-                    sx={{
-                      marginRight: { xs: 2, md: 0 },
-                      flex: 0,
-                      paddingX: { xs: 0, md: 3 },
-                      borderLeft: {
-                        xs: 'none',
-                        md: '2px solid transparent',
-                      },
-                      borderLeftColor: {
-                        md:
-                          activeLink === item.href
-                            ? theme.palette.primary.main
-                            : 'transparent',
-                      },
-                    }}
-                  >
-                    <Typography
-                      variant="subtitle1"
-                      noWrap
-                      color={
-                        activeLink === item.href
-                          ? 'text.primary'
-                          : 'text.secondary'
-                      }
-                    >
-                      {item.title}
-                    </Typography>
-                  </ListItem>
+                  <Link href={item.href} key={item.id}>
+                    <a>
+                      <ListItem
+                        component={'a'}
+                        href={item.href}
+                        disableGutters
+                        sx={{
+                          marginRight: { xs: 2, md: 0 },
+                          flex: 0,
+                          paddingX: { xs: 0, md: 3 },
+                          borderLeft: {
+                            xs: 'none',
+                            md: '2px solid transparent',
+                          },
+                          borderLeftColor: {
+                            md:
+                              activeLink === item.href
+                                ? theme.palette.primary.main
+                                : 'transparent',
+                          },
+                        }}
+                      >
+                        <Typography
+                          variant="subtitle1"
+                          noWrap
+                          color={
+                            activeLink === item.href
+                              ? 'text.primary'
+                              : 'text.secondary'
+                          }
+                        >
+                          {item.title}
+                        </Typography>
+                      </ListItem>
+                    </a>
+                  </Link>
                 ))}
               </List>
             </Card>

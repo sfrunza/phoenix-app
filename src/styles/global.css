@@ -1,9 +1,30 @@
+@font-face {
+  font-family: 'CustomFontMedium';
+  src: url('/font/circular-medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'CustomFontBold';
+  src: url('/font/circular-bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'CustomFontLight';
+  src: url('/font/circular-light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'CustomFontBook';
+  src: url('/font/circular-book.otf') format('opentype');
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'CustomFontBook', -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
 }
 
 a {

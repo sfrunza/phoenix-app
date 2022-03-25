@@ -10,6 +10,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const FaqGroupItem = ({ title, items }) => {
   const theme = useTheme();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
   return (
     <Box>
       <Box marginBottom={2}>
@@ -30,6 +35,8 @@ const FaqGroupItem = ({ title, items }) => {
                 display: 'none',
               },
             }}
+            expanded={expanded === `panel+${i}`}
+            onChange={handleChange(`panel+${i}`)}
           >
             <Box
               component={AccordionSummary}
@@ -37,7 +44,7 @@ const FaqGroupItem = ({ title, items }) => {
               aria-controls="panel1a-content"
               id={`panel1a-header--${i}`}
             >
-              <Typography fontWeight={600}>{item.title}</Typography>
+              <Typography variant="h6">{item.title}</Typography>
             </Box>
             <AccordionDetails>
               <Typography color="text.secondary">{item.subtitle}</Typography>
