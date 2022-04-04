@@ -118,7 +118,7 @@ const Form = () => {
         email: values.email,
         password: values.password,
       };
-      let res = await fetch('http://localhost:3000/api/users/create', {
+      let res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -136,7 +136,7 @@ const Form = () => {
         userId,
       };
 
-      let jobres = await fetch('http://localhost:3000/api/jobs/create', {
+      let jobres = await fetch(`${process.env.NEXTAUTH_URL}/api/jobs/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jobBody),
@@ -169,13 +169,13 @@ const Form = () => {
         jobId,
       };
 
-      await fetch('http://localhost:3000/api/addresses/create', {
+      await fetch(`${process.env.NEXTAUTH_URL}/api/addresses/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(originAddress),
       });
 
-      await fetch('http://localhost:3000/api/addresses/create', {
+      await fetch(`${process.env.NEXTAUTH_URL}/api/addresses/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(destinationAddress),

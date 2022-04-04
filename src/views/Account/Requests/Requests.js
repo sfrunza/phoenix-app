@@ -13,7 +13,7 @@ import Main from 'layouts/Main';
 import useSWR from 'swr';
 
 const Requests = () => {
-  const { data, error } = useSWR(`http://localhost:3000/api/jobs`);
+  const { data, error } = useSWR(`${process.env.NEXTAUTH_URL}/api/jobs`);
 
   const getCityState = (job, type) => {
     let cityState = null;

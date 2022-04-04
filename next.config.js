@@ -24,6 +24,12 @@ module.exports = (phase) => {
         return 'AIzaSyADEDKabHN5FBcOroOU1W7BzUam0Az8gGQ';
       }
     })(),
+    NEXTAUTH_URL: (() => {
+      if (isDev) return 'http://localhost:3000';
+      if (isProd) {
+        return 'https://www.gophoenixmoving.com';
+      }
+    })(),
   };
 
   // next.config.js object

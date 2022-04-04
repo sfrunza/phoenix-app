@@ -46,7 +46,7 @@ const Page = ({ children }) => {
   const theme = useTheme();
   const { data: session } = useSession();
   const user = session && session.user;
-  const { data } = useSwr('http://localhost:3000/api/jobs');
+  const { data } = useSwr(`${process.env.NEXTAUTH_URL}/api/jobs`);
   const jobs = data?.jobs.length;
 
   useEffect(() => {

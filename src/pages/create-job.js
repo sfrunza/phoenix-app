@@ -21,7 +21,7 @@ const CreateJob = () => {
         email,
         password,
       };
-      let res = await fetch('http://localhost:3000/api/users/create', {
+      let res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -34,7 +34,7 @@ const CreateJob = () => {
         userId,
       };
 
-      await fetch('http://localhost:3000/api/jobs/create', {
+      await fetch(`${process.env.NEXTAUTH_URL}/api/jobs/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jobBody),

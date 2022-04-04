@@ -14,7 +14,7 @@ import useSwr from 'swr';
 const Job = () => {
   const router = useRouter();
   const id = router.query.id;
-  const { data: job } = useSwr(`http://localhost:3000/api/jobs/${id}`);
+  const { data: job } = useSwr(`${process.env.NEXTAUTH_URL}/api/jobs/${id}`);
   return (
     <Main>
       <Page>
