@@ -96,7 +96,7 @@ const Topbar = ({ onSidebarOpen, pages }) => {
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
         <Box>
-          {status === 'loading' ? null : data ? (
+          {data ? (
             <UserPopover />
           ) : (
             <NavItem
