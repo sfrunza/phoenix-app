@@ -16,6 +16,8 @@ import {
   Search,
   Teaser,
   Cities,
+  Services,
+  Features,
 } from './components';
 
 const Rental = () => {
@@ -24,11 +26,19 @@ const Rental = () => {
       <Hero />
       <Box bgcolor={'alternate.main'}>
         <Container>
+          <Partners />
+        </Container>
+      </Box>
+      <Container>
+        <Services />
+      </Container>
+      <Box bgcolor={'alternate.main'}>
+        <Container>
           <Cities />
         </Container>
       </Box>
       <Container>
-        <Partners />
+        <Features />
       </Container>
       <Box bgcolor={'alternate.main'}>
         <Container>

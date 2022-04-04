@@ -27,6 +27,10 @@ const pages = {
       href: '/services/storage-solutions',
       isNew: true,
     },
+    {
+      title: 'Boston to New York',
+      href: '/services/boston-new-york-moving-prices',
+    },
   ],
   account: [
     {
@@ -93,7 +97,7 @@ const pages = {
   portfolio: [
     {
       title: 'Client login',
-      href: '/signin-cover',
+      href: '/account',
     },
   ],
 };

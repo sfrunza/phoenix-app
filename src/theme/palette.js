@@ -7,29 +7,26 @@ export const light = {
   mode: 'light',
   primary: {
     main: '#7900FF',
-    // main: '#377dff',
-    // light: '#467de3',
-    // dark: '#2f6ad9',
     contrastText: '#fff',
   },
   secondary: {
     // main: '#3dcc80',
     main: '#000',
-    // light: '#ffb74d',
-    // main: '#f9b934',
-    // dark: '#FF9800',
     contrastText: 'rgba(0, 0, 0, 0.87)',
   },
   text: {
     primary: '#000',
     secondary: 'rgb(102, 102, 102)',
   },
-  divider: 'rgba(0, 0, 0, 0.12)',
+  // divider: '#eaeaea',
   background: {
     paper: '#ffffff',
     default: '#ffffff',
     level2: '#f5f5f5',
     level1: '#ffffff',
+  },
+  error: {
+    main: '#ff3333',
   },
 };
 

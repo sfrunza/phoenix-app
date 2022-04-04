@@ -6,7 +6,6 @@ import Link from 'next/link';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 import Container from 'components/Container';
-import { alpha } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 
 const ServicesTopBar = () => {
@@ -54,7 +53,7 @@ const ServicesTopBar = () => {
         height: 46,
         display: 'flex',
         justifyContent: 'center',
-        borderTop: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
+        borderTop: `1px solid ${theme.palette.divider}`,
       }}
       elevation={1}
     >

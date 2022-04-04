@@ -6,11 +6,13 @@ import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
-import { NavItem } from './components';
+import { NavItem, UserPopover } from './components';
 
 const Topbar = ({ onSidebarOpen, pages }) => {
   const theme = useTheme();
+  const { data, status } = useSession();
   const { mode } = theme.palette;
   const {
     landings: landingPages,
@@ -21,10 +23,16 @@ const Topbar = ({ onSidebarOpen, pages }) => {
     faq: faqPages,
   } = pages;
 
+  const book = [
+    {
+      title: 'Book',
+      href: '/book',
+    },
+  ];
+
   return (
     <Box
       display={'flex'}
-      // justifyContent={'space-between'}
       alignItems={'center'}
       width={1}
       sx={{
@@ -82,21 +90,21 @@ const Topbar = ({ onSidebarOpen, pages }) => {
         <Box marginLeft={4}>
           <NavItem title={'FAQ'} id={'faq-pages'} items={faqPages} />
         </Box>
-        {/* <Box marginLeft={4}>
-          <NavItem
-            title={'Client login'}
-            id={'portfolio-pages'}
-            items={portfolioPages}
-          />
-        </Box> */}
+        <Box marginLeft={4}>
+          <NavItem title={'Book'} id={'book'} items={book} />
+        </Box>
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
         <Box>
-          <NavItem
-            title={'Client login'}
-            id={'portfolio-pages'}
-            items={portfolioPages}
-          />
+          {status === 'loading' ? null : data ? (
+            <UserPopover />
+          ) : (
+            <NavItem
+              title={'Client login'}
+              id={'portfolio-pages'}
+              items={portfolioPages}
+            />
+          )}
         </Box>
         {/* <Box marginLeft={2}>
           <Button variant="contained" color="primary">

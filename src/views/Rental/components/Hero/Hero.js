@@ -1,17 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect } from 'react';
-import { alpha } from '@mui/material/styles';
-import Card from '@mui/material/Card';
+import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import InputAdornment from '@mui/material/InputAdornment';
 
 import Container from 'components/Container';
 
 const Hero = () => {
+  const theme = useTheme();
   useEffect(() => {
     const jarallaxInit = async () => {
       const jarallaxElems = document.querySelectorAll('.jarallax');
@@ -32,7 +28,7 @@ const Hero = () => {
       data-jarallax
       data-speed="0.2"
       position={'relative'}
-      minHeight={{ xs: 500, sm: 500, md: 600 }}
+      minHeight={{ xs: 500, sm: 600, md: 700 }}
       display={'flex'}
       alignItems={'center'}
       // marginTop={-13}
@@ -53,8 +49,7 @@ const Hero = () => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
-          backgroundImage:
-            'url(https://assets.maccarianagency.com/backgrounds/img26.jpg)',
+          backgroundImage: 'url(https://vistapointe.net/images/boston-3.jpg)',
         }}
       />
       {/* <Box
@@ -98,7 +93,7 @@ const Hero = () => {
           bottom: 0,
           width: 1,
           height: 1,
-          background: alpha('#000', 0.2),
+          background: alpha('#000', 0.4),
           zIndex: 1,
         }}
       />
@@ -114,85 +109,42 @@ const Hero = () => {
                 color: 'common.white',
               }}
             >
-              Need help selecting a rental service provider?
+              A Badass Moving Compnay in Boston
             </Typography>
-            <Typography
-              variant="h6"
-              component="p"
-              color="text.primary"
-              sx={{
-                fontWeight: 400,
-                color: 'common.white',
-              }}
-            >
-              Let us guide you home.
-              <br />
-              Find the house of your dreams
-            </Typography>
-          </Box>
-          <Box
-            padding={{ xs: 3, sm: 6 }}
-            width={1}
-            component={Card}
-            boxShadow={1}
-            data-aos="fade-up"
-          >
-            <form noValidate autoComplete="off">
-              <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }}>
+
+            <Box display={'flex'} justifyContent={'initial'} component="span">
+              {[1, 2, 3, 4, 5].map((item) => (
                 <Box
-                  width={1}
-                  marginRight={{ xs: 0, md: 2 }}
-                  marginBottom={{ xs: 2, md: 0 }}
+                  key={item}
+                  display={'flex'}
+                  alignItems={'center'}
+                  sx={{
+                    color: 'common.white',
+                  }}
                 >
-                  <TextField
-                    sx={{
-                      height: 54,
-                    }}
-                    variant="outlined"
-                    color="primary"
-                    size="medium"
-                    fullWidth
-                    label="Search"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Box
-                            component={'svg'}
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            width={24}
-                            height={24}
-                            color={'primary.main'}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                            />
-                          </Box>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Box>
-                <Box>
-                  <Button
-                    sx={{ height: 54, whiteSpace: 'nowrap' }}
-                    variant="contained"
-                    color="primary"
-                    size="medium"
-                    fullWidth
+                  <svg
+                    width={18}
+                    height={18}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
                   >
-                    Get srated
-                  </Button>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
                 </Box>
-              </Box>
-            </form>
-            <Box marginY={4} marginX={{ xs: -3, sm: -6 }}>
-              <Divider />
+              ))}
+              <Typography
+                variant="h6"
+                component="span"
+                color="text.primary"
+                sx={{
+                  fontWeight: 400,
+                  color: 'common.white',
+                  ml: 1,
+                }}
+              >
+                Rated 5/5 based on 1234 reviews
+              </Typography>
             </Box>
           </Box>
         </Box>
@@ -202,32 +154,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-// <Box
-// minHeight={300}
-// height={'auto'}
-// position={'relative'}
-// sx={{
-//   backgroundColor: theme.palette.alternate.main,
-//   background:
-//     'url(https://assets.maccarianagency.com/backgrounds/img26.jpg) no-repeat center',
-//   backgroundSize: 'cover',
-//   // marginTop: -15,
-//   paddingTop: 15,
-// }}
-// >
-{
-  /* <Box
-  sx={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: 1,
-    height: 1,
-    background: alpha('#000', 0.2),
-    zIndex: 1,
-  }}
-/> */
-}

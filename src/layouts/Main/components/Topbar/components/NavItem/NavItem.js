@@ -49,13 +49,7 @@ const NavItem = ({ title, id, items }) => {
           sx={{ cursor: 'pointer' }}
           onClick={(e) => handleClick(e, id)}
         >
-          <Typography
-            // fontWeight={openedPopoverId === id || hasActiveLink() ? 600 : 500}
-            color={linkColor}
-            // variant="body1"
-          >
-            {title}
-          </Typography>
+          <Typography color={linkColor}>{title}</Typography>
           <ExpandMoreIcon
             sx={{
               marginLeft: theme.spacing(1 / 4),
@@ -120,6 +114,7 @@ const NavItem = ({ title, id, items }) => {
                     sx={{
                       justifyContent: 'flex-start',
                       fontSize: '1rem',
+                      fontWeight: 500,
                       color:
                         activeLink === p.href
                           ? theme.palette.text.primary

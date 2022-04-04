@@ -62,7 +62,7 @@ const getTheme = (mode, themeToggler) =>
         MuiButton: {
           styleOverrides: {
             root: {
-              // fontWeight: 600,
+              fontWeight: 600,
               borderRadius: 10,
             },
             containedSecondary: mode === 'light' ? { color: 'white' } : {},
@@ -71,33 +71,58 @@ const getTheme = (mode, themeToggler) =>
         MuiInputBase: {
           styleOverrides: {
             root: {
-              borderRadius: 5,
+              // borderRadius: 10,
             },
           },
         },
         MuiOutlinedInput: {
           styleOverrides: {
             root: {
-              borderRadius: 5,
+              // borderRadius: 10,
             },
             input: {
-              borderRadius: 5,
+              // borderRadius: 10,
             },
           },
         },
         MuiCard: {
           styleOverrides: {
             root: {
-              borderRadius: 8,
+              // borderRadius: 10,
             },
           },
         },
         MuiTooltip: {
           styleOverrides: {
             tooltip: {
-              borderRadius: 10,
+              // borderRadius: 10,
               // backgroundColor: 'red',
               padding: 8,
+            },
+          },
+        },
+        MuiTableCell: {
+          styleOverrides: {
+            root: {
+              // borderRadius: 10,
+              // backgroundColor: 'red',
+              borderBottom: '1px solid #eaeaea',
+            },
+          },
+        },
+        MuiCssBaseline: {
+          styleOverrides: {
+            '#nprogress': {
+              pointerEvents: 'none',
+            },
+            '#nprogress .bar': {
+              backgroundColor: '#7900ff3b',
+              height: 3,
+              left: 0,
+              position: 'fixed',
+              top: 0,
+              width: '100%',
+              zIndex: 2000,
             },
           },
         },

@@ -8,55 +8,74 @@ import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import useSwr from 'swr';
 
 import Container from 'components/Container';
 
 const pages = [
   {
     id: 'general',
-    href: '/account-general',
+    href: '/account',
     title: 'General',
   },
   {
+    id: 'requests',
+    href: '/account/requests',
+    title: 'Requests',
+  },
+  {
     id: 'security',
-    href: '/account-security',
+    href: '/account/security',
     title: 'Security',
   },
   {
     id: 'notifications',
-    href: '/account-notifications',
+    href: '/account/notifications',
     title: 'Notifications',
   },
   {
     id: 'billing',
-    href: '/account-billing',
+    href: '/account/billing',
     title: 'Billing Information',
   },
 ];
 
 const Page = ({ children }) => {
   const [activeLink, setActiveLink] = useState('');
+  const theme = useTheme();
+  const { data: session } = useSession();
+  const user = session && session.user;
+  const { data } = useSwr('http://localhost:3000/api/jobs');
+  const jobs = data?.jobs.length;
+
   useEffect(() => {
     setActiveLink(window && window.location ? window.location.pathname : '');
   }, []);
 
-  const theme = useTheme();
+  // if(!session) return null
+
+  // console.log(data)
 
   return (
-    <Box>
+    <Box bgcolor={'alternate.main'}>
       <Box bgcolor={'primary.main'} paddingY={4}>
         <Container>
-          <Typography
-            variant="h4"
-            fontWeight={700}
-            gutterBottom
-            sx={{ color: 'common.white' }}
-          >
-            Account settings
-          </Typography>
-          <Typography variant="h6" sx={{ color: 'common.white' }}>
-            Change account information and settings
-          </Typography>
+          {user && (
+            <Typography
+              variant="h4"
+              fontWeight={700}
+              gutterBottom
+              sx={{ color: 'common.white' }}
+            >
+              {user?.firstName} {user?.lastName}
+            </Typography>
+          )}
+          {user && (
+            <Typography variant="h6" sx={{ color: 'common.white' }}>
+              {user?.email}
+            </Typography>
+          )}
         </Container>
       </Box>
       <Container paddingTop={'0 !important'} marginTop={-8}>
@@ -77,47 +96,49 @@ const Page = ({ children }) => {
               >
                 {pages.map((item) => (
                   <Link href={item.href} key={item.id}>
-                    <a>
-                      <ListItem
-                        component={'a'}
-                        href={item.href}
-                        disableGutters
-                        sx={{
-                          marginRight: { xs: 2, md: 0 },
-                          flex: 0,
-                          paddingX: { xs: 0, md: 3 },
-                          borderLeft: {
-                            xs: 'none',
-                            md: '2px solid transparent',
-                          },
-                          borderLeftColor: {
-                            md:
-                              activeLink === item.href
-                                ? theme.palette.primary.main
-                                : 'transparent',
-                          },
-                        }}
-                      >
-                        <Typography
-                          variant="subtitle1"
-                          noWrap
-                          color={
+                    <ListItem
+                      component={'a'}
+                      href={item.href}
+                      disableGutters
+                      sx={{
+                        marginRight: { xs: 2, md: 0 },
+                        flex: 0,
+                        paddingX: { xs: 0, md: 3 },
+                        borderLeft: {
+                          xs: 'none',
+                          md: '2px solid transparent',
+                        },
+                        borderLeftColor: {
+                          md:
                             activeLink === item.href
-                              ? 'text.primary'
-                              : 'text.secondary'
-                          }
-                        >
-                          {item.title}
-                        </Typography>
-                      </ListItem>
-                    </a>
+                              ? theme.palette.primary.main
+                              : 'transparent',
+                        },
+                      }}
+                    >
+                      <Typography
+                        variant="span"
+                        noWrap
+                        color={
+                          activeLink === item.href
+                            ? 'text.primary'
+                            : 'text.secondary'
+                        }
+                      >
+                        {item.title === 'Requests'
+                          ? `Requests (${jobs ? jobs : 0})`
+                          : item.title}
+                      </Typography>
+                    </ListItem>
                   </Link>
                 ))}
               </List>
             </Card>
           </Grid>
           <Grid item xs={12} md={9}>
-            <Card sx={{ boxShadow: 3, padding: 4 }}>{children}</Card>
+            <Card sx={{ boxShadow: 3, padding: { xs: 2, md: 4 } }}>
+              {children}
+            </Card>
           </Grid>
         </Grid>
       </Container>

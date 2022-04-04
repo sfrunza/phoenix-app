@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const FaqGroupItem = ({ title, items }) => {
+const FaqGroupItem = ({ items }) => {
   const theme = useTheme();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -17,11 +17,11 @@ const FaqGroupItem = ({ title, items }) => {
   };
   return (
     <Box>
-      <Box marginBottom={2}>
+      {/* <Box marginBottom={2}>
         <Typography fontWeight={700} variant={'h5'}>
           {title}
         </Typography>
-      </Box>
+      </Box> */}
       <Box>
         {items.map((item, i) => (
           <Box
@@ -31,6 +31,14 @@ const FaqGroupItem = ({ title, items }) => {
             marginBottom={i === item.length - 1 ? 0 : 2}
             borderRadius={`${theme.spacing(1)} !important`}
             sx={{
+              boxShadow: 'none',
+              border: `1px solid ${
+                expanded === `panel+${i}`
+                  ? theme.palette.primary.main
+                  : theme.palette.divider
+              }`,
+              borderRadius: '10px',
+              transition: 'border 0.3s ease',
               '&::before': {
                 display: 'none',
               },
@@ -43,8 +51,18 @@ const FaqGroupItem = ({ title, items }) => {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id={`panel1a-header--${i}`}
+              sx={{
+                boxShadow: 'none',
+              }}
             >
-              <Typography variant="h6">{item.title}</Typography>
+              <Typography
+                variant="h6"
+                color={
+                  expanded === `panel+${i}` ? 'textPrimary' : 'textSecondary'
+                }
+              >
+                {item.title}
+              </Typography>
             </Box>
             <AccordionDetails>
               <Typography color="text.secondary">{item.subtitle}</Typography>
@@ -57,7 +75,6 @@ const FaqGroupItem = ({ title, items }) => {
 };
 
 FaqGroupItem.propTypes = {
-  title: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
 };
 
@@ -112,38 +129,6 @@ const Content = () => {
           ]}
         />
       </Box>
-      {/* <Box marginBottom={6}>
-        <FaqGroupItem
-          title={'Account & settings'}
-          items={[
-            {
-              title: 'Can I purchase a gift certificate?',
-              subtitle:
-                'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
-            },
-            {
-              title: 'What is your return policy?',
-              subtitle:
-                'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
-            },
-            {
-              title: 'Do you sell gift cards?',
-              subtitle:
-                'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
-            },
-            {
-              title: 'Can I change plans later on?',
-              subtitle:
-                'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
-            },
-            {
-              title: 'Is this a subscription service?',
-              subtitle:
-                'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
-            },
-          ]}
-        />
-      </Box> */}
     </Box>
   );
 };

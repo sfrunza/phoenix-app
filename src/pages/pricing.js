@@ -19,7 +19,7 @@ const PricingPage = ({ prices }) => {
 };
 
 PricingPage.propTypes = {
-  prices: PropTypes.array.isRequired,
+  prices: PropTypes.object.isRequired,
 };
 
 export default PricingPage;

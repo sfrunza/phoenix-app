@@ -2,12 +2,13 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
 
 import Main from 'layouts/Main';
 import Container from 'components/Container';
 import { Form } from './components';
 
-const SigninCover = () => {
+const SigninCover = ({ csrfToken }) => {
   const theme = useTheme();
   return (
     <Main title="Client Login">
@@ -31,7 +32,7 @@ const SigninCover = () => {
               alignItems={'center'}
             >
               <Container>
-                <Form />
+                <Form csrfToken={csrfToken} />
               </Container>
             </Box>
             <Box
@@ -114,6 +115,10 @@ const SigninCover = () => {
       </Box>
     </Main>
   );
+};
+
+SigninCover.propTypes = {
+  csrfToken: PropTypes.string,
 };
 
 export default SigninCover;

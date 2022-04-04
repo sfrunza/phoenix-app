@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 const validationSchema = yup.object({
   email: yup
@@ -21,7 +22,7 @@ const validationSchema = yup.object({
     .min(8, 'The password should have at minimum length of 8'),
 });
 
-const Form = () => {
+const Form = ({ csrfToken }) => {
   const initialValues = {
     email: '',
     password: '',
@@ -62,16 +63,18 @@ const Form = () => {
           Login to manage your account.
         </Typography>
       </Box>
-      <form onSubmit={formik.handleSubmit}>
+      <form method="post" action="/api/auth/signin/email">
         <Grid container spacing={4}>
           <Grid item xs={12}>
             {/* <Typography variant={'subtitle2'} sx={{ marginBottom: 2 }}>
               Enter your email
             </Typography> */}
+            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
             <TextField
               label="Email *"
               variant="outlined"
               name={'email'}
+              type="email"
               fullWidth
               value={formik.values.email}
               onChange={formik.handleChange}
@@ -79,7 +82,7 @@ const Form = () => {
               helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextField
               label="Password *"
               variant="outlined"
@@ -91,7 +94,7 @@ const Form = () => {
               error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
             />
-          </Grid>
+          </Grid> */}
           <Grid item container xs={12}>
             <Box
               display="flex"
@@ -127,6 +130,10 @@ const Form = () => {
       </form>
     </Box>
   );
+};
+
+Form.propTypes = {
+  csrfToken: PropTypes.string.isRequired,
 };
 
 export default Form;

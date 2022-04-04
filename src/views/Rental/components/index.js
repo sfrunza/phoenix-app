@@ -10,3 +10,5 @@ export { default as Reviews } from './Reviews';
 export { default as Search } from './Search';
 export { default as Teaser } from './Teaser';
 export { default as Cities } from './Cities';
+export { default as Services } from './Services';
+export { default as Features } from './Features';

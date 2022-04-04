@@ -56,9 +56,16 @@ const PricingCompareTable = ({ prices }) => {
     prices.add_men[2],
     prices.add_truck[2],
   ];
+  let high = [
+    prices.two_men[2],
+    prices.three_men[2],
+    prices.four_men[2],
+    prices.add_men[2],
+    prices.add_truck[2],
+  ];
   const pricing = [
     {
-      title: 'Discounted',
+      title: 'Regular',
       price: {
         monthly: 22,
         annual: 210,
@@ -68,22 +75,32 @@ const PricingCompareTable = ({ prices }) => {
       btnText: 'Book online',
     },
     {
-      title: 'Regular',
+      title: 'Sub-peak',
       price: {
-        annual: 420,
-        monthly: 44,
+        monthly: 22,
+        annual: 210,
       },
-      features: prices ? reg : [131230, 12380, 22330, 2350, 2340],
+      features: prices ? reg : [90, 140, 190, 50, 40],
       isHighlighted: false,
       btnText: 'Book online',
     },
     {
       title: 'Peak',
       price: {
+        annual: 420,
+        monthly: 44,
+      },
+      features: prices ? peak : [131230, 12380, 22330, 2350, 2340],
+      isHighlighted: false,
+      btnText: 'Book online',
+    },
+    {
+      title: 'High-Peak',
+      price: {
         annual: 740,
         monthly: 77,
       },
-      features: prices ? peak : [150, 210, 270, 50, 40],
+      features: prices ? high : [150, 210, 270, 50, 40],
       isHighlighted: false,
       btnText: 'Book online',
     },
@@ -98,10 +115,7 @@ const PricingCompareTable = ({ prices }) => {
       </Box>
       <Box>
         <TableContainer component={Paper} elevation={0}>
-          <Table aria-label="caption table" sx={{ minWidth: 600 }}>
-            <caption>
-              Compare the plans and choose the one which works for you the best.
-            </caption>
+          <Table aria-label="caption table" sx={{ minWidth: 700 }}>
             <TableHead>
               <TableRow>
                 <TableCell></TableCell>
@@ -147,6 +161,15 @@ const PricingCompareTable = ({ prices }) => {
                       </Box>
                     </Box>
                   </TableCell>
+                  <TableCell align="center">
+                    <Box display={'flex'} justifyContent={'center'}>
+                      <Box display={'flex'} justifyContent={'center'}>
+                        <Typography color="text.secondary">
+                          {pricing[2].features[i]}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </TableCell>
                 </TableRow>
               ))}
               <TableRow>
@@ -164,6 +187,9 @@ const PricingCompareTable = ({ prices }) => {
             </TableBody>
           </Table>
         </TableContainer>
+        <Typography variant="caption" color="textSecondary">
+          Compare the plans and choose the one which works for you the best.
+        </Typography>
       </Box>
     </Box>
   );
