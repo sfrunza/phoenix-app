@@ -2,8 +2,8 @@ import React from 'react';
 import AccountGeneral from 'views/Account/General';
 import { getSession } from 'next-auth/react';
 
-const AccountGeneralPage = () => {
-  return <AccountGeneral />;
+const AccountGeneralPage = ({ session }) => {
+  return <AccountGeneral session={session} />;
 };
 
 export const getServerSideProps = async (context) => {
@@ -17,6 +17,7 @@ export const getServerSideProps = async (context) => {
       },
     };
   }
+
   return {
     props: { session },
   };

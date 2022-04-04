@@ -17,6 +17,7 @@ export default async function handle(req, res) {
           id: true,
           firstName: true,
           lastName: true,
+          phone: true,
           email: true,
           role: true,
           // jobs: {

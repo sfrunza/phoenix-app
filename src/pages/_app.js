@@ -7,6 +7,7 @@ import AdapterDateFns from '@mui/lab/AdapterMoment';
 import { SWRConfig } from 'swr';
 import nProgress from 'nprogress';
 import Router from 'next/router';
+import { SnackbarProvider } from 'notistack';
 
 import Page from '../components/Page';
 
@@ -37,7 +38,9 @@ export default function App({ Component, pageProps }) {
             value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}
           >
             <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <Component {...pageProps} />
+              <SnackbarProvider maxSnack={2}>
+                <Component {...pageProps} />
+              </SnackbarProvider>
             </LocalizationProvider>
           </SWRConfig>
         </SessionProvider>

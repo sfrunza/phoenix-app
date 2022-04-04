@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import useSwr from 'swr';
+import useSWR from 'swr';
 
 import Container from 'components/Container';
 
@@ -41,13 +41,26 @@ const pages = [
   },
 ];
 
+const getUser = async (id) => {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/${id}`);
+  const data = await res.json();
+  return data;
+};
+
 const Page = ({ children }) => {
   const [activeLink, setActiveLink] = useState('');
   const theme = useTheme();
+  
   const { data: session } = useSession();
   const user = session && session.user;
-  const { data } = useSwr(`${process.env.NEXTAUTH_URL}/api/jobs`);
+
+  const { data } = useSWR(`${process.env.NEXTAUTH_URL}/api/jobs`);
   const jobs = data?.jobs.length;
+
+  const { data: currentUser, mutate } = useSWR(
+    `${process.env.NEXTAUTH_URL}/api/users/${user.id}`,
+    getUser(user.id),
+  );
 
   useEffect(() => {
     setActiveLink(window && window.location ? window.location.pathname : '');
@@ -68,12 +81,12 @@ const Page = ({ children }) => {
               gutterBottom
               sx={{ color: 'common.white' }}
             >
-              {user?.firstName} {user?.lastName}
+              {currentUser?.firstName} {currentUser?.lastName}
             </Typography>
           )}
-          {user && (
+          {currentUser && (
             <Typography variant="h6" sx={{ color: 'common.white' }}>
-              {user?.email}
+              {currentUser?.email}
             </Typography>
           )}
         </Container>

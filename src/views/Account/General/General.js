@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Box from '@mui/material/Box';
@@ -8,61 +8,121 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import { IMaskInput } from 'react-imask';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
+import useSWR from 'swr';
+import { useSnackbar } from 'notistack';
 
 import Page from '../components/Page';
 import Main from 'layouts/Main';
 
+const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
+  const { onChange, ...other } = props;
+  return (
+    <IMaskInput
+      {...other}
+      mask="(#00) 000-0000"
+      definitions={{
+        '#': /[1-9]/,
+      }}
+      inputRef={ref}
+      onAccept={(value) => onChange({ target: { name: props.name, value } })}
+      overwrite
+    />
+  );
+});
+
 const validationSchema = yup.object({
-  fullName: yup
+  firstName: yup
     .string()
     .trim()
     .min(2, 'Please enter a valid name')
     .max(50, 'Please enter a valid name')
-    .required('Please specify your first name'),
+    .required('First name is required.'),
+  lastName: yup
+    .string()
+    .trim()
+    .min(2, 'Please enter a valid name')
+    .max(50, 'Please enter a valid name')
+    .required('Last name is required.'),
   email: yup
     .string()
     .trim()
     .email('Please enter a valid email address')
     .required('Email is required.'),
-  bio: yup.string().trim().max(500, 'Should be less than 500 chars'),
-  country: yup
+  phone: yup
     .string()
     .trim()
-    .min(2, 'Please enter a valid name')
-    .max(80, 'Please enter a valid name')
-    .required('Please specify your country name'),
-  city: yup
-    .string()
-    .trim()
-    .min(2, 'Please enter a valid name')
-    .max(80, 'Please enter a valid name')
-    .required('Please specify your city name'),
-  address: yup
-    .string()
-    .required('Please specify your address')
-    .min(2, 'Please enter a valid address')
-    .max(200, 'Please enter a valid address'),
+    .required('Phone is required.')
+    .matches(
+      /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)$/,
+      'Please enter a valid phone number.',
+    ),
 });
 
-const General = () => {
-  const initialValues = {
-    fullName: '',
-    bio: '',
+const getUser = async (id) => {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/${id}`);
+  const data = await res.json();
+  return data;
+};
+
+const General = ({ session }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+
+  const { data, mutate } = useSWR(
+    `${process.env.NEXTAUTH_URL}/api/users/${session.user.id}`,
+    getUser(session.user.id),
+  );
+
+  console.log(data);
+
+  const initialValues = data || {
+    firstNme: '',
+    lastName: '',
+    phone: '',
     email: '',
-    country: '',
-    city: '',
-    address: '',
   };
 
-  const onSubmit = (values) => {
-    return values;
+  const onSubmit = async (values) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch(
+        `${process.env.NEXTAUTH_URL}/api/users/${values.id}`,
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+        },
+      );
+      let newData = await res.json();
+      enqueueSnackbar('Update success', {
+        variant: 'success',
+        anchorOrigin: {
+          vertical: 'bottom',
+          horizontal: 'center',
+        },
+      });
+
+      await mutate(newData, false);
+      setIsLoading(false);
+      return newData;
+    } catch (error) {
+      console.error(error);
+    }
+    // return values;
   };
 
   const formik = useFormik({
     initialValues,
+    enableReinitialize: true,
     validationSchema: validationSchema,
     onSubmit,
   });
+
+  if (!data) return null;
 
   return (
     <Main>
@@ -83,38 +143,76 @@ const General = () => {
           </Box>
           <form onSubmit={formik.handleSubmit}>
             <Grid container spacing={4}>
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  variant={'subtitle2'}
-                  sx={{ marginBottom: 2 }}
-                  fontWeight={700}
-                >
-                  Enter your first name
+              <Grid item xs={6}>
+                <Typography variant={'subtitle2'} fontWeight={700} gutterBottom>
+                  First name
                 </Typography>
                 <TextField
-                  label="First name *"
+                  placeholder="First name"
                   variant="outlined"
-                  name={'fullName'}
+                  size="small"
+                  name={'firstName'}
                   fullWidth
-                  value={formik.values.fullName}
+                  value={formik.values.firstName}
                   onChange={formik.handleChange}
                   error={
-                    formik.touched.fullName && Boolean(formik.errors.fullName)
+                    formik.touched.firstName && Boolean(formik.errors.firstName)
                   }
-                  helperText={formik.touched.fullName && formik.errors.fullName}
+                  helperText={
+                    formik.touched.firstName && formik.errors.firstName
+                  }
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  variant={'subtitle2'}
-                  sx={{ marginBottom: 2 }}
-                  fontWeight={700}
-                >
-                  Enter your email
+              <Grid item xs={6}>
+                <Typography variant={'subtitle2'} fontWeight={700} gutterBottom>
+                  Last name
                 </Typography>
                 <TextField
-                  label="Email *"
+                  placeholder="Last name"
                   variant="outlined"
+                  size="small"
+                  name={'lastName'}
+                  fullWidth
+                  value={formik.values.lastName}
+                  onChange={formik.handleChange}
+                  error={
+                    formik.touched.lastName && Boolean(formik.errors.lastName)
+                  }
+                  helperText={formik.touched.lastName && formik.errors.lastName}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography variant={'subtitle2'} fontWeight={700} gutterBottom>
+                  Primary phone
+                </Typography>
+                <FormControl variant="outlined" fullWidth>
+                  <OutlinedInput
+                    placeholder="Phone number"
+                    size="small"
+                    name={'phone'}
+                    fullWidth
+                    value={formik.values.phone}
+                    onChange={formik.handleChange}
+                    inputProps={{
+                      inputMode: 'numeric',
+                      'aria-label': 'phone',
+                    }}
+                    inputComponent={TextMaskCustom}
+                    error={formik.touched.phone && Boolean(formik.errors.phone)}
+                  />
+                  {formik.touched.phone && Boolean(formik.errors.phone) && (
+                    <FormHelperText error>{formik.errors.phone}</FormHelperText>
+                  )}
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography variant={'subtitle2'} fontWeight={700} gutterBottom>
+                  Email
+                </Typography>
+                <TextField
+                  placeholder="Email"
+                  variant="outlined"
+                  size="small"
                   name={'email'}
                   fullWidth
                   value={formik.values.email}
@@ -124,89 +222,7 @@ const General = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <Typography
-                  variant={'subtitle2'}
-                  sx={{ marginBottom: 2 }}
-                  fontWeight={700}
-                >
-                  Bio
-                </Typography>
-                <TextField
-                  label="Bio"
-                  variant="outlined"
-                  name={'bio'}
-                  multiline
-                  rows={5}
-                  fullWidth
-                  value={formik.values.bio}
-                  onChange={formik.handleChange}
-                  error={formik.touched.bio && Boolean(formik.errors.bio)}
-                  helperText={formik.touched.bio && formik.errors.bio}
-                />
-              </Grid>
-              <Grid item xs={12}>
                 <Divider />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  variant={'subtitle2'}
-                  sx={{ marginBottom: 2 }}
-                  fontWeight={700}
-                >
-                  Country
-                </Typography>
-                <TextField
-                  label="Country *"
-                  variant="outlined"
-                  name={'country'}
-                  fullWidth
-                  value={formik.values.country}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.country && Boolean(formik.errors.country)
-                  }
-                  helperText={formik.touched.country && formik.errors.country}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography
-                  variant={'subtitle2'}
-                  sx={{ marginBottom: 2 }}
-                  fontWeight={700}
-                >
-                  City
-                </Typography>
-                <TextField
-                  label="City *"
-                  variant="outlined"
-                  name={'city'}
-                  fullWidth
-                  value={formik.values.city}
-                  onChange={formik.handleChange}
-                  error={formik.touched.city && Boolean(formik.errors.city)}
-                  helperText={formik.touched.city && formik.errors.city}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Typography
-                  variant={'subtitle2'}
-                  sx={{ marginBottom: 2 }}
-                  fontWeight={700}
-                >
-                  Enter your address
-                </Typography>
-                <TextField
-                  label="Address *"
-                  variant="outlined"
-                  name={'address'}
-                  fullWidth
-                  value={formik.values.address}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.address && Boolean(formik.errors.address)
-                  }
-                  helperText={formik.touched.address && formik.errors.address}
-                />
               </Grid>
               <Grid item container xs={12}>
                 <Box
@@ -229,8 +245,13 @@ const General = () => {
                       </Link>
                     </Typography>
                   </Box>
-                  <Button size={'large'} variant={'contained'} type={'submit'}>
-                    Save
+                  <Button
+                    size={'large'}
+                    variant={'contained'}
+                    type={'submit'}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? 'Updating...' : 'Update'}
                   </Button>
                 </Box>
               </Grid>
