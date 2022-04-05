@@ -105,6 +105,7 @@ const Form = () => {
     email: '',
     phone: '',
     password: '111111',
+    role: 'CUSTOMER',
   };
 
   const onSubmit = async (values) => {

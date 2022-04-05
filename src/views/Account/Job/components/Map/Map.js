@@ -120,7 +120,7 @@ const Map = ({ job }) => {
     >
       <GoogleMap
         center={directionsResponse ? center : marker}
-        zoom={15}
+        zoom={directionsResponse ? 12 : 17}
         defaultOptions={{ styles: mapStyles }}
         mapContainerStyle={{
           height: '30vh',

@@ -50,9 +50,11 @@ const getUser = async (id) => {
 const Page = ({ children }) => {
   const [activeLink, setActiveLink] = useState('');
   const theme = useTheme();
-  
+
   const { data: session } = useSession();
   const user = session && session.user;
+
+  console.log('session', session);
 
   const { data } = useSWR(`${process.env.NEXTAUTH_URL}/api/jobs`);
   const jobs = data?.jobs.length;

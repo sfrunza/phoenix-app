@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Box from '@mui/material/Box';
@@ -10,6 +10,9 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
+
 const validationSchema = yup.object({
   email: yup
     .string()
@@ -19,23 +22,36 @@ const validationSchema = yup.object({
   password: yup
     .string()
     .required('Please specify your password')
-    .min(8, 'The password should have at minimum length of 8'),
+    .min(6, 'The password should have at minimum length of 6'),
 });
 
 const Form = ({ csrfToken }) => {
+  const router = useRouter();
+  const [error, setError] = useState(null);
   const initialValues = {
     email: '',
     password: '',
   };
 
-  const onSubmit = (values) => {
-    return values;
-  };
-
   const formik = useFormik({
     initialValues,
     validationSchema: validationSchema,
-    onSubmit,
+    onSubmit: async (values, { setSubmitting }) => {
+      const res = await signIn('credentials', {
+        redirect: false,
+        email: values.email,
+        password: values.password,
+        callbackUrl: `${process.env.NEXTAUTH_URL}/account`,
+      });
+      console.log(res);
+      if (res?.error) {
+        setError(res.error);
+      } else {
+        setError(null);
+      }
+      if (res.url) router.push(res.url);
+      setSubmitting(false);
+    },
   });
 
   return (
@@ -62,8 +78,9 @@ const Form = ({ csrfToken }) => {
         <Typography color="text.secondary">
           Login to manage your account.
         </Typography>
+        {error && <Typography color="error">Check credentials and try again</Typography>}
       </Box>
-      <form method="post" action="/api/auth/signin/email">
+      <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
           <Grid item xs={12}>
             {/* <Typography variant={'subtitle2'} sx={{ marginBottom: 2 }}>
@@ -82,7 +99,7 @@ const Form = ({ csrfToken }) => {
               helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
-          {/* <Grid item xs={12}>
+          <Grid item xs={12}>
             <TextField
               label="Password *"
               variant="outlined"
@@ -94,7 +111,7 @@ const Form = ({ csrfToken }) => {
               error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
             />
-          </Grid> */}
+          </Grid>
           <Grid item container xs={12}>
             <Box
               display="flex"
@@ -121,8 +138,13 @@ const Form = ({ csrfToken }) => {
                   </a>
                 </Link>
               </Box>
-              <Button size={'large'} variant={'contained'} type={'submit'}>
-                Login
+              <Button
+                size={'large'}
+                variant={'contained'}
+                type={'submit'}
+                disabled={formik.isSubmitting}
+              >
+                {formik.isSubmitting ? 'Please wait...' : 'Sign In'}
               </Button>
             </Box>
           </Grid>
