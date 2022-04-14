@@ -8,7 +8,7 @@ import AppBar from '@mui/material/AppBar';
 
 import Container from 'components/Container';
 import { Topbar, Sidebar, Footer } from './components';
-import pages from '../navigation--docs';
+import pages from '../navigation--dash';
 
 const Fixed = ({ children }) => {
   const theme = useTheme();
@@ -38,7 +38,7 @@ const Fixed = ({ children }) => {
         }}
         elevation={0}
       >
-        <Container maxWidth={1} paddingY={{ xs: 1, sm: 1.5 }}>
+        <Container maxWidth={1} paddingY={1}>
           <Topbar onSidebarOpen={handleSidebarOpen} />
         </Container>
       </AppBar>
@@ -49,20 +49,21 @@ const Fixed = ({ children }) => {
         pages={pages}
       />
       <main>
-        <Box height={{ xs: 58, sm: 66, md: 71 }} />
+        <Box height={{ xs: 60, md: 68 }} />
         <Box
           display="flex"
           flex="1 1 auto"
           overflow="hidden"
-          paddingLeft={{ md: '256px' }}
+          paddingLeft={{ md: '256px', minHeight: 'calc(100vh - 68px)' }}
+          backgroundColor={'alternate.main'}
         >
           <Box display="flex" flex="1 1 auto" overflow="hidden">
             <Box flex="1 1 auto" height="100%" overflow="auto">
               {children}
-              <Divider />
+              {/* <Divider />
               <Container paddingY={4}>
                 <Footer />
-              </Container>
+              </Container> */}
             </Box>
           </Box>
         </Box>

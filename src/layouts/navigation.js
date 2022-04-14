@@ -32,7 +32,7 @@ const pages = {
       href: '/services/boston-new-york-moving-prices',
     },
   ],
-  account: [
+  about: [
     {
       title: 'About us',
       href: '/about',
@@ -50,54 +50,16 @@ const pages = {
       href: '/pricing',
     },
   ],
-  secondary: [
-    {
-      title: 'Help Center: Overview',
-      href: '/help-center',
-    },
-    {
-      title: 'Help Center: Article',
-      href: '/help-center-article',
-    },
-    {
-      title: 'FAQ',
-      href: '/faq',
-    },
-    {
-      title: 'Error 404: Simple',
-      href: '/not-found',
-    },
-    {
-      title: 'Error 404: Cover',
-      href: '/not-found-cover',
-    },
-    {
-      title: 'Career Page Minimal',
-      href: '/career-listing-minimal',
-    },
-  ],
-  blog: [
-    {
-      title: 'Reach View',
-      href: '/blog-reach-view',
-    },
-    {
-      title: 'Search',
-      href: '/blog-search',
-    },
-    {
-      title: 'Newsroom',
-      href: '/blog-newsroom',
-    },
-    {
-      title: 'Article',
-      href: '/blog-article',
-    },
-  ],
-  portfolio: [
+  login: [
     {
       title: 'Client login',
       href: '/account',
+    },
+  ],
+  book: [
+    {
+      title: 'Book',
+      href: '/book',
     },
   ],
 };

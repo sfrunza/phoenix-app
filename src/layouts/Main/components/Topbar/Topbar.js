@@ -18,17 +18,11 @@ const Topbar = ({ onSidebarOpen, pages }) => {
     landings: landingPages,
     services: servicesPages,
     pricing: pricingPages,
-    account: accountPages,
-    portfolio: portfolioPages,
+    about: aboutPages,
+    login: loginPages,
     faq: faqPages,
+    book: bookPages,
   } = pages;
-
-  const book = [
-    {
-      title: 'Book',
-      href: '/book',
-    },
-  ];
 
   return (
     <Box
@@ -74,11 +68,7 @@ const Topbar = ({ onSidebarOpen, pages }) => {
           />
         </Box>
         <Box marginLeft={4}>
-          <NavItem
-            title={'About us'}
-            id={'account-pages'}
-            items={accountPages}
-          />
+          <NavItem title={'About us'} id={'about-pages'} items={aboutPages} />
         </Box>
         <Box marginLeft={4}>
           <NavItem
@@ -91,7 +81,7 @@ const Topbar = ({ onSidebarOpen, pages }) => {
           <NavItem title={'FAQ'} id={'faq-pages'} items={faqPages} />
         </Box>
         <Box marginLeft={4}>
-          <NavItem title={'Book'} id={'book'} items={book} />
+          <NavItem title={'Book'} id={'bookPages'} items={bookPages} />
         </Box>
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
@@ -101,8 +91,8 @@ const Topbar = ({ onSidebarOpen, pages }) => {
           ) : (
             <NavItem
               title={'Client login'}
-              id={'portfolio-pages'}
-              items={portfolioPages}
+              id={'login-pages'}
+              items={loginPages}
             />
           )}
         </Box>

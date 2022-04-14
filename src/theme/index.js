@@ -110,22 +110,22 @@ const getTheme = (mode, themeToggler) =>
             },
           },
         },
-        MuiCssBaseline: {
-          styleOverrides: {
-            '#nprogress': {
-              pointerEvents: 'none',
-            },
-            '#nprogress .bar': {
-              backgroundColor: '#7900ff3b',
-              height: 3,
-              left: 0,
-              position: 'fixed',
-              top: 0,
-              width: '100%',
-              zIndex: 2000,
-            },
-          },
-        },
+        // MuiCssBaseline: {
+        //   styleOverrides: {
+        //     '#nprogress': {
+        //       pointerEvents: 'none',
+        //     },
+        //     '#nprogress .bar': {
+        //       backgroundColor: '#7900ff3b',
+        //       height: 3,
+        //       left: 0,
+        //       position: 'fixed',
+        //       top: 0,
+        //       width: '100%',
+        //       zIndex: 2000,
+        //     },
+        //   },
+        // },
       },
       themeToggler,
     }),

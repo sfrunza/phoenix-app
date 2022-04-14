@@ -38,7 +38,7 @@ const getUser = async (id) => {
   return data;
 };
 
-const Page = ({ children }) => {
+const AccountLayout = ({ children }) => {
   const [activeLink, setActiveLink] = useState('');
   const theme = useTheme();
 
@@ -193,8 +193,8 @@ const Page = ({ children }) => {
   );
 };
 
-Page.propTypes = {
+AccountLayout.propTypes = {
   children: PropTypes.node,
 };
 
-export default Page;
+export default AccountLayout;

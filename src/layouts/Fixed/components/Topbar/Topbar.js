@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-
-import { ThemeModeToggler } from './components';
+import Link from 'next/link';
+import { ThemeModeToggler, UserPopover } from './components';
 
 const Topbar = ({ onSidebarOpen }) => {
   const theme = useTheme();
@@ -19,80 +18,7 @@ const Topbar = ({ onSidebarOpen }) => {
       alignItems={'center'}
       width={1}
     >
-      <Box
-        display={'flex'}
-        component="a"
-        href="/"
-        title="theFront"
-        width={{ xs: 100, md: 120 }}
-      >
-        <Box
-          component={'img'}
-          src={
-            mode === 'light'
-              ? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-              : 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
-          }
-          height={1}
-          width={1}
-        />
-      </Box>
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-        <Box marginLeft={3}>
-          <Link underline="none" component="a" href="/" color="text.primary">
-            Home
-          </Link>
-        </Box>
-        <Box marginLeft={3}>
-          <Link
-            underline="none"
-            component="a"
-            href="/home"
-            color="text.primary"
-          >
-            Pages
-          </Link>
-        </Box>
-        <Box marginLeft={3}>
-          <Link
-            underline="none"
-            component="a"
-            href="/blocks"
-            color="text.primary"
-          >
-            Components
-          </Link>
-        </Box>
-        <Box marginLeft={3}>
-          <Link
-            underline="none"
-            component="a"
-            href="/demos"
-            color="text.primary"
-          >
-            Demos
-          </Link>
-        </Box>
-        <Box marginLeft={3}>
-          <ThemeModeToggler />
-        </Box>
-        <Box marginLeft={3}>
-          <Button
-            variant="contained"
-            color="primary"
-            component="a"
-            target="blank"
-            href="https://mui.com/store/items/the-front-landing-page/"
-            size="large"
-          >
-            Purchase now
-          </Button>
-        </Box>
-      </Box>
       <Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
-        <Box marginRight={1}>
-          <ThemeModeToggler />
-        </Box>
         <Button
           onClick={() => onSidebarOpen()}
           aria-label="Menu"
@@ -106,6 +32,42 @@ const Topbar = ({ onSidebarOpen }) => {
         >
           <MenuIcon />
         </Button>
+      </Box>
+      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
+        <Link href="/">
+          <a>
+            <Box
+              display={'flex'}
+              component="span"
+              title="PhoenixMoving"
+              width={{ xs: 100, md: 120 }}
+            >
+              <Box
+                component={'img'}
+                src={mode === 'light' ? '/logo-o.png' : '/logo-white.png'}
+                height={1}
+                width={1}
+                sx={{ '&:hover': { cursor: 'pointer' } }}
+              />
+            </Box>
+          </a>
+        </Link>
+      </Box>
+      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
+        <Box marginRight={1}>
+          <ThemeModeToggler />
+        </Box>
+        <Box>
+          <UserPopover />
+        </Box>
+      </Box>
+      <Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
+        <Box marginRight={1}>
+          <ThemeModeToggler />
+        </Box>
+        <Box>
+          <UserPopover />
+        </Box>
       </Box>
     </Box>
   );

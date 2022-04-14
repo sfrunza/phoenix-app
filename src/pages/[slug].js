@@ -25,18 +25,4 @@ export async function getStaticProps({ params }) {
   return { props: { params, city } };
 }
 
-// export async function getServerSideProps({ query }) {
-//   const slug = query.slug;
-//   // console.log(slug.slug);
-//   const res = await fetch('http://localhost:3000/api/v1/cities');
-//   const json = await res.json();
-//   // console.log(context);
-//   const city = cities.find((c) => c.slug === slug);
-//   return {
-//     props: {
-//       city: city,
-//     },
-//   };
-// }
-
 export default CityPage;

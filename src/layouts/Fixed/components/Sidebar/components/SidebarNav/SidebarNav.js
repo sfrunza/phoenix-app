@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
+import Link from 'next/link';
+import { Divider } from '@mui/material';
 
 const SidebarNav = ({ pages, onClose }) => {
   const theme = useTheme();
@@ -22,8 +24,8 @@ const SidebarNav = ({ pages, onClose }) => {
       >
         <CloseIcon fontSize="small" />
       </Box>
-      <Box paddingX={2}>
-        {pages.map((item, i) => (
+      <Box paddingX={2} paddingY={2}>
+        {/* {pages.map((item, i) => (
           <Box key={i} marginBottom={3}>
             <Typography
               variant="caption"
@@ -36,36 +38,41 @@ const SidebarNav = ({ pages, onClose }) => {
             >
               {item.groupTitle}
             </Typography>
-            <Box>
-              {item.pages.map((p, i) => (
-                <Box marginBottom={1 / 2} key={i}>
-                  <Button
-                    component={'a'}
-                    href={p.href}
-                    target={p.target}
-                    fullWidth
-                    sx={{
-                      justifyContent: 'flex-start',
-                      color:
-                        activeLink === p.href
-                          ? theme.palette.primary.main
-                          : theme.palette.text.primary,
-                      backgroundColor:
-                        activeLink === p.href
-                          ? alpha(theme.palette.primary.main, 0.1)
-                          : 'transparent',
-                      fontWeight: activeLink === p.href ? 600 : 400,
-                    }}
-                  >
-                    {p.title}
-                  </Button>
-                </Box>
-              ))}
-            </Box>
+            <Box> */}
+        {pages.map((p, i) => (
+          <Box marginBottom={2} key={i}>
+            <Link href={p.href}>
+              <a>
+                <Button
+                  component={'span'}
+                  target={p.target}
+                  fullWidth
+                  sx={{
+                    justifyContent: 'flex-start',
+                    color:
+                      activeLink === p.href
+                        ? theme.palette.primary.main
+                        : theme.palette.text.secondary,
+                    backgroundColor:
+                      activeLink === p.href
+                        ? alpha(theme.palette.primary.main, 0.1)
+                        : 'transparent',
+                    fontWeight: 600,
+                    fontSize: theme.spacing(2),
+                  }}
+                >
+                  {p.title}
+                </Button>
+              </a>
+            </Link>
           </Box>
         ))}
+        {/* </Box>
+          </Box>
+        ))} */}
       </Box>
-      <Box>
+      <Divider />
+      {/* <Box>
         <Button variant="outlined" fullWidth component="a" href="/">
           Browse pages
         </Button>
@@ -81,7 +88,7 @@ const SidebarNav = ({ pages, onClose }) => {
         >
           Purchase now
         </Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

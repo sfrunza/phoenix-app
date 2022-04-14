@@ -14,11 +14,19 @@ export default async function (req, res) {
           customerId: Number(session.user.id),
         },
         include: { addresses: true },
+        orderBy: {
+          id: 'desc',
+        },
       });
       res.status(200);
       res.json({ jobs });
     } else if (session && session.user.role === 'ADMIN') {
-      const jobs = await prisma.job.findMany();
+      const jobs = await prisma.job.findMany({
+        include: { addresses: true, customer: true },
+        orderBy: {
+          id: 'desc',
+        },
+      });
       res.status(200);
       res.json({ jobs });
     } else {

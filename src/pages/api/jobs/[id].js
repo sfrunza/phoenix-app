@@ -19,6 +19,13 @@ export default async function handle(req, res) {
         },
       });
       res.json(job);
+    } else if (req.method === 'PUT') {
+      const data = req.body;
+      const job = await prisma.job.update({
+        where: { id: Number(jobId) },
+        data,
+      });
+      res.json(job);
     } else {
       throw new Error(
         `The HTTP ${req.method} method is not supported at this route.`,

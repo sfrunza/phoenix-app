@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import moment from 'moment';
 import { useSession } from 'next-auth/react';
+import Spinner from 'components/Spinner';
 
 import Page from '../components/Page';
 import Main from 'layouts/Main';
@@ -16,6 +17,7 @@ const Requests = () => {
   const { data, error } = useSWR(`${process.env.NEXTAUTH_URL}/api/jobs`);
 
   const getCityState = (job, type) => {
+    if (!job.addresses || job.addresses.length < 1) return null;
     let cityState = null;
     if (type === 'origin') {
       let origin = job.addresses.find((a) => a.isOrigin);
@@ -58,7 +60,7 @@ const Requests = () => {
           <Box>
             {error && <div>failed to load</div>}
             {!data ? (
-              <div>loading</div>
+              <Spinner />
             ) : (
               data.jobs.map((job) => {
                 return (

@@ -3,7 +3,7 @@ export function requireCustomerAuth(gssp) {
     const { req } = context;
     const token = req.cookies['next-auth.session-token'];
 
-    console.log(req.cookies);
+    // console.log(req.cookies);
 
     if (!token) {
       // Redirect to login page

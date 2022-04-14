@@ -13,10 +13,11 @@ const Sidebar = ({ pages, open, variant, onClose }) => {
       variant={variant}
       sx={{
         '& .MuiPaper-root': {
+          backgroundColor: 'background.paper',
           width: '100%',
           maxWidth: 256,
-          top: { xs: 0, md: 71 },
-          height: { xs: '100%', md: 'calc(100% - 71px)' },
+          top: { xs: 0, md: 68 },
+          height: { xs: '100%', md: 'calc(100% - 68px)' },
         },
       }}
     >

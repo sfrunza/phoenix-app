@@ -16,20 +16,9 @@ const options = {
   //   secure: process.env.NODE_ENV && process.env.NODE_ENV === 'production',
   // },
   pages: {
-    signIn: '/account/login',
-    // verifyRequest: '/account/verify-request',
-    // newUser: '/account',
+    // signIn: '/account/login',
   },
-  // redirect: false,
-  // session: {
-  //   strategy: 'jwt',
-  // },
-  // session: { jwt: true },
   providers: [
-    // GitHubProvider({
-    //   clientId: process.env.GITHUB_ID,
-    //   clientSecret: process.env.GITHUB_SECRET,
-    // }),
     // EmailProvider({
     //   server: {
     //     host: process.env.SMTP_HOST,
@@ -73,8 +62,25 @@ const options = {
   ],
   callbacks: {
     async session({ session, token }) {
-      // session.accessToken = token.accessToken;
       session.user = token.user;
+      if (token.user.id) {
+        const result = await prisma.user.findFirst({
+          where: {
+            email: token.user.email,
+          },
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            phone: true,
+            role: true,
+          },
+        });
+        console.log(result);
+        session.user = result;
+        token.user = result;
+      }
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
@@ -84,77 +90,5 @@ const options = {
       }
       return token;
     },
-    // async jwt({ token, user, account }) {
-    //   if (account && user) {
-    //     return {
-    //       ...token,
-    //       accessToken: user.data.token,
-    //       refreshToken: user.data.refreshToken,
-    //     };
-    //   }
-    //   return token;
-    // },
-    // async session({ session, token }) {
-    //   session.user.accessToken = token.accessToken;
-    //   session.user.refreshToken = token.refreshToken;
-    //   session.user.accessTokenExpires = token.accessTokenExpires;
-    //   return session;
-    // },
-    // async signIn() {
-    //   const isAllowedToSignIn = true;
-    //   if (isAllowedToSignIn) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // },
-    // async redirect({ baseUrl, url }) {
-    //   if (url.startsWith(baseUrl)) return url;
-    //   // Allows relative callback URLs
-    //   else if (url.startsWith('/')) return new URL(url, baseUrl).toString();
-    //   return baseUrl;
-    // },
-    // async session({ session, token, user }) {
-    //   console.log('user', user);
-    //   console.log('toke', token);
-    //   console.log('session', session);
-    //   // Send properties to the client, like an access_token from a provider.
-    //   // session.accessToken = token.accessToken;
-    //   session.user = token;
-    //   return session;
-    // },
-    // async jwt({ token, account }) {
-    //   console.log('account', account);
-    //   console.log('token jwt', token);
-    //   // Persist the OAuth access_token to the token right after signin
-    //   if (account) {
-    //     token.accessToken = account.access_token;
-    //   }
-    //   return token;
-    // },
-    // async signIn({ user, account, profile, email, credentials }) {
-    //   return true;
-    // },
-    // async redirect({ url, baseUrl }) {
-    //   return url.startsWith(baseUrl) ? url : baseUrl;
-    // },
-    // async jwt(token, data) {
-    //   if (data) {
-    //     token.accessToken = data.accessToken || data?.token;
-    //     // Set the values you need in the session
-    //     token.user = {
-    //       isVerified: data?.user?.isVerified,
-    //       active: data?.user?.active,
-    //       role: data?.user?.role,
-    //       _id: data.user?._id,
-    //       username: data?.user?.username,
-    //     };
-    //   }
-    //   return token;
-    // },
-    // async session({ session, token, user }) {
-    //   session.accessToken = token.accessToken;
-    //   return session;
-    // },
   },
 };

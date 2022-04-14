@@ -77,42 +77,44 @@ const General = ({ session }) => {
     getUser(session.user.id),
   );
 
-  console.log(data);
+  // console.log(data);
 
-  const initialValues = data || {
-    firstNme: '',
-    lastName: '',
-    phone: '',
-    email: '',
-  };
+  const initialValues = data ? data : session.user;
 
   const onSubmit = async (values) => {
     setIsLoading(true);
-    try {
-      const res = await fetch(
-        `${process.env.NEXTAUTH_URL}/api/users/${values.id}`,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(values),
-        },
-      );
-      let newData = await res.json();
-      enqueueSnackbar('Update success', {
-        variant: 'success',
-        anchorOrigin: {
-          vertical: 'bottom',
-          horizontal: 'center',
-        },
+    await mutate(values, false);
+    await fetch(`${process.env.NEXTAUTH_URL}/api/users/${values.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          enqueueSnackbar('Something went wrong', {
+            variant: 'error',
+            anchorOrigin: {
+              vertical: 'bottom',
+              horizontal: 'center',
+            },
+          });
+          // setIsLoading(false);
+        } else {
+          enqueueSnackbar('Update success', {
+            variant: 'success',
+            anchorOrigin: {
+              vertical: 'bottom',
+              horizontal: 'center',
+            },
+          });
+          // setIsLoading(false);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
       });
-
-      await mutate(newData, false);
-      setIsLoading(false);
-      return newData;
-    } catch (error) {
-      console.error(error);
-    }
-    // return values;
+    setIsLoading(false);
   };
 
   const formik = useFormik({
@@ -122,7 +124,7 @@ const General = ({ session }) => {
     onSubmit,
   });
 
-  if (!data) return null;
+  // if (!data) return null;
 
   return (
     <Main>

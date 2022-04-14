@@ -15,9 +15,10 @@ const SidebarNav = ({ pages }) => {
     landings: landingPages,
     pricing: pricingPages,
     services: servicesPages,
-    account: accountPages,
-    portfolio: portfolioPages,
+    about: aboutPages,
+    login: loginPages,
     faq: faqPages,
+    book: bookPages,
   } = pages;
 
   return (
@@ -48,7 +49,7 @@ const SidebarNav = ({ pages }) => {
           <NavItem title={'Services'} items={servicesPages} />
         </Box>
         <Box>
-          <NavItem title={'About us'} items={accountPages} />
+          <NavItem title={'About us'} items={aboutPages} />
         </Box>
         <Box>
           <NavItem title={'Pricing'} items={pricingPages} />
@@ -57,7 +58,10 @@ const SidebarNav = ({ pages }) => {
           <NavItem title={'FAQ'} items={faqPages} />
         </Box>
         <Box>
-          <NavItem title={'Client login'} items={portfolioPages} />
+          <NavItem title={'Book'} items={bookPages} />
+        </Box>
+        <Box>
+          <NavItem title={'Client login'} items={loginPages} />
         </Box>
         <Box marginTop={2}>
           <Button

@@ -40,7 +40,7 @@ const UserPopover = () => {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
         >
-          <Avatar sx={{ width: 32, height: 32 }} />
+          <Avatar sx={{ width: 40, height: 40 }} />
         </IconButton>
       </Tooltip>
       <Popover
@@ -73,41 +73,23 @@ const UserPopover = () => {
           <Grid item xs={12} sx={{ marginY: 1 }}>
             <Divider />
           </Grid>
-          <Grid item xs={12}>
-            {user.role === 'CUSTOMER' ? (
-              <Link href={'/account'}>
-                <a>
-                  <Button
-                    fullWidth
-                    sx={{
-                      justifyContent: 'flex-start',
-                      fontSize: '1rem',
-                      color: theme.palette.text.secondary,
-                    }}
-                    // startIcon={<User />}
-                  >
-                    Account
-                  </Button>
-                </a>
-              </Link>
-            ) : user.role === 'ADMIN' ? (
-              <Link href={'/dashboard'}>
-                <a>
-                  <Button
-                    fullWidth
-                    sx={{
-                      justifyContent: 'flex-start',
-                      fontSize: '1rem',
-                      color: theme.palette.text.secondary,
-                    }}
-                    // startIcon={<User />}
-                  >
-                    Dashboard
-                  </Button>
-                </a>
-              </Link>
-            ) : null}
-          </Grid>
+          {/* <Grid item xs={12}>
+            <Link href={'/account'}>
+              <a>
+                <Button
+                  fullWidth
+                  sx={{
+                    justifyContent: 'flex-start',
+                    fontSize: '1rem',
+                    color: theme.palette.text.secondary,
+                  }}
+                  // startIcon={<User />}
+                >
+                  Account
+                </Button>
+              </a>
+            </Link>
+          </Grid> */}
           <Grid item xs={12} sx={{ marginY: 1 }}>
             <Button
               fullWidth

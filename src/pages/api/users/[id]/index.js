@@ -20,11 +20,6 @@ export default async function handle(req, res) {
           phone: true,
           email: true,
           role: true,
-          // jobs: {
-          //     select: {
-          //         service: true,
-          //     },
-          // },
         },
       });
       res.json(user);
@@ -43,7 +38,7 @@ export default async function handle(req, res) {
   } catch (e) {
     console.error(e);
     res.status(500);
-    res.json({ error: 'sorry unsable to fetch user' });
+    res.json({ error: 'something went wrong' });
   } finally {
     await prisma.$disconnect();
   }
