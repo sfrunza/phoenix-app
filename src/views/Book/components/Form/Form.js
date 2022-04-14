@@ -21,7 +21,7 @@ import {
   movingSizeOptions,
   floorOptions,
 } from './constants';
-import { jsonCityState } from './UsCities';
+// import { jsonCityState } from './UsCities';
 
 const validationSchema = yup.object({
   firstName: yup
@@ -71,7 +71,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
-const Form = () => {
+const Form = ({ jsonCityState }) => {
   const theme = useTheme();
   const initialValues = {
     movingDate: '',

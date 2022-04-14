@@ -4,13 +4,13 @@ import Main from 'layouts/Main';
 import Container from 'components/Container';
 import { Form } from './components';
 
-const Book = () => {
+const Book = ({ jsonCityState }) => {
   return (
     <Main>
       <Box>
         <Box bgcolor={'alternate.main'}>
           <Container maxWidth={780}>
-            <Form />
+            <Form jsonCityState={jsonCityState} />
           </Container>
         </Box>
       </Box>

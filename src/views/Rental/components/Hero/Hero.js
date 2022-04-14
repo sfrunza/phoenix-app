@@ -5,22 +5,23 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import Container from 'components/Container';
+import Image from 'next/image';
 
 const Hero = () => {
   const theme = useTheme();
-  useEffect(() => {
-    const jarallaxInit = async () => {
-      const jarallaxElems = document.querySelectorAll('.jarallax');
-      if (!jarallaxElems || (jarallaxElems && jarallaxElems.length === 0)) {
-        return;
-      }
+  // useEffect(() => {
+  //   const jarallaxInit = async () => {
+  //     const jarallaxElems = document.querySelectorAll('.jarallax');
+  //     if (!jarallaxElems || (jarallaxElems && jarallaxElems.length === 0)) {
+  //       return;
+  //     }
 
-      const { jarallax } = await import('jarallax');
-      jarallax(jarallaxElems, { speed: 0.2 });
-    };
+  //     const { jarallax } = await import('jarallax');
+  //     jarallax(jarallaxElems, { speed: 0.2 });
+  //   };
 
-    jarallaxInit();
-  });
+  //   jarallaxInit();
+  // });
 
   return (
     <Box
@@ -33,9 +34,9 @@ const Hero = () => {
       alignItems={'center'}
       // marginTop={-13}
       // paddingTop={13}
-      id="home--js-scroll"
+      // id="home--js-scroll"
     >
-      <Box
+      {/* <Box
         className={'jarallax-img'}
         sx={{
           position: 'absolute',
@@ -51,7 +52,7 @@ const Hero = () => {
           backgroundPosition: 'center center',
           backgroundImage: 'url(https://vistapointe.net/images/boston-3.jpg)',
         }}
-      />
+      /> */}
       {/* <Box
         component={'video'}
         width={1}
@@ -84,7 +85,7 @@ const Hero = () => {
         />
         Your browser do not support HTML5 video.
       </Box> */}
-      <Box
+      {/* <Box
         sx={{
           position: 'absolute',
           top: 0,
@@ -96,6 +97,16 @@ const Hero = () => {
           background: alpha('#000', 0.4),
           zIndex: 1,
         }}
+      /> */}
+
+      <Image
+        src={'/img4.jpeg'}
+        alt="asdasd"
+        layout="fill"
+        objectFit="cover"
+        objectPosition={'center'}
+        className={{ zIndex: -1 }}
+        priority
       />
 
       <Container position={'relative'} zIndex={2}>

@@ -8,7 +8,6 @@ import {
   Advantages,
   Articles,
   AskExpert,
-  FeaturedProducts,
   Hero,
   Partners,
   Places,
@@ -51,11 +50,11 @@ const Rental = () => {
       <Container sx={{ paddingTop: '0 !important' }}>
         <Articles />
       </Container>
-      <Box bgcolor={'primary.main'}>
+      {/* <Box bgcolor={'primary.main'}>
         <Container>
           <FeaturedProducts />
         </Container>
-      </Box>
+      </Box> */}
       <Container>
         <Places />
       </Container>
