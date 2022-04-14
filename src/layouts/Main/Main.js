@@ -68,7 +68,7 @@ const Main = ({ title, description, children }) => {
         }}
         elevation={trigger ? 1 : 0}
       >
-        <Container paddingY={1}>
+        <Container paddingY={0} height={'100%'}>
           <Topbar onSidebarOpen={handleSidebarOpen} pages={pages} />
         </Container>
       </AppBar>

@@ -29,6 +29,7 @@ const Topbar = ({ onSidebarOpen, pages }) => {
       display={'flex'}
       alignItems={'center'}
       width={1}
+      height={'100%'}
       sx={{
         justifyContent: { xs: 'space-between', md: 'center' },
       }}
