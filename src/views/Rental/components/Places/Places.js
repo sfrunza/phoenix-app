@@ -84,6 +84,7 @@ const Places = () => {
         </Typography>
         <Typography
           variant="h6"
+          component={'p'}
           align={'center'}
           color={'text.secondary'}
           data-aos={'fade-up'}

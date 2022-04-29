@@ -175,7 +175,12 @@ const Services = () => {
         >
           Phoenix Moving Company
         </Typography>
-        <Typography variant="h6" align={'center'} color={'text.secondary'}>
+        <Typography
+          variant="h6"
+          align={'center'}
+          color={'text.secondary'}
+          component={'p'}
+        >
           The most trusted moving company in Boston
         </Typography>
       </Box>
@@ -201,29 +206,15 @@ const Services = () => {
                       '&> div > p': {
                         color: `${theme.palette.primary.main} !important`,
                       },
-                      // borderColor: theme.palette.text.primary,
-                      // transition: 'border-color 3s ease',
                     },
                   }}
                 >
                   <Box display={'flex'} flexDirection={'column'}>
-                    {/* <Box
-                component={Avatar}
-                width={50}
-                height={50}
-                marginBottom={2}
-                bgcolor={theme.palette.primary.main}
-                color={theme.palette.background.paper}
-              >
-                {item.icon}
-              </Box> */}
-                    <Typography
-                      variant={'h6'}
-                      gutterBottom
-                      sx={{ fontWeight: 500 }}
-                    >
-                      {item.title}
-                    </Typography>
+                    <strong>
+                      <Typography variant={'h6'} component={'p'} gutterBottom>
+                        {item.title}
+                      </Typography>
+                    </strong>
                     <Typography color="text.secondary">
                       {item.subtitle}
                     </Typography>

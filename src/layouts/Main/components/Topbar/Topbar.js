@@ -40,14 +40,17 @@ const Topbar = ({ onSidebarOpen, pages }) => {
       <Link href="/">
         <Box
           display={'flex'}
-          width={{ xs: 130, md: 150 }}
-          sx={{ cursor: 'pointer' }}
+          sx={{
+            position: 'relative',
+            width: { xs: 130, md: 150 },
+            height: { xs: 50, md: 50 },
+            cursor: 'pointer',
+          }}
         >
           <Image
             src={mode === 'light' ? '/logo-o.png' : '/logo-white.png'}
             alt="Phoenix Moving Logo"
-            width={300}
-            height={100}
+            layout={'fill'}
             objectFit="contain"
           />
         </Box>

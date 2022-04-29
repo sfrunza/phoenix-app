@@ -26,13 +26,17 @@ const Footer = () => {
             component="a"
             href="/"
             title="PhoenixMoving"
-            width={130}
+            sx={{
+              position: 'relative',
+              width: { xs: 130, md: 150 },
+              height: { xs: 50, md: 50 },
+              cursor: 'pointer',
+            }}
           >
             <Image
               src={mode === 'light' ? '/logo-o.png' : '/logo-white.png'}
               alt="Phoenix Moving Logo"
-              width={300}
-              height={100}
+              layout={'fill'}
               objectFit="contain"
             />
           </Box>
@@ -43,6 +47,7 @@ const Footer = () => {
                   <Typography
                     color="text.primary"
                     variant={'subtitle2'}
+                    component={'p'}
                     sx={{ cursor: 'pointer' }}
                   >
                     Home
@@ -56,6 +61,7 @@ const Footer = () => {
                   <Typography
                     color="text.primary"
                     variant={'subtitle2'}
+                    component={'p'}
                     sx={{ cursor: 'pointer' }}
                   >
                     Terms

@@ -3,10 +3,9 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
+import Link from 'next/link';
 
 import Container from 'components/Container';
 
@@ -28,25 +27,17 @@ const Search = () => {
             for us. Let us help you prepare for a smooth and successful move.
           </Typography>
           <Box marginTop={2} display={'flex'} justifyContent={'center'}>
-            <Button
-              color={'primary'}
-              variant={'contained'}
-              size={'large'}
-              startIcon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  width={20}
-                  height={20}
-                >
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                </svg>
-              }
-            >
-              Get a quote online
-            </Button>
+            <Link href="/book">
+              <Button
+                color={'primary'}
+                variant={'contained'}
+                size={'large'}
+                component="a"
+                href="/book"
+              >
+                Get a quote online
+              </Button>
+            </Link>
           </Box>
         </Box>
         <Box
@@ -77,16 +68,13 @@ const Search = () => {
                 marginX={2}
               >
                 <Box
-                  component={ListItem}
                   disableGutters
                   width={'auto'}
                   padding={0}
+                  display={'flex'}
+                  alignItems={'center'}
                 >
-                  <Box
-                    component={ListItemAvatar}
-                    minWidth={'auto !important'}
-                    marginRight={2}
-                  >
+                  <Box minWidth={'auto !important'} marginRight={2}>
                     <Box
                       component={Avatar}
                       bgcolor={'secondary.main'}
