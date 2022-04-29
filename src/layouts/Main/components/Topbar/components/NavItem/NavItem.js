@@ -46,7 +46,16 @@ const NavItem = ({ title, id, items }) => {
           display={'flex'}
           alignItems={'center'}
           aria-describedby={id}
-          sx={{ cursor: 'pointer' }}
+          paddingY={1}
+          paddingX={2}
+          sx={{
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease',
+            borderRadius: '10px',
+            '&:hover': {
+              backgroundColor: theme.palette.background.level2,
+            },
+          }}
           onClick={(e) => handleClick(e, id)}
         >
           <Typography color={linkColor}>{title}</Typography>
@@ -66,7 +75,16 @@ const NavItem = ({ title, id, items }) => {
             display={'flex'}
             alignItems={'center'}
             aria-describedby={id}
-            sx={{ cursor: 'pointer' }}
+            paddingY={1}
+            paddingX={2}
+            sx={{
+              cursor: 'pointer',
+              transition: 'background-color 0.3s ease',
+              borderRadius: '10px',
+              '&:hover': {
+                backgroundColor: theme.palette.background.level2,
+              },
+            }}
             component={'a'}
             href={items[0].href}
           >

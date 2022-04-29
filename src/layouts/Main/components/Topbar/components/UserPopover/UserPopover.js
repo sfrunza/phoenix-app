@@ -9,15 +9,14 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
 import Link from 'next/link';
-import { useSession, signOut } from 'next-auth/react';
-// import User from '../../../../../../svg/User';
+import { signOut } from 'next-auth/react';
+import { useCurrentUser } from 'lib/user';
 
 const UserPopover = () => {
   const theme = useTheme();
-  const { data: session } = useSession();
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
-  const user = session.user;
+  const { data: { user } = {}, error } = useCurrentUser();
 
   const handleClick = (event) => {
     setAnchorEl(event.target);

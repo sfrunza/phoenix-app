@@ -8,9 +8,11 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
 import useSWR from 'swr';
+import { useCurrentUser } from 'lib/user';
 
 import Container from 'components/Container';
 
@@ -32,28 +34,14 @@ const pages = [
   },
 ];
 
-const getUser = async (id) => {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/${id}`);
-  const data = await res.json();
-  return data;
-};
-
 const Page = ({ children }) => {
   const [activeLink, setActiveLink] = useState('');
   const theme = useTheme();
 
-  const { data: session } = useSession();
-  const user = session && session.user;
+  const { data: { user } = {}, error } = useCurrentUser();
 
-  // console.log('session', session);
-
-  const { data } = useSWR(`${process.env.NEXTAUTH_URL}/api/jobs`);
+  const { data } = useSWR('/api/jobs');
   const jobs = data?.jobs.length;
-
-  const { data: currentUser, mutate } = useSWR(
-    `${process.env.NEXTAUTH_URL}/api/users/${user.id}`,
-    getUser(user.id),
-  );
 
   useEffect(() => {
     setActiveLink(window && window.location ? window.location.pathname : '');
@@ -63,21 +51,22 @@ const Page = ({ children }) => {
     <Box bgcolor={'alternate.main'}>
       <Box bgcolor={'primary.main'} paddingY={4}>
         <Container>
-          {user && (
+          {user ? (
+            <>
             <Typography
               variant="h4"
               fontWeight={700}
               gutterBottom
               sx={{ color: 'common.white' }}
             >
-              {currentUser?.firstName} {currentUser?.lastName}
+              {user.firstName} {user.lastName}
             </Typography>
-          )}
-          {currentUser && (
-            <Typography variant="h6" sx={{ color: 'common.white' }}>
-              {currentUser?.email}
-            </Typography>
-          )}
+             <Typography variant="h6" sx={{ color: 'common.white' }}>
+             {user.email}
+           </Typography>
+           </>
+          ): <Stack spacing={1}><Skeleton variant="rectangular" width={300} height={40} />
+          <Skeleton variant="rectangular" width={300} height={30} /></Stack>}
         </Container>
       </Box>
       <Container paddingTop={'0 !important'} marginTop={-8}>
@@ -134,7 +123,7 @@ const Page = ({ children }) => {
                     </ListItem>
                   </Link>
                 ))}
-                <Box p={2}>
+                <Box p={2} sx={{display: {xs:'none'}}}>
                   <Divider />
                 </Box>
                 <ListItem

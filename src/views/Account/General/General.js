@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Box from '@mui/material/Box';
@@ -12,11 +12,11 @@ import { IMaskInput } from 'react-imask';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import useSWR from 'swr';
-import { useSnackbar } from 'notistack';
+import toast from 'react-hot-toast';
 
 import Page from '../components/Page';
 import Main from 'layouts/Main';
+import { useCurrentUser } from 'lib/user';
 
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   const { onChange, ...other } = props;
@@ -62,60 +62,48 @@ const validationSchema = yup.object({
     ),
 });
 
-const getUser = async (id) => {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/${id}`);
-  const data = await res.json();
-  return data;
-};
+const General = () => {
+  const { data: { user } = {}, mutate } = useCurrentUser();
+  const [initialValues, setInitialValues] = useState({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+  });
 
-const General = ({ session }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { enqueueSnackbar } = useSnackbar();
 
-  const { data, mutate } = useSWR(
-    `${process.env.NEXTAUTH_URL}/api/users/${session.user.id}`,
-    getUser(session.user.id),
-  );
+  useEffect(() => {
+    if (user) {
+      setInitialValues(user);
+    }
+  }, [user]);
 
-  // console.log(data);
+  const onSubmit = useCallback(
+    async (values) => {
+      setIsLoading(true);
 
-  const initialValues = data ? data : session.user;
-
-  const onSubmit = async (values) => {
-    setIsLoading(true);
-    await mutate(values, false);
-    await fetch(`${process.env.NEXTAUTH_URL}/api/users/${values.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          enqueueSnackbar('Something went wrong', {
-            variant: 'error',
-            anchorOrigin: {
-              vertical: 'bottom',
-              horizontal: 'center',
-            },
-          });
-          // setIsLoading(false);
-        } else {
-          enqueueSnackbar('Update success', {
-            variant: 'success',
-            anchorOrigin: {
-              vertical: 'bottom',
-              horizontal: 'center',
-            },
-          });
-          // setIsLoading(false);
-        }
+      await fetch(`/api/user`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
       })
-      .catch((e) => {
-        console.log(e);
-      });
-    setIsLoading(false);
-  };
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.error) {
+            toast.error('Something went wrong');
+          } else {
+            toast.success('Update success');
+            mutate({ user: data }, false);
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      setIsLoading(false);
+    },
+    [mutate],
+  );
 
   const formik = useFormik({
     initialValues,
@@ -124,21 +112,12 @@ const General = ({ session }) => {
     onSubmit,
   });
 
-  // if (!data) return null;
-
   return (
     <Main>
       <Page>
         <Box>
-          <Typography variant="h6" gutterBottom fontWeight={700}>
+          <Typography variant="h6" fontWeight={700}>
             Change your private information
-          </Typography>
-          <Typography variant={'subtitle2'} color={'text.secondary'}>
-            Please read our{' '}
-            <Link color={'primary'} href={'/company-terms'} underline={'none'}>
-              terms of use
-            </Link>{' '}
-            to be informed how we manage your private data.
           </Typography>
           <Box paddingY={4}>
             <Divider />

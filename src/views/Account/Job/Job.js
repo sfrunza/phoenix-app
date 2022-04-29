@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import { useRouter } from 'next/router';
 import Spinner from 'components/Spinner';
-import { useSnackbar } from 'notistack';
 
 import Page from '../components/Page';
 import Main from 'layouts/Main';
@@ -16,57 +15,12 @@ import useSwr from 'swr';
 const Job = () => {
   const router = useRouter();
   const id = router.query.id;
-  const { data: job, mutate } = useSwr(
-    `${process.env.NEXTAUTH_URL}/api/jobs/${id}`,
-  );
-  const showMap = job && job.addresses && job.addresses.length > 0;
 
-  const [isLoading, setIsLoading] = useState(false);
-  const { enqueueSnackbar } = useSnackbar();
+  const { data: job, error } = useSwr(`/api/jobs/${id}`);
 
-  const onSubmit = async () => {
-    let jobObj = job;
-    delete jobObj.addresses;
-    const values = {
-      ...jobObj,
-      size: '2A',
-      additionalInfo: 'ASD asdASD dasdasd asd'
-    };
-    console.log(values);
-    setIsLoading(true);
-    await mutate(values, false);
-    await fetch(`${process.env.NEXTAUTH_URL}/api/jobs/${job.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          enqueueSnackbar('Something went wrong', {
-            variant: 'error',
-            anchorOrigin: {
-              vertical: 'bottom',
-              horizontal: 'center',
-            },
-          });
-          // setIsLoading(false);
-        } else {
-          enqueueSnackbar('Update success', {
-            variant: 'success',
-            anchorOrigin: {
-              vertical: 'bottom',
-              horizontal: 'center',
-            },
-          });
-          // setIsLoading(false);
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-    setIsLoading(false);
-  };
+  const { data: addresses } = useSwr(`/api/jobs/${id}/addresses`);
+
+  const showMap = addresses && addresses.length > 0;
 
   return (
     <Main>
@@ -93,19 +47,17 @@ const Job = () => {
               Reset all
             </Button>
           </Box>
+          {error && <div>failed to load</div>}
           {!job && (
             <Box paddingY={2}>
               <Spinner />
             </Box>
           )}
-          {/* {showMap && <Map job={job} />} */}
+          {showMap && <Map addresses={addresses} />}
           <Box paddingY={2}>
             <Divider />
           </Box>
-          <button onClick={() => onSubmit()}>
-            {isLoading ? 'Updating...' : 'Update'}
-          </button>
-          {job && <Info job={job} />}
+          {job && addresses && <Info job={job} addresses={addresses} />}
         </Box>
       </Page>
     </Main>

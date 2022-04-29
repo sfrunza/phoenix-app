@@ -21,7 +21,7 @@ import {
   movingSizeOptions,
   floorOptions,
 } from './constants';
-// import { jsonCityState } from './UsCities';
+import { jsonCityState } from './UsCities';
 
 const validationSchema = yup.object({
   firstName: yup
@@ -71,7 +71,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
   );
 });
 
-const Form = ({ jsonCityState }) => {
+const Form = () => {
   const theme = useTheme();
   const initialValues = {
     movingDate: '',
@@ -119,7 +119,7 @@ const Form = ({ jsonCityState }) => {
         email: values.email,
         password: values.password,
       };
-      let res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/create`, {
+      let res = await fetch('/api/users/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -137,7 +137,7 @@ const Form = ({ jsonCityState }) => {
         userId,
       };
 
-      let jobres = await fetch(`${process.env.NEXTAUTH_URL}/api/jobs/create`, {
+      let jobres = await fetch('/api/jobs/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jobBody),
@@ -170,13 +170,13 @@ const Form = ({ jsonCityState }) => {
         jobId,
       };
 
-      await fetch(`${process.env.NEXTAUTH_URL}/api/addresses/create`, {
+      await fetch('/api/addresses/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(originAddress),
       });
 
-      await fetch(`${process.env.NEXTAUTH_URL}/api/addresses/create`, {
+      await fetch('/api/addresses/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(destinationAddress),

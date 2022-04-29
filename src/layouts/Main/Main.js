@@ -62,6 +62,7 @@ const Main = ({ title, description, children }) => {
         sx={{
           top: 0,
           backgroundColor: theme.palette.background.paper,
+          // backdropFilter: 'saturate(180%) blur(5px)',
           height: 54,
           display: 'flex',
           justifyContent: 'center',

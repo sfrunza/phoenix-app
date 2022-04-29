@@ -8,15 +8,15 @@ import {
 } from '@react-google-maps/api';
 import mapStyles from './mapStyles';
 
-const getCityState = (job, type) => {
+const getCityState = (addresses, type) => {
   let cityState = null;
   if (type === 'origin') {
-    let origin = job.addresses.find((a) => a.isOrigin);
+    let origin = addresses.find((a) => a.isOrigin);
     if (origin) {
       cityState = origin.address + ' ' + origin.city + ', ' + origin.state;
     }
   } else if (type === 'destination') {
-    let destination = job.addresses.find((a) => a.isDestination);
+    let destination = addresses.find((a) => a.isDestination);
     if (destination) {
       cityState =
         destination.address + ' ' + destination.city + ', ' + destination.state;
@@ -27,10 +27,10 @@ const getCityState = (job, type) => {
 
 const center = { lat: 42.36, lng: -71.06 };
 
-const Map = ({ job }) => {
+const Map = ({ addresses }) => {
   const [libraries] = useState(['places']);
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
@@ -54,11 +54,11 @@ const Map = ({ job }) => {
     // if (originRef.current.value === '' || destiantionRef.current.value === '') {
     //   return;
     // }
-    const o = getCityState(job, 'origin');
-    const d = getCityState(job, 'destination');
+    const o = getCityState(addresses, 'origin');
+    const d = getCityState(addresses, 'destination');
 
-    // let extraPickupArrObj = job.addresses.filter((addres) => addres.isPickup);
-    // let extraDropoffArrObj = job.addresses.filter((addres) => addres.isDropoff);
+    // let extraPickupArrObj = addresses.addresses.filter((addres) => addres.isPickup);
+    // let extraDropoffArrObj = addresses.addresses.filter((addres) => addres.isDropoff);
 
     // let waypts = [];
 
@@ -153,7 +153,7 @@ const Map = ({ job }) => {
 };
 
 Map.propTypes = {
-  job: PropTypes.object.isRequired,
+  addresses: PropTypes.array.isRequired,
 };
 
 export default Map;

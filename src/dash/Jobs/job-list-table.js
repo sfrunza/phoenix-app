@@ -31,7 +31,7 @@ export const JobListTable = (props) => {
     ...other
   } = props;
 
-  if (!jobs) return <Spinner />;
+  // if (!jobs) return <Spinner />;
 
   console.log(jobs);
 
@@ -73,7 +73,7 @@ export const JobListTable = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {jobs.map((job) => {
+          {jobs?.map((job) => {
             return (
               <TableRow hover key={job.id}>
                 <TableCell>

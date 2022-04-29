@@ -16,17 +16,21 @@ export const light = {
   },
   text: {
     primary: '#000',
-    secondary: 'rgb(102, 102, 102)',
+    secondary: '#5f6368',
   },
   // divider: '#eaeaea',
   background: {
     paper: '#ffffff',
     default: '#ffffff',
-    level2: '#f5f5f5',
+    level2: '#F3F6F9',
     level1: '#ffffff',
+    level3: 'rgba(255, 255, 255, 0.8)',
   },
   error: {
     main: '#ff3333',
+  },
+  success: {
+    main: '#00a455',
   },
 };
 
@@ -63,5 +67,11 @@ export const dark = {
     default: '#222B45',
     level2: '#333',
     level1: '#2D3748',
+  },
+  error: {
+    main: '#ff3333',
+  },
+  success: {
+    main: '#00a455',
   },
 };

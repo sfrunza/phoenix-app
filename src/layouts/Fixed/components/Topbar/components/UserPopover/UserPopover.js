@@ -9,15 +9,15 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
 import Link from 'next/link';
-import { useSession, signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
+import { useCurrentUser } from 'lib/user';
 // import User from '../../../../../../svg/User';
 
 const UserPopover = () => {
   const theme = useTheme();
-  const { data: session } = useSession();
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
-  const user = session.user;
+  const { data: { user } = {}, error } = useCurrentUser();
 
   const handleClick = (event) => {
     setAnchorEl(event.target);
@@ -68,7 +68,7 @@ const UserPopover = () => {
       >
         <Grid container spacing={0.5}>
           <Grid item xs={12}>
-            <Typography variant="body2">{user.email}</Typography>
+            <Typography variant="body2">{user?.email}</Typography>
           </Grid>
           <Grid item xs={12} sx={{ marginY: 1 }}>
             <Divider />

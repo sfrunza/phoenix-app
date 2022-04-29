@@ -11,7 +11,9 @@ export default async function (req, res) {
     if (session && session.user.role === 'CUSTOMER') {
       const jobs = await prisma.job.findMany({
         where: {
-          customerId: Number(session.user.id),
+          customer: {
+            email: session.user.email,
+          },
         },
         include: { addresses: true },
         orderBy: {

@@ -7,12 +7,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-
 import { NavItem, UserPopover } from './components';
+import { useCurrentUser } from 'lib/user';
 
 const Topbar = ({ onSidebarOpen, pages }) => {
   const theme = useTheme();
   const { data, status } = useSession();
+
+  const { data: { user } = {}, error } = useCurrentUser();
+
   const { mode } = theme.palette;
   const {
     landings: landingPages,
@@ -61,41 +64,39 @@ const Topbar = ({ onSidebarOpen, pages }) => {
         <Box>
           <NavItem title={'Home'} id={'landing-pages'} items={landingPages} />
         </Box>
-        <Box marginLeft={4}>
+        <Box marginLeft={2}>
           <NavItem
             title={'Services'}
             id={'services-pages'}
             items={servicesPages}
           />
         </Box>
-        <Box marginLeft={4}>
+        <Box marginLeft={2}>
           <NavItem title={'About us'} id={'about-pages'} items={aboutPages} />
         </Box>
-        <Box marginLeft={4}>
+        <Box marginLeft={2}>
           <NavItem
             title={'Pricing'}
             id={'pricing-pages'}
             items={pricingPages}
           />
         </Box>
-        <Box marginLeft={4}>
+        <Box marginLeft={2}>
           <NavItem title={'FAQ'} id={'faq-pages'} items={faqPages} />
         </Box>
-        <Box marginLeft={4}>
+        <Box marginLeft={2}>
           <NavItem title={'Book'} id={'bookPages'} items={bookPages} />
         </Box>
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-        <Box>
-          {data ? (
-            <UserPopover />
-          ) : (
-            <NavItem
+        <Box sx={{minWidth: '112px'}}>
+          {user && user.id &&
+            <UserPopover />}
+          {user && !user.id && <NavItem
               title={'Client login'}
               id={'login-pages'}
               items={loginPages}
-            />
-          )}
+            />}
         </Box>
         {/* <Box marginLeft={2}>
           <Button variant="contained" color="primary">

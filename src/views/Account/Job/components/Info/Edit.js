@@ -17,7 +17,7 @@ export default function Edit({ job, field }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [value, setValue] = React.useState(job[field]);
   const { enqueueSnackbar } = useSnackbar();
-  const { mutate } = useSwr(`${process.env.NEXTAUTH_URL}/api/jobs/${job.id}`);
+  const { mutate } = useSwr(`/api/jobs/${job.id}`);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -28,6 +28,10 @@ export default function Edit({ job, field }) {
   };
 
   function capitalizeField(string) {
+    string = string
+      .split(/(?=[A-Z])/)
+      .join(' ')
+      .toLowerCase();
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
@@ -40,7 +44,7 @@ export default function Edit({ job, field }) {
     };
     setIsLoading(true);
     await mutate(values, false);
-    await fetch(`${process.env.NEXTAUTH_URL}/api/jobs/${job.id}`, {
+    await fetch(`/api/jobs/${job.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values),
@@ -51,27 +55,19 @@ export default function Edit({ job, field }) {
           enqueueSnackbar('Something went wrong', {
             variant: 'error',
             anchorOrigin: {
-              vertical: 'bottom',
+              vertical: 'top',
               horizontal: 'center',
             },
           });
           // setIsLoading(false);
         } else {
-          enqueueSnackbar(
-            `${capitalizeField(
-              field
-                .split(/(?=[A-Z])/)
-                .join(' ')
-                .toLowerCase(),
-            )} updated`,
-            {
-              variant: 'success',
-              anchorOrigin: {
-                vertical: 'bottom',
-                horizontal: 'center',
-              },
+          enqueueSnackbar(`${capitalizeField(field)} updated`, {
+            variant: 'success',
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
             },
-          );
+          });
           handleClose();
           // setIsLoading(false);
         }
@@ -130,7 +126,7 @@ export default function Edit({ job, field }) {
           />
         </DialogContent>
         <DialogActions sx={{ p: 3, pt: 0 }}>
-          <Button onClick={handleClose} variant="contained" color="error">
+          <Button onClick={handleClose} variant="outlined" color="success">
             Close
           </Button>
           <Button

@@ -93,7 +93,7 @@ const Content = () => {
             {
               title: 'Is the price base on the hours?',
               subtitle:
-                'That is correct. If you\'re having a local move with us, your final price is based on the actual labor time + travel time to your origin and back from your destination. labor and travel time are being prorated based on 15 minute increments.',
+                "That is correct. If you're having a local move with us, your final price is based on the actual labor time + travel time to your origin and back from your destination. labor and travel time are being prorated based on 15 minute increments.",
             },
             {
               title: 'Do I have to pay for the travel time?',

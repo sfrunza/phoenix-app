@@ -14,7 +14,7 @@ import Main from 'layouts/Main';
 import useSWR from 'swr';
 
 const Requests = () => {
-  const { data, error } = useSWR(`${process.env.NEXTAUTH_URL}/api/jobs`);
+  const { data, error } = useSWR('/api/jobs');
 
   const getCityState = (job, type) => {
     if (!job.addresses || job.addresses.length < 1) return null;
@@ -30,7 +30,6 @@ const Requests = () => {
         cityState = destination.city + ', ' + destination.state;
       }
     }
-    // console.log(cityState);
     return cityState;
   };
 
@@ -44,15 +43,8 @@ const Requests = () => {
     <Main>
       <Page>
         <Box>
-          <Typography variant="h6" gutterBottom fontWeight={700}>
+          <Typography variant="h6" fontWeight={700}>
             My move history
-          </Typography>
-          <Typography variant={'subtitle2'} color={'text.secondary'}>
-            Please read our{' '}
-            <Link color={'primary'} href={'/company-terms'} underline={'none'}>
-              terms of use
-            </Link>{' '}
-            to be informed how we manage your private data.
           </Typography>
           <Box paddingY={4}>
             <Divider />
@@ -67,20 +59,6 @@ const Requests = () => {
                   <Box key={job.id} fullWidth>
                     <Link href={`/account/requests/${job.id}`}>
                       <a>
-                        {/* <Box
-                        fullWidth
-                        sx={{
-                          border: '1px solid #e0e0e0',
-                          borderRadius: '10px',
-                          padding: '16px',
-                          mb: 3,
-                          '&:hover': {
-                            border: '1px solid #000',
-                          },
-                        }}
-                        display={'flex'}
-                        justifyContent={'space-between'}
-                      > */}
                         <Grid
                           container
                           sx={{
@@ -103,7 +81,6 @@ const Requests = () => {
                           <Grid item xs={6} md={2}>
                             <Typography
                               color={'textSecondary'}
-                              // textAlign="center"
                               sx={{ textAlign: { xs: 'start', md: 'center' } }}
                             >
                               {moment(job.movingDate).format('MMM DD, YYYY')}
@@ -112,7 +89,6 @@ const Requests = () => {
                           <Grid item xs={12} md={6}>
                             <Box
                               display={'flex'}
-                              // justifyContent={'center'}
                               alignItems={'center'}
                               textAlign="center"
                               sx={{
@@ -146,7 +122,6 @@ const Requests = () => {
                               )}
                             </Box>
                           </Grid>
-
                           <Grid
                             item
                             xs={12}
@@ -164,14 +139,6 @@ const Requests = () => {
                             />
                           </Grid>
                         </Grid>
-
-                        {/* <Typography color={'textSecondary'}>
-                          {job.service}
-                        </Typography>
-                        <Typography color={'textSecondary'}>
-                          {job.size}
-                        </Typography> */}
-                        {/* </Box> */}
                       </a>
                     </Link>
                   </Box>

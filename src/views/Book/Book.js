@@ -3,17 +3,21 @@ import Box from '@mui/material/Box';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
 import { Form } from './components';
+import BottomNav from './components/BottomNav';
+import Stepper from './components/Stepper';
 
-const Book = ({ jsonCityState }) => {
+const Book = () => {
   return (
     <Main>
       <Box>
         <Box bgcolor={'alternate.main'}>
           <Container maxWidth={780}>
-            <Form jsonCityState={jsonCityState} />
+            {/* <Form /> */}
+            <Stepper />
           </Container>
         </Box>
       </Box>
+      <BottomNav />
     </Main>
   );
 };

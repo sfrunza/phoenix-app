@@ -8,6 +8,7 @@ import { SWRConfig } from 'swr';
 import nProgress from 'nprogress';
 import Router from 'next/router';
 import { SnackbarProvider } from 'notistack';
+import { Toaster } from 'react-hot-toast';
 
 import Page from '../components/Page';
 
@@ -40,6 +41,7 @@ export default function App({ Component, pageProps }) {
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <SnackbarProvider maxSnack={2}>
                 <Component {...pageProps} />
+                <Toaster />
               </SnackbarProvider>
             </LocalizationProvider>
           </SWRConfig>

@@ -1,43 +1,24 @@
 import NextAuth from 'next-auth';
-// import Providers from 'next-auth/providers';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-// import GitHubProvider from 'next-auth/providers/github';
-import EmailProvider from 'next-auth/providers/email';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from 'lib/prisma';
 
-const authHandler = (req, res) => NextAuth(req, res, options);
-export default authHandler;
-
-const options = {
-  // adapter: PrismaAdapter(prisma),
-  secret: process.env.SECRET,
-  // cookie: {
-  //   secure: process.env.NODE_ENV && process.env.NODE_ENV === 'production',
-  // },
-  pages: {
-    // signIn: '/account/login',
-  },
+export default NextAuth({
   providers: [
-    // EmailProvider({
-    //   server: {
-    //     host: process.env.SMTP_HOST,
-    //     port: process.env.SMTP_PORT,
-    //     auth: {
-    //       user: process.env.SMTP_USER,
-    //       pass: process.env.SMTP_PASSWORD,
-    //     },
-    //   },
-    //   from: process.env.SMTP_FROM,
-    // }),
     CredentialsProvider({
+      // The name to display on the sign in form (e.g. "Sign in with...")
       name: 'Credentials',
+      // The credentials is used to generate a suitable form on the sign in page.
+      // You can specify whatever fields you are expecting to be submitted.
+      // e.g. domain, username, password, 2FA token, etc.
+      // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
         email: { label: 'Email', type: 'text', placeholder: 'email.@mail.com' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
-        const result = await prisma.user.findFirst({
+      async authorize(credentials, req) {
+        // console.log(credentials);
+        // Add logic here to look up the user from the credentials supplied
+        const user = await prisma.user.findFirst({
           where: {
             email: credentials.email,
             password: credentials.password,
@@ -49,46 +30,35 @@ const options = {
             email: true,
             phone: true,
             role: true,
+            password: true,
           },
         });
 
-        if (result) {
-          return result;
+        // console.log(user);
+
+        if (user) {
+          // Any object returned will be saved in `user` property of the JWT
+          return user;
         } else {
+          // If you return null then an error will be displayed advising the user to check their details.
           return null;
+
+          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
-      session.user = token.user;
-      if (token.user.id) {
-        const result = await prisma.user.findFirst({
-          where: {
-            email: token.user.email,
-          },
-          select: {
-            id: true,
-            firstName: true,
-            lastName: true,
-            email: true,
-            phone: true,
-            role: true,
-          },
-        });
-        console.log(result);
-        session.user = result;
-        token.user = result;
-      }
-      return session;
-    },
-    async jwt({ token, user, account, profile, isNewUser }) {
+    jwt: async ({ token, user }) => {
       if (user) {
-        token.accessToken = user._id;
-        token.user = user;
+        token.role = user.role;
       }
+
       return token;
     },
+    session: async ({ session, token }) => {
+      session.user.role = token.role;
+      return session;
+    },
   },
-};
+});

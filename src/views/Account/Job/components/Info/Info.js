@@ -18,7 +18,7 @@ function createData(title, data, edit) {
   return { title, data, edit };
 }
 
-const Info = ({ job }) => {
+const Info = ({ job, addresses }) => {
   const theme = useTheme();
   const rows = [
     createData('Moving date', job && job.movingDate),
@@ -48,7 +48,7 @@ const Info = ({ job }) => {
 
   return (
     <>
-      {/* <Addresses job={job} /> */}
+     {addresses.length>0 && <Addresses addresses={addresses} />}
       <TableContainer component={Paper} sx={{ boxShadow: 'none' }}>
         <Table aria-label="simple table">
           <TableBody>
@@ -77,6 +77,7 @@ const Info = ({ job }) => {
 
 Info.propTypes = {
   job: PropTypes.object.isRequired,
+  addresses: PropTypes.array.isRequired,
 };
 
 export default Info;

@@ -63,7 +63,7 @@ const getTheme = (mode, themeToggler) =>
           styleOverrides: {
             root: {
               fontWeight: 600,
-              borderRadius: 10,
+              // borderRadius: 18,
             },
             containedSecondary: mode === 'light' ? { color: 'white' } : {},
           },
@@ -71,24 +71,24 @@ const getTheme = (mode, themeToggler) =>
         MuiInputBase: {
           styleOverrides: {
             root: {
-              // borderRadius: 10,
+              borderRadius: 12,
             },
           },
         },
         MuiOutlinedInput: {
           styleOverrides: {
             root: {
-              // borderRadius: 10,
+              borderRadius: 12,
             },
             input: {
-              // borderRadius: 10,
+              borderRadius: 12,
             },
           },
         },
         MuiCard: {
           styleOverrides: {
             root: {
-              // borderRadius: 10,
+              borderRadius: 12,
             },
           },
         },
