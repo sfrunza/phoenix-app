@@ -89,14 +89,15 @@ const Topbar = ({ onSidebarOpen, pages }) => {
         </Box>
       </Box>
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-        <Box sx={{minWidth: '112px'}}>
-          {user && user.id &&
-            <UserPopover />}
-          {user && !user.id && <NavItem
+        <Box sx={{ minWidth: '114px' }}>
+          {user && user.id && <UserPopover />}
+          {user && !user.id && (
+            <NavItem
               title={'Client login'}
               id={'login-pages'}
               items={loginPages}
-            />}
+            />
+          )}
         </Box>
         {/* <Box marginLeft={2}>
           <Button variant="contained" color="primary">

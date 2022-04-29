@@ -52,21 +52,25 @@ const Page = ({ children }) => {
       <Box bgcolor={'primary.main'} paddingY={4}>
         <Container>
           {user ? (
-            <>
-            <Typography
-              variant="h4"
-              fontWeight={700}
-              gutterBottom
-              sx={{ color: 'common.white' }}
-            >
-              {user.firstName} {user.lastName}
-            </Typography>
-             <Typography variant="h6" sx={{ color: 'common.white' }}>
-             {user.email}
-           </Typography>
-           </>
-          ): <Stack spacing={1}><Skeleton variant="rectangular" width={300} height={40} />
-          <Skeleton variant="rectangular" width={300} height={30} /></Stack>}
+            <Stack spacing={1}>
+              <Typography
+                variant="h4"
+                fontWeight={700}
+                gutterBottom
+                sx={{ color: 'common.white' }}
+              >
+                {user.firstName} {user.lastName}
+              </Typography>
+              <Typography variant="h6" sx={{ color: 'common.white' }}>
+                {user.email}
+              </Typography>
+            </Stack>
+          ) : (
+            <Stack spacing={1}>
+              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={300} height={30} />
+            </Stack>
+          )}
         </Container>
       </Box>
       <Container paddingTop={'0 !important'} marginTop={-8}>
@@ -123,7 +127,7 @@ const Page = ({ children }) => {
                     </ListItem>
                   </Link>
                 ))}
-                <Box p={2} sx={{display: {xs:'none'}}}>
+                <Box p={2} sx={{ display: { xs: 'none' } }}>
                   <Divider />
                 </Box>
                 <ListItem
