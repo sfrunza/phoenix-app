@@ -88,6 +88,7 @@ const Footer = () => {
         <Typography
           align={'center'}
           variant={'subtitle2'}
+          component={'p'}
           color="text.secondary"
           gutterBottom
         >

@@ -28,7 +28,6 @@ const Partners = () => {
           '/partners/yelp.png',
         ].map((item, i) => {
           let name = item.slice(item.lastIndexOf('/') + 1, item.indexOf('.'));
-          console.log(name);
           return (
             <Box
               marginTop={2}

@@ -98,7 +98,12 @@ const Reviews = () => {
           >
             Rated 5 out of 5 stars by our customers!
           </Typography>
-          <Typography variant="h6" align={'center'} color={'text.secondary'}>
+          <Typography
+            variant="h6"
+            align={'center'}
+            color={'text.secondary'}
+            component={'p'}
+          >
             Companies from across the globe have had fantastic experiences using
             theFront.
             <br />
@@ -167,6 +172,7 @@ const Reviews = () => {
                       <Typography
                         color="text.primary"
                         variant={'h6'}
+                        component={'p'}
                         sx={{
                           textAlign: { xs: 'center', md: 'left' },
                         }}
@@ -184,11 +190,13 @@ const Reviews = () => {
                           secondary={item.title}
                           primaryTypographyProps={{
                             variant: 'h6',
+                            component: 'p',
                             fontWeight: 'bold',
                             sx: { textAlign: { xs: 'center', md: 'left' } },
                           }}
                           secondaryTypographyProps={{
                             variant: 'subtitle1',
+                            component: 'p',
                             sx: { textAlign: { xs: 'center', md: 'left' } },
                           }}
                         />
