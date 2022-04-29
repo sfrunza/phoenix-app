@@ -37,8 +37,15 @@ const Articles = () => {
             <ListItemText
               primary={item.title}
               secondary={item.subtitle}
-              primaryTypographyProps={{ variant: 'h5', gutterBottom: true }}
-              secondaryTypographyProps={{ variant: 'subtitle1' }}
+              primaryTypographyProps={{
+                variant: 'h5',
+                gutterBottom: true,
+                component: 'p',
+              }}
+              secondaryTypographyProps={{
+                variant: 'subtitle1',
+                component: 'p',
+              }}
               sx={{
                 '& .MuiListItemText-primary': {
                   fontWeight: 700,
