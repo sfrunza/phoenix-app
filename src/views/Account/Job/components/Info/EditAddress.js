@@ -14,7 +14,7 @@ import toast from 'react-hot-toast';
 import TextField from '@mui/material/TextField';
 import { useTheme } from '@mui/material/styles';
 import { useFormik } from 'formik';
-import { jsonCityState } from 'views/Book/components/Form/UsCities';
+import { jsonCityState } from 'views/Book/UsCities';
 
 const findCity = (zip) => {
   let cityObject = jsonCityState.find((o) => {

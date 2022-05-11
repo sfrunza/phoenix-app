@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import moment from 'moment';
 import submitFormModel from './submitFormModel';
-import { jsonCityState } from 'views/Book/components/Form/UsCities';
+import { jsonCityState } from '../UsCities';
 
 const {
   formField: {

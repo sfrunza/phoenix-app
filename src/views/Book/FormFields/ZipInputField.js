@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { jsonCityState } from 'views/Book/components/Form/UsCities';
+import { jsonCityState } from '../UsCities';
 import toast from 'react-hot-toast';
 
 const onlyNumbers = (e) => {
@@ -52,7 +52,7 @@ export default function ZipInputField(props) {
       toast(
         () => (
           <span>
-            Moving {name === 'origin' ? 'from' : 'to'} {" "}
+            Moving {name === 'origin' ? 'from' : 'to'}{' '}
             <b>
               {obj.c}, {obj.s}
             </b>
