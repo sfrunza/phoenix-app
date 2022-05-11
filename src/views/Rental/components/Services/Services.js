@@ -201,10 +201,10 @@ const Services = () => {
                     border: `1px solid ${theme.palette.divider}`,
                     transition: 'border 0.3s ease',
                     '&:hover': {
-                      border: `1px solid ${theme.palette.primary.main}`,
-                      color: `${theme.palette.primary.main} !important`,
+                      border: `1px solid ${theme.palette.text.primary}`,
+                      // color: `${theme.palette.primary.main} !important`,
                       '&> div > p': {
-                        color: `${theme.palette.primary.main} !important`,
+                        // color: `${theme.palette.primary.main} !important`,
                       },
                     },
                   }}
@@ -230,3 +230,4 @@ const Services = () => {
 };
 
 export default Services;
+

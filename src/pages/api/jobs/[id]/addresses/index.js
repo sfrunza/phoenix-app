@@ -4,11 +4,10 @@ import prisma from 'lib/prisma';
 export default async function (req, res) {
   const jobId = req.query.id;
 
-  // console.log(req.query);
   try {
     const addresses = await prisma.address.findMany({
       where: {
-        job: { id: Number(jobId) },
+        jobId: parseInt(jobId),
       },
       orderBy: {
         id: 'desc',

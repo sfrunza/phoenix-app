@@ -2,6 +2,7 @@ import { responsiveFontSizes } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import shadows from './shadows';
 import { light, dark } from './palette';
+import { alpha } from '@mui/material/styles';
 
 const getTheme = (mode, themeToggler) =>
   responsiveFontSizes(
@@ -12,43 +13,8 @@ const getTheme = (mode, themeToggler) =>
       },
       shadows: shadows(mode),
       typography: {
-        // fontFamily: '"Poppins", sans-serif',
         fontFamily: '"CustomFontBook", sans-serif',
         fontDisplay: 'swap',
-        // h1: {
-        //   // fontWeight: 600,
-        //   // fontSize: "3.5rem",
-        //   fontWeight: 600,
-        //   fontSize: '2rem',
-        // },
-        // h2: {
-        //   // fontWeight: 600,
-        //   // fontSize: "3rem",
-        //   fontWeight: 600,
-        //   fontSize: '1.25rem',
-        // },
-        // h3: {
-        //   fontWeight: 600,
-        //   fontSize: '2.25rem',
-        // },
-        // h4: {
-        //   fontWeight: 600,
-        //   fontSize: '2rem',
-        // },
-        // h5: {
-        //   fontWeight: 600,
-        //   fontSize: '1.5rem',
-        // },
-        // h6: {
-        //   fontWeight: 600,
-        //   fontSize: '1.25rem',
-        // },
-        // overline: {
-        //   fontWeight: 600,
-        // },
-        // body2: {
-        //   lineHeight: 1.7,
-        // },
         button: {
           textTransform: 'none',
           fontWeight: 'medium',
@@ -72,6 +38,10 @@ const getTheme = (mode, themeToggler) =>
           styleOverrides: {
             root: {
               borderRadius: 12,
+              '&.Mui-focused': {
+                boxShadow: `${alpha(light.primary.main, 0.15)} 0 0 0 2px`,
+                borderColor: light.primary.main,
+              },
             },
           },
         },
@@ -95,8 +65,6 @@ const getTheme = (mode, themeToggler) =>
         MuiTooltip: {
           styleOverrides: {
             tooltip: {
-              // borderRadius: 10,
-              // backgroundColor: 'red',
               padding: 8,
             },
           },
@@ -104,28 +72,10 @@ const getTheme = (mode, themeToggler) =>
         MuiTableCell: {
           styleOverrides: {
             root: {
-              // borderRadius: 10,
-              // backgroundColor: 'red',
               borderBottom: '1px solid #eaeaea',
             },
           },
         },
-        // MuiCssBaseline: {
-        //   styleOverrides: {
-        //     '#nprogress': {
-        //       pointerEvents: 'none',
-        //     },
-        //     '#nprogress .bar': {
-        //       backgroundColor: '#7900ff3b',
-        //       height: 3,
-        //       left: 0,
-        //       position: 'fixed',
-        //       top: 0,
-        //       width: '100%',
-        //       zIndex: 2000,
-        //     },
-        //   },
-        // },
       },
       themeToggler,
     }),

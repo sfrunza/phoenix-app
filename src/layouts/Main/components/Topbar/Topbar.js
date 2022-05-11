@@ -52,6 +52,7 @@ const Topbar = ({ onSidebarOpen, pages }) => {
             alt="Phoenix Moving Logo"
             layout={'fill'}
             objectFit="contain"
+            priority
           />
         </Box>
       </Link>

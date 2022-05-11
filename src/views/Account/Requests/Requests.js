@@ -50,10 +50,9 @@ const Requests = () => {
             <Divider />
           </Box>
           <Box>
-            {error && <div>failed to load</div>}
-            {!data ? (
-              <Spinner />
-            ) : (
+            {!data && <Spinner />}
+            {data && data.error && <div>{data.error}</div>}
+            {data && data.jobs &&
               data.jobs.map((job) => {
                 return (
                   <Box key={job.id} fullWidth>
@@ -143,8 +142,7 @@ const Requests = () => {
                     </Link>
                   </Box>
                 );
-              })
-            )}
+              })}
             <Divider />
           </Box>
         </Box>

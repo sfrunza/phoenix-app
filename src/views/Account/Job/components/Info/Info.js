@@ -7,9 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
 
 import Addresses from './Addresses';
 import Edit from './Edit';
@@ -18,7 +15,7 @@ function createData(title, data, edit) {
   return { title, data, edit };
 }
 
-const Info = ({ job, addresses }) => {
+const Info = ({ job }) => {
   const theme = useTheme();
   const rows = [
     createData('Moving date', job && job.movingDate),
@@ -48,7 +45,7 @@ const Info = ({ job, addresses }) => {
 
   return (
     <>
-     {addresses.length>0 && <Addresses addresses={addresses} />}
+      <Addresses jobId={job.id} />
       <TableContainer component={Paper} sx={{ boxShadow: 'none' }}>
         <Table aria-label="simple table">
           <TableBody>
@@ -77,7 +74,6 @@ const Info = ({ job, addresses }) => {
 
 Info.propTypes = {
   job: PropTypes.object.isRequired,
-  addresses: PropTypes.array.isRequired,
 };
 
 export default Info;

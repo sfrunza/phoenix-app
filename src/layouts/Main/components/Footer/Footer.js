@@ -38,6 +38,7 @@ const Footer = () => {
               alt="Phoenix Moving Logo"
               layout={'fill'}
               objectFit="contain"
+              priority
             />
           </Box>
           <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>

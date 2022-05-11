@@ -51,7 +51,7 @@ const NavItem = ({ title, id, items }) => {
           sx={{
             cursor: 'pointer',
             transition: 'background-color 0.3s ease',
-            borderRadius: '10px',
+            borderRadius: `${theme.shape.borderRadius}px`,
             '&:hover': {
               backgroundColor: theme.palette.background.level2,
             },
@@ -80,7 +80,7 @@ const NavItem = ({ title, id, items }) => {
             sx={{
               cursor: 'pointer',
               transition: 'background-color 0.3s ease',
-              borderRadius: '10px',
+              borderRadius: `${theme.shape.borderRadius}px`,
               '&:hover': {
                 backgroundColor: theme.palette.background.level2,
               },

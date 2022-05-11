@@ -34,6 +34,7 @@ const Main = ({ title, description, children }) => {
   };
 
   const open = isMd ? false : openSidebar;
+  const hide = router.pathname !== '/book';
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -41,7 +42,14 @@ const Main = ({ title, description, children }) => {
   });
 
   return (
-    <Box>
+    <Box
+      sx={{
+        // minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+    >
       <Head>
         <title>{title ? `${title} - Phoenix Moving` : 'Phoenix Moving'}</title>
         {description && <meta name="description" content={description}></meta>}
@@ -80,13 +88,25 @@ const Main = ({ title, description, children }) => {
         variant="temporary"
         pages={pages}
       />
-      <main>
+      <Box
+        component="main"
+        // flex={1}
+        // sx={{
+        //   minHeight: {
+        //     md: 'calc(100vh - 80px)',
+        //     xs: '126vh',
+        //     position: 'relative',
+        //   },
+        // }}
+      >
         {children}
-        <Divider />
-      </main>
-      <Container paddingY={4}>
-        <Footer />
-      </Container>
+        {hide && <Divider />}
+      </Box>
+      {hide && (
+        <Container paddingY={4}>
+          <Footer />
+        </Container>
+      )}
     </Box>
   );
 };

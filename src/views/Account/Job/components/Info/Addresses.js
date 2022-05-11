@@ -9,48 +9,64 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import useSwr from 'swr';
+import useSWR from 'swr';
+import toast from 'react-hot-toast';
+import EditAddress from './EditAddress';
 
-function Addresses({ addresses }) {
-  const origin = addresses?.find((address) => address.isOrigin);
-  const destination = addresses?.find((address) => address.isDestination);
-  const pickups = addresses?.filter((address) => address.isPickup);
-  const dropoffs = addresses?.filter((address) => address.isDropoff);
+const getAddresses = async (jobId) => {
+  const res = await fetch(`/api/jobs/${jobId}/addresses`);
+  const data = await res.json();
+  return data.addresses;
+};
 
-  const { mutate } = useSwr(
-    `/api/jobs/${origin.jobId}/addresses`,
+function Addresses({ jobId }) {
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const { data: addresses, mutate } = useSWR(
+    `/api/jobs/${jobId}/addresses`,
+    getAddresses(jobId),
   );
+  const origin = addresses ? addresses.find((address) => address.isOrigin) : {};
+  const destination = addresses
+    ? addresses.find((address) => address.isDestination)
+    : {};
+  const pickups = addresses
+    ? addresses.filter((address) => address.isPickup)
+    : [];
+  const dropoffs = addresses
+    ? addresses.filter((address) => address.isDropoff)
+    : [];
 
-  const onSubmit = async () => {
-    const values = {
-      ...origin,
-      address: '80 High st',
-      city: 'Dedham',
-      state: 'MA',
-      zip: '02026',
-      apt: '2',
-      floor: '2',
-      isOrigin: true,
-      isDestination: false,
-      isPickup: false,
-      isDropoff: false,
-    };
-
-    await mutate([...addresses, values], false);
-    await fetch(
-      `/api/jobs/${origin.jobId}/addresses/${values.id}`,
-      {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      },
-    )
+  const updateAddress = async (values, handleClose) => {
+    setIsLoading(true);
+    await fetch(`/api/jobs/${jobId}/addresses/${values.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values),
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.error) {
+          toast.error('Something went wrong');
+          setIsLoading(false);
+        } else {
+          let newAddressArray = addresses.map((a) => {
+            if (a.id === data.id) {
+              return data;
+            } else {
+              return a;
+            }
+          });
+          toast.success('Address updated');
+          setIsLoading(false);
+          mutate([...newAddressArray], false);
+          handleClose();
+        }
       })
       .catch((e) => {
         console.log(e);
+        toast.error('Something went wrong');
+        setIsLoading(false);
       });
   };
 
@@ -67,13 +83,17 @@ function Addresses({ addresses }) {
           Apt# {data.apt}
           <span style={{ marginLeft: 10 }}>*{data.floor}</span>
         </Typography>
+        <EditAddress
+          address={data}
+          updateAddress={updateAddress}
+          isLoading={isLoading}
+        />
       </Box>
     );
   };
 
   return (
     <>
-      <button onClick={onSubmit}>update</button>
       <Timeline sx={{ paddingX: 0 }}>
         {origin && (
           <TimelineItem>
@@ -94,7 +114,8 @@ function Addresses({ addresses }) {
             </TimelineContent>
           </TimelineItem>
         )}
-        {pickups.length > 0 &&
+        {pickups &&
+          pickups.length > 0 &&
           pickups.map((pickup, i) => {
             return (
               <TimelineItem key={i}>
@@ -117,7 +138,8 @@ function Addresses({ addresses }) {
               </TimelineItem>
             );
           })}
-        {dropoffs.length > 0 &&
+        {dropoffs &&
+          dropoffs.length > 0 &&
           dropoffs.map((dropoff, i) => {
             return (
               <TimelineItem key={i}>
@@ -164,7 +186,7 @@ function Addresses({ addresses }) {
 }
 
 Addresses.propTypes = {
-  addresses: PropTypes.array.isRequired,
+  jobId: PropTypes.number.isRequired,
 };
 
 export default Addresses;

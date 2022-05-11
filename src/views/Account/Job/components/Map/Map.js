@@ -7,6 +7,8 @@ import {
   DirectionsRenderer,
 } from '@react-google-maps/api';
 import mapStyles from './mapStyles';
+import useSWR from 'swr';
+import toast from 'react-hot-toast';
 
 const getCityState = (addresses, type) => {
   let cityState = null;
@@ -27,7 +29,17 @@ const getCityState = (addresses, type) => {
 
 const center = { lat: 42.36, lng: -71.06 };
 
-const Map = ({ addresses }) => {
+const getAddresses = async (jobId) => {
+  const res = await fetch(`/api/jobs/${jobId}/addresses`);
+  const data = await res.json();
+  return data.addresses;
+};
+
+const Map = ({ jobId }) => {
+  const { data: addresses, mutate } = useSWR(
+    `/api/jobs/${jobId}/addresses`,
+    getAddresses(jobId),
+  );
   const [libraries] = useState(['places']);
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
@@ -45,10 +57,10 @@ const Map = ({ addresses }) => {
   /** @type React.MutableRefObject<HTMLInputElement> */
   // const destiantionRef = useRef();
   useEffect(() => {
-    if (isLoaded) {
+    if (isLoaded && addresses) {
       calculateRoute();
     }
-  }, [isLoaded]);
+  }, [isLoaded, addresses]);
 
   async function calculateRoute() {
     // if (originRef.current.value === '' || destiantionRef.current.value === '') {
@@ -153,7 +165,7 @@ const Map = ({ addresses }) => {
 };
 
 Map.propTypes = {
-  addresses: PropTypes.array.isRequired,
+  jobId: PropTypes.number.isRequired,
 };
 
 export default Map;

@@ -39,9 +39,8 @@ const Page = ({ children }) => {
   const theme = useTheme();
 
   const { data: { user } = {}, error } = useCurrentUser();
-
   const { data } = useSWR('/api/jobs');
-  const jobs = data?.jobs.length;
+  const jobs = data && data.jobs ? data.jobs.length : '0';
 
   useEffect(() => {
     setActiveLink(window && window.location ? window.location.pathname : '');

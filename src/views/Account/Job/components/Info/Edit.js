@@ -3,20 +3,18 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import useSwr from 'swr';
-import { useSnackbar } from 'notistack';
+import toast from 'react-hot-toast';
 import TextField from '@mui/material/TextField';
 
 export default function Edit({ job, field }) {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [value, setValue] = React.useState(job[field]);
-  const { enqueueSnackbar } = useSnackbar();
   const { mutate } = useSwr(`/api/jobs/${job.id}`);
 
   const handleClickOpen = () => {
@@ -43,7 +41,7 @@ export default function Edit({ job, field }) {
       [field]: value,
     };
     setIsLoading(true);
-    await mutate(values, false);
+
     await fetch(`/api/jobs/${job.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -52,24 +50,11 @@ export default function Edit({ job, field }) {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
-          enqueueSnackbar('Something went wrong', {
-            variant: 'error',
-            anchorOrigin: {
-              vertical: 'top',
-              horizontal: 'center',
-            },
-          });
-          // setIsLoading(false);
+          toast.error('Something went wrong');
         } else {
-          enqueueSnackbar(`${capitalizeField(field)} updated`, {
-            variant: 'success',
-            anchorOrigin: {
-              vertical: 'top',
-              horizontal: 'center',
-            },
-          });
+          toast.success(`${capitalizeField(field)} updated`);
+          mutate(data, false);
           handleClose();
-          // setIsLoading(false);
         }
       })
       .catch((e) => {
@@ -107,6 +92,12 @@ export default function Edit({ job, field }) {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        sx={{
+          '& .MuiPaper-root': {
+            margin: { xs: 2, md: 'auto' },
+            width: { xs: 'calc(100% - 32px)' },
+          },
+        }}
       >
         <DialogTitle id="alert-dialog-title">
           {capitalizeField(

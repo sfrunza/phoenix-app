@@ -17,7 +17,7 @@ export default async function handle(req, res) {
     } else if (req.method === 'PUT') {
       const data = req.body;
       const address = await prisma.address.update({
-        where: { id: Number(addressId) },
+        where: { id: parseInt(addressId) },
         data,
       });
       res.json(address);

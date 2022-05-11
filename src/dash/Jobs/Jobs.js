@@ -26,6 +26,7 @@ import { JobListTable } from './job-list-table';
 // import { Search as SearchIcon } from '../../../icons/search';
 // import { Upload as UploadIcon } from '../../../icons/upload';
 // import { gtm } from '../../../lib/gtm';
+import Spinner from 'components/Spinner';
 
 const tabs = [
   {
@@ -65,9 +66,10 @@ const sortOptions = [
   },
 ];
 
-
 function applyFilters(jobs, filters) {
-  const jobsFilter = jobs.filter((job) => {
+  // console.log('jobs filter', jobs)
+  if(!jobs) return []
+  const jobsFilter = jobs?.filter((job) => {
     let matches = true;
 
     if (
@@ -159,23 +161,24 @@ const applyPagination = (jobs, page, rowsPerPage) =>
 const getJobs = async () => {
   const res = await fetch('/api/jobs');
   const data = await res.json();
-  return data.jobs;
+  return data
 };
 
 const Jobs = () => {
   const queryRef = useRef(null);
-  const { data: jobs, error } = useSWR('/api/jobs', getJobs);
-
-  // debugger;
-  // console.log(jobs);
+  const { data, error } = useSWR('/api/jobs', getJobs);
   const [currentTab, setCurrentTab] = useState('all');
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [sort, setSort] = useState(sortOptions[0].value);
   const [filters, setFilters] = useState({
     query: '',
     status: null,
   });
+
+  // if (error) return <h1>Something went wrong!</h1>
+  //   if (!data) return <h1>Loading...</h1>
+
 
   const handleTabsChange = (event, value) => {
     console.log(value);
@@ -209,13 +212,14 @@ const Jobs = () => {
   const handleRowsPerPageChange = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
+  
 
-  // if (!jobs) return <>loading...</>;
+  
 
   // // Usually query is done on backend with indexing solutions
-  const filteredJobs = jobs && applyFilters(jobs, filters);
+  const filteredJobs = data && data.jobs && applyFilters(data.jobs, filters);
   // const sortedJobs = applySort(filteredJobs, sort);
-  const paginatedJobs = jobs && applyPagination(filteredJobs, page, rowsPerPage);
+  const paginatedJobs = data && data.jobs && applyPagination(filteredJobs, page, rowsPerPage);
 
   return (
     <FixedLayout>
@@ -238,7 +242,21 @@ const Jobs = () => {
               </Grid>
               <Grid item>
                 <Button
-                  // startIcon={<PlusIcon fontSize="small" />}
+                  startIcon={
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      width="22"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  }
                   variant="contained"
                 >
                   Add
@@ -304,7 +322,21 @@ const Jobs = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        {/* <SearchIcon fontSize="small" /> */}s
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          width="22"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                          />
+                        </svg>
                       </InputAdornment>
                     ),
                   }}
@@ -327,14 +359,18 @@ const Jobs = () => {
                 ))}
               </TextField> */}
             </Box>
-            <JobListTable
-              jobs={paginatedJobs}
-              jobsCount={jobs?.length}
-              onPageChange={handlePageChange}
-              onRowsPerPageChange={handleRowsPerPageChange}
-              rowsPerPage={rowsPerPage}
-              page={page}
-            />
+            {!data && <Spinner />}
+            {data && data.error && <div>{data.error}</div>}
+            {data && data.jobs &&
+              <JobListTable
+                jobs={paginatedJobs}
+                jobsCount={data.jobs.length}
+                onPageChange={handlePageChange}
+                onRowsPerPageChange={handleRowsPerPageChange}
+                rowsPerPage={rowsPerPage}
+                page={page}
+              />
+            }
           </Card>
         </Container>
       </Box>

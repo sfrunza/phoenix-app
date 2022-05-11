@@ -33,7 +33,6 @@ export const JobListTable = (props) => {
 
   // if (!jobs) return <Spinner />;
 
-  console.log(jobs);
 
   // Reset selected jobs when jobs change
 
