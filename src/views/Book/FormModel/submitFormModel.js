@@ -48,6 +48,10 @@ export default {
       label: 'Moving size',
       requiredErrorMsg: 'Moving size is required',
     },
+    additionalInfo: {
+      name: 'additionalInfo',
+      label: 'Additioanl info',
+    },
     origin: {
       address: {
         name: 'origin.address',

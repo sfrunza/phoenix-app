@@ -52,7 +52,7 @@ export default function FirstStep(props) {
         Get a Quote!
         <Divider sx={{ marginY: 2 }} />
       </Box>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs={12} md={7}>
           <DatePickerField
             name={moveDate.name}
@@ -85,9 +85,8 @@ export default function FirstStep(props) {
           />
         </Grid>
       </Grid>
-      <ServiceSelect name={service.name} label={service.label} />
       {showDeliveryDate && (
-        <Box component={Grid} container mt={2}>
+        <Box component={Grid} container mt={2} spacing={2}>
           <Grid item xs={12} md={7}>
             <DatePickerField
               name={deliveryDate.name}
@@ -98,6 +97,7 @@ export default function FirstStep(props) {
           </Grid>
         </Box>
       )}
+      <ServiceSelect name={service.name} label={service.label} />
     </React.Fragment>
   );
 }

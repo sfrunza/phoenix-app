@@ -64,6 +64,7 @@ export default function PhoneInput(props) {
           }}
           {...field}
           {...rest}
+          size="small"
           type="text"
           placeholder={props.label}
           error={meta.touched && meta.error && true}

@@ -39,6 +39,7 @@ export default function EmailInput(props) {
       <StyledTextField
         {...field}
         {...rest}
+        size="small"
         type="text"
         placeholder={props.label}
         error={meta.touched && meta.error && true}

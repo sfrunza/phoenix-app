@@ -115,7 +115,7 @@ const Topbar = ({ onSidebarOpen, pages }) => {
           aria-label="Menu"
           variant={'outlined'}
           sx={{
-            borderRadius: 2,
+            borderRadius: 'shape.borderRadius',
             minWidth: 'auto',
             padding: 0.5,
             borderColor: alpha(theme.palette.divider, 0.2),

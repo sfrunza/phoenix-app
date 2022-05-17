@@ -45,6 +45,7 @@ function SizeSelect(props) {
         helperText={_renderHelperText()}
         select
         fullWidth
+        size="small"
         value={selectedValue ? selectedValue : ''}
         SelectProps={{
           native: true,

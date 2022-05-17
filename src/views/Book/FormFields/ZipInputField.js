@@ -80,6 +80,7 @@ export default function ZipInputField(props) {
       <StyledTextField
         {...field}
         {...rest}
+        size='small'
         placeholder={props.placeholder}
         error={meta.touched && Boolean(meta.error)}
         helperText={_renderHelperText()}

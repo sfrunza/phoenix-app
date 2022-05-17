@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ReviewDetails = () => {
-  return <div>Review Details</div>;
+const ReviewDetails = ({values}) => {
+  return <div>{JSON.stringify(values, null, 2)}</div>;
 };
 
 export default ReviewDetails;

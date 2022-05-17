@@ -49,7 +49,7 @@ const CustomLabel = ({ label, value, checked }) => {
           ? theme.palette.primary.contrastText
           : theme.palette.text.secondary,
         // boxShadow: theme.shadows[1],
-        width: '100%',
+        // width: '100%',
         display: 'flex',
         boxShadow:
           '0 0 1px 0 rgb(0 0 0 / 31%), 0 3px 4px -2px rgb(0 0 0 / 25%)',
@@ -57,7 +57,10 @@ const CustomLabel = ({ label, value, checked }) => {
         border: `1px solid ${theme.palette.divider}`,
         borderRadius: `${theme.shape.borderRadius}px`,
         marginRight: 'unset',
-        padding: theme.spacing(1),
+        padding: { sm: '8px 16px', xs: '8px 16px' },
+        // padding: 8px 16px;
+        width: 'fit-content',
+        marginLeft: 'unset',
       }}
     />
   );
@@ -115,74 +118,71 @@ const FloorSelect = (props) => {
           {...field}
           {...rest}
         >
-          <Grid container spacing={1} sx={{ marginLeft: '0px', width: '100%' }}>
-            <Grid
-              item
-              xs={1.5}
-              sx={{ display: 'flex', justifyContent: 'center' }}
-            >
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            flexWrap="wrap"
+            gap={{ xs: '16px', md: '4px' }}
+            rowGap={{ xs: '16px', md: '14px' }}
+          >
+            <Box>
               <CustomLabel
                 label="1"
                 value={'1st/ground floor'}
                 checked={val === '1st/ground floor'}
               />
-            </Grid>
-            <Grid
-              item
-              xs={1.5}
-              sx={{ display: 'flex', justifyContent: 'center' }}
-            >
+            </Box>
+            <Box>
               <CustomLabel
                 label="2"
                 value={'2nd floor'}
                 checked={val === '2nd floor'}
               />
-            </Grid>
-            <Grid
-              item
-              xs={1.5}
-              sx={{ display: 'flex', justifyContent: 'center' }}
-            >
+            </Box>
+
+            <Box>
               <CustomLabel
                 label="3"
                 value="3rd floor"
                 checked={val === '3rd floor'}
               />
-            </Grid>
-            <Grid
-              item
-              xs={1.5}
-              sx={{ display: 'flex', justifyContent: 'center' }}
-            >
+            </Box>
+
+            <Box>
               <CustomLabel
                 label="4"
                 value="4th floor"
                 checked={val === '4th floor'}
               />
-            </Grid>
-            <Grid
-              item
-              xs={3}
-              sx={{ display: 'flex', justifyContent: 'center' }}
-            >
+            </Box>
+
+            <Box>
               <CustomLabel
                 label="Elevator"
                 value="elevator"
                 checked={val === 'elevator'}
               />
-            </Grid>
-            <Grid
-              item
-              xs={3}
-              sx={{ display: 'flex', justifyContent: 'center' }}
-            >
+            </Box>
+
+            <Box>
               <CustomLabel
                 label="House"
                 value="house"
                 checked={val === 'house'}
               />
-            </Grid>
-          </Grid>
+            </Box>
+
+            <Box>
+              <CustomLabel
+                label="Storage"
+                value="storage"
+                checked={val === 'storage'}
+              />
+            </Box>
+            <Box
+              sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}
+            ></Box>
+          </Box>
         </RadioGroup>
       </FormControl>
     </Box>

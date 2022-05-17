@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-// import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import {
   IconButton,
@@ -9,66 +8,39 @@ import {
   TableCell,
   TableHead,
   TablePagination,
+  TableContainer,
   TableRow,
   Typography,
-  Box,
+  Paper,
 } from '@mui/material';
 import moment from 'moment';
-import Spinner from 'components/Spinner';
-// import { ArrowRight as ArrowRightIcon } from '../../../icons/arrow-right';
-// import { PencilAlt as PencilAltIcon } from '../../../icons/pencil-alt';
-// import { getInitials } from '../../../utils/get-initials';
-// import { Scrollbar } from '../../scrollbar';
 
 export const JobListTable = (props) => {
-  const {
-    jobs,
-    jobsCount,
-    onPageChange,
-    onRowsPerPageChange,
-    page,
-    rowsPerPage,
-    ...other
-  } = props;
+  const { jobs, page, limit, count, setPage, setLimit } = props;
 
-  // if (!jobs) return <Spinner />;
+  const handlePageChange = (event, newPage) => {
+    console.log(newPage);
+    setPage(newPage);
+  };
 
-
-  // Reset selected jobs when jobs change
-
-  //   const handleSelectAllCustomers = (event) => {
-  //     setSelectedCustomers(
-  //       event.target.checked ? jobs.map((job) => job.id) : [],
-  //     );
-  //   };
-
-  //   const handleSelectOneCustomer = (event, jobId) => {
-  //     if (!selectedJobs.includes(jobId)) {
-  //       setSelectedCustomers((prevSelected) => [...prevSelected, jobId]);
-  //     } else {
-  //       setSelectedCustomers((prevSelected) =>
-  //         prevSelected.filter((id) => id !== jobId),
-  //       );
-  //     }
-  //   };
-
-  //   const enableBulkActions = selectedJobs.length > 0;
-  //   const selectedSomeCustomers =
-  //     selectedJobs.length > 0 && selectedJobs.length < jobs.length;
-  //   const selectedAllCustomers = selectedJobs.length === jobs.length;
+  const handleLimitChange = (event) => {
+    setLimit(event.target.value);
+  };
 
   return (
-    <div {...other}>
-      <Table sx={{ minWidth: 700 }}>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 900 }}>
         <TableHead>
           <TableRow>
-            <TableCell>Job ID</TableCell>
-            <TableCell>Customer</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Service</TableCell>
-            <TableCell>Size</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell align="right">Actions</TableCell>
+            <TableCell sx={{ color: 'text.secondary' }}>Job ID</TableCell>
+            <TableCell sx={{ color: 'text.secondary' }}>Customer</TableCell>
+            <TableCell sx={{ color: 'text.secondary' }}>Date</TableCell>
+            <TableCell sx={{ color: 'text.secondary' }}>Service</TableCell>
+            <TableCell sx={{ color: 'text.secondary' }}>Size</TableCell>
+            <TableCell sx={{ color: 'text.secondary' }}>Status</TableCell>
+            <TableCell align="right" sx={{ color: 'text.secondary' }}>
+              Actions
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -98,15 +70,22 @@ export const JobListTable = (props) => {
                 <TableCell>{job.size}</TableCell>
                 <TableCell>{job.status}</TableCell>
                 <TableCell align="right">
-                  <Link href="/dashboard/jobs/1/edit">
-                    <a>
-                      <IconButton component="span">|</IconButton>
-                    </a>
-                  </Link>
                   <Link href="/dashboard/jobs/1">
-                    <a>
-                      <IconButton component="span">{'>'}</IconButton>
-                    </a>
+                      <IconButton component="span">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          width="24"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </IconButton>
                   </Link>
                 </TableCell>
               </TableRow>
@@ -116,22 +95,28 @@ export const JobListTable = (props) => {
       </Table>
       <TablePagination
         component="div"
-        count={jobsCount}
-        onPageChange={onPageChange}
-        onRowsPerPageChange={onRowsPerPageChange}
+        count={count || 0}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleLimitChange}
         page={page}
-        rowsPerPage={rowsPerPage}
+        rowsPerPage={limit}
         rowsPerPageOptions={[5, 10, 25]}
+        sx={{
+          '&.MuiSelect-select-MuiInputBase-input.MuiSelect-select-MuiInputBase-input.MuiSelect-select-MuiInputBase-input':
+            {
+              borderRadius: '10px',
+            },
+        }}
       />
-    </div>
+    </TableContainer>
   );
 };
 
 JobListTable.propTypes = {
   jobs: PropTypes.array.isRequired,
-  jobsCount: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
-  onRowsPerPageChange: PropTypes.func,
+  count: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  setPage: PropTypes.func,
+  setLimit: PropTypes.func,
 };

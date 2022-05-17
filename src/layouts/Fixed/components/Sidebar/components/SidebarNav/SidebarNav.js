@@ -41,7 +41,16 @@ const SidebarNav = ({ pages, onClose }) => {
             <Box> */}
         {pages.map((p, i) => (
           <Box marginBottom={2} key={i}>
-            <Link href={p.href}>
+            <Link
+              // href={{
+              //   pathname: p.href,
+              //   query: '&page=',
+              // }}
+              // passHref
+              // shallow
+              // replace
+              href={p.href}
+            >
               <a>
                 <Button
                   component={'span'}

@@ -64,7 +64,7 @@ const CustomLabel = ({ label, value, checked }) => {
           border: `1px solid ${theme.palette.divider}`,
           borderRadius: `${theme.shape.borderRadius}px`,
           marginRight: 'unset',
-          padding: theme.spacing(1),
+          // padding: theme.spacing(1),
         }}
       />
     </Grid>

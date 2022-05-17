@@ -1,39 +1,118 @@
 import prisma from 'lib/prisma';
-import { getSession } from 'next-auth/react';
 
 export default async function (req, res) {
-  const session = await getSession({ req });
-  // if(!session) return null
-
-  // console.log(session)
+  const page = parseInt(req.query.page);
+  const limit = parseInt(req.query.limit);
+  const offset = page * limit;
+  const filter = req.query.filter;
+  const search = req.query.search || '';
 
   try {
-    if (session && session.user.role === 'CUSTOMER') {
-      const jobs = await prisma.job.findMany({
-        where: {
-          customer: {
-            email: session.user.email,
+    let total = 0;
+    let jobs = [];
+    if (search !== '') {
+      let totalJobs = null;
+      if (isNaN(search)) {
+        jobs = await prisma.job.findMany({
+          where: {
+            customer: {
+              OR: [
+                {
+                  firstName: {
+                    contains: search,
+                    mode: 'insensitive',
+                  },
+                },
+                {
+                  lastName: {
+                    contains: search,
+                    mode: 'insensitive',
+                  },
+                },
+              ],
+            },
           },
+          skip: offset,
+          take: limit,
+          include: { addresses: true, customer: true },
+          orderBy: {
+            id: 'desc',
+          },
+        });
+        totalJobs = await prisma.job.findMany(  {where: {
+          customer: {
+            OR: [
+              {
+                firstName: {
+                  contains: search,
+                  mode: 'insensitive',
+                },
+              },
+              {
+                lastName: {
+                  contains: search,
+                  mode: 'insensitive',
+                },
+              },
+            ],
+          },
+        },});
+      } else {
+        jobs = await prisma.job.findMany({
+          where: {
+            id: {
+              equals: Number(search),
+            },
+          },
+          skip: offset,
+          take: limit,
+          include: { addresses: true, customer: true },
+          orderBy: {
+            id: 'desc',
+          },
+        });
+
+        totalJobs = await prisma.job.findMany( {where: {
+          id: {
+            equals: Number(search),
+          },
+        },});
+      }
+
+      total = totalJobs.length;
+    } else if (filter) {
+      jobs = await prisma.job.findMany({
+        where: {
+          status: filter,
         },
-        include: { addresses: true },
-        orderBy: {
-          id: 'desc',
-        },
-      });
-      res.status(200);
-      res.json({ jobs });
-    } else if (session && session.user.role === 'ADMIN') {
-      const jobs = await prisma.job.findMany({
+        skip: offset,
+        take: limit,
         include: { addresses: true, customer: true },
         orderBy: {
           id: 'desc',
         },
       });
-      res.status(200);
-      res.json({ jobs });
+      let totalJobs = await prisma.job.findMany({
+        where: {
+          status: filter,
+        },
+      });
+      total = totalJobs.length;
     } else {
-      res.status(401).send({ message: 'Unauthorized' });
+      jobs = await prisma.job.findMany({
+        skip: offset,
+        take: limit,
+        include: { addresses: true, customer: true },
+        orderBy: {
+          id: 'desc',
+        },
+      });
+      let totalJobs = await prisma.job.findMany();
+      total = totalJobs.length;
     }
+
+    res.status(200);
+    res.json({ jobs: jobs, total });
   } catch (e) {
     console.error(e);
     res.status(500);

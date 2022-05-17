@@ -44,7 +44,7 @@ function _renderStepContent(step, values) {
     case 2:
       return <ContactInfo formField={formField} />;
     case 3:
-      return <ReviewDetails />;
+      return <ReviewDetails values={values} />;
     default:
       return <div>Not Found</div>;
   }
@@ -86,7 +86,7 @@ export default function Book() {
   return (
     <Main>
       <Box bgcolor={'alternate.main'} minHeight={'calc(100vh - 132px)'}>
-        <Container maxWidth={600}>
+        <Container maxWidth={450}>
           {/* <Stepper activeStep={activeStep} alternativeLabel>
             {steps.map((label) => (
               <Step key={label}>

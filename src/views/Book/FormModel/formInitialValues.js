@@ -12,6 +12,7 @@ const {
     destination,
     service,
     size,
+    additionalInfo,
     // address1,
     // city,
     // zipcode,
@@ -34,6 +35,7 @@ export default {
   [startTime.name]: 'Any time',
   [service.name]: 'moving',
   [size.name]: '',
+  [additionalInfo.name]: '',
   origin: {
     address: '',
     city: '',

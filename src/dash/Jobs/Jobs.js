@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Head from 'next/head';
 import {
   Box,
@@ -16,16 +16,6 @@ import {
 import FixedLayout from 'layouts/Fixed';
 import useSWR from 'swr';
 import { JobListTable } from './job-list-table';
-// import Container from 'components/Container';
-// import { customerApi } from '../../../__fake-api__/customer-api';
-// import { AuthGuard } from '../../../components/authentication/auth-guard';
-// import { DashboardLayout } from '../../../components/dashboard/dashboard-layout';
-// import { useMounted } from '../../../hooks/use-mounted';
-// import { Download as DownloadIcon } from '../../../icons/download';
-// import { Plus as PlusIcon } from '../../../icons/plus';
-// import { Search as SearchIcon } from '../../../icons/search';
-// import { Upload as UploadIcon } from '../../../icons/upload';
-// import { gtm } from '../../../lib/gtm';
 import Spinner from 'components/Spinner';
 
 const tabs = [
@@ -38,6 +28,10 @@ const tabs = [
     value: 'PENDING',
   },
   {
+    label: 'Confirmed',
+    value: 'CONFIRMED_AND_SCHEDULED',
+  },
+  {
     label: 'Completed',
     value: 'COMPLETED',
   },
@@ -47,179 +41,38 @@ const tabs = [
   },
 ];
 
-const sortOptions = [
-  {
-    label: 'Last update (newest)',
-    value: 'updatedAt|desc',
-  },
-  {
-    label: 'Last update (oldest)',
-    value: 'updatedAt|asc',
-  },
-  {
-    label: 'Total orders (highest)',
-    value: 'totalOrders|desc',
-  },
-  {
-    label: 'Total orders (lowest)',
-    value: 'totalOrders|asc',
-  },
-];
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-function applyFilters(jobs, filters) {
-  // console.log('jobs filter', jobs)
-  if(!jobs) return []
-  const jobsFilter = jobs?.filter((job) => {
-    let matches = true;
-
-    if (
-      filters.query &&
-      !job.customer.firstName
-        .toLowerCase()
-        .includes(filters.query.toLowerCase()) &&
-      !job.customer.lastName
-        .toLowerCase()
-        .includes(filters.query.toLowerCase()) &&
-      !job.id.toString().includes(filters.query.toLowerCase())
-    ) {
-      matches = false;
-    }
-
-    // if (filters.category && job.category !== filters.category) {
-    //   matches = false;
-    // }
-
-    if (filters.status) {
-      if (
-        filters.status === 'CONFIRMED' &&
-        !['CONFIRMED'].includes(job.status)
-      ) {
-        matches = false;
-      }
-
-      if (
-        filters.status === 'COMPLETED' &&
-        !['COMPLETED'].includes(job.status)
-      ) {
-        matches = false;
-      }
-
-      if (filters.status === 'PENDING' && !['PENDING'].includes(job.status)) {
-        matches = false;
-      }
-
-      if (filters.status === 'CANCELED' && !['CANCELED'].includes(job.status)) {
-        matches = false;
-      }
-    }
-
-    return matches;
-  });
-  return jobsFilter;
+function useJobs(page, limit, filter, search) {
+  return useSWR(
+    `/api/jobs?&limit=${limit}&page=${page}&filter=${filter}&search=${search}`,
+    fetcher,
+  );
 }
-const descendingComparator = (a, b, sortBy) => {
-  // When compared to something undefined, always returns false.
-  // This means that if a field does not exist from either element ('a' or 'b') the return will be 0.
-
-  if (b[sortBy] < a[sortBy]) {
-    return -1;
-  }
-
-  if (b[sortBy] > a[sortBy]) {
-    return 1;
-  }
-
-  return 0;
-};
-
-const getComparator = (sortDir, sortBy) =>
-  sortDir === 'desc'
-    ? (a, b) => descendingComparator(a, b, sortBy)
-    : (a, b) => -descendingComparator(a, b, sortBy);
-
-const applySort = (jobs, sort) => {
-  const [sortBy, sortDir] = sort.split('|');
-  const comparator = getComparator(sortDir, sortBy);
-  const stabilizedThis = jobs.map((el, index) => [el, index]);
-
-  stabilizedThis.sort((a, b) => {
-    const newOrder = comparator(a[0], b[0]);
-
-    if (newOrder !== 0) {
-      return newOrder;
-    }
-
-    return a[1] - b[1];
-  });
-
-  return stabilizedThis.map((el) => el[0]);
-};
-
-const applyPagination = (jobs, page, rowsPerPage) =>
-  jobs.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-
-const getJobs = async () => {
-  const res = await fetch('/api/jobs');
-  const data = await res.json();
-  return data
-};
 
 const Jobs = () => {
   const queryRef = useRef(null);
-  const { data, error } = useSWR('/api/jobs', getJobs);
   const [currentTab, setCurrentTab] = useState('all');
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [sort, setSort] = useState(sortOptions[0].value);
-  const [filters, setFilters] = useState({
-    query: '',
-    status: null,
-  });
+  const [limit, setLimit] = useState(5);
+  const [query, setQuery] = useState('');
+  const [filter, setFilter] = useState('');
 
-  // if (error) return <h1>Something went wrong!</h1>
-  //   if (!data) return <h1>Loading...</h1>
-
+  const { data } = useJobs(page, limit, filter, query);
 
   const handleTabsChange = (event, value) => {
-    console.log(value);
-    const updatedFilters = {
-      ...filters,
-      status: value,
-    };
-    if (value !== 'all') {
-      updatedFilters[value] = true;
+    setPage(0);
+    if (value === 'all') {
+      setFilter('');
+    } else {
+      setFilter(value);
     }
-    setFilters(updatedFilters);
     setCurrentTab(value);
   };
 
-  const handleQueryChange = (event) => {
-    event.preventDefault();
-    setFilters((prevState) => ({
-      ...prevState,
-      query: queryRef.current?.value,
-    }));
+  const handleQueryChange = (e) => {
+    setQuery(e.target.value);
   };
-
-  // const handleSortChange = (event) => {
-  //   setSort(event.target.value);
-  // };
-
-  const handlePageChange = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleRowsPerPageChange = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-  };
-  
-
-  
-
-  // // Usually query is done on backend with indexing solutions
-  const filteredJobs = data && data.jobs && applyFilters(data.jobs, filters);
-  // const sortedJobs = applySort(filteredJobs, sort);
-  const paginatedJobs = data && data.jobs && applyPagination(filteredJobs, page, rowsPerPage);
 
   return (
     <FixedLayout>
@@ -270,13 +123,45 @@ const Jobs = () => {
               }}
             >
               <Button
-                // startIcon={<UploadIcon fontSize="small" />}
+                startIcon={
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    width="18"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                    />
+                  </svg>
+                }
                 sx={{ m: 1 }}
               >
                 Import
               </Button>
               <Button
-                // startIcon={<DownloadIcon fontSize="small" />}
+                startIcon={
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    width="20"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    />
+                  </svg>
+                }
                 sx={{ m: 1 }}
               >
                 Export
@@ -361,16 +246,16 @@ const Jobs = () => {
             </Box>
             {!data && <Spinner />}
             {data && data.error && <div>{data.error}</div>}
-            {data && data.jobs &&
+            {data && data.jobs && (
               <JobListTable
-                jobs={paginatedJobs}
-                jobsCount={data.jobs.length}
-                onPageChange={handlePageChange}
-                onRowsPerPageChange={handleRowsPerPageChange}
-                rowsPerPage={rowsPerPage}
+                jobs={data.jobs}
+                count={data.total}
                 page={page}
+                limit={limit}
+                setPage={setPage}
+                setLimit={setLimit}
               />
-            }
+            )}
           </Card>
         </Container>
       </Box>

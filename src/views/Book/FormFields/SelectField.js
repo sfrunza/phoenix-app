@@ -42,6 +42,7 @@ function SelectField(props) {
         {...field}
         select
         fullWidth
+        size='small'
         value={selectedValue ? selectedValue : ''}
         SelectProps={{
           native: true,

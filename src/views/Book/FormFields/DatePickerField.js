@@ -68,6 +68,7 @@ export default function DatePickerField(props) {
               error={isError}
               helperText={isError && error}
               fullWidth
+              size="small"
               placeholder={props.label}
               inputProps={{
                 ...params.inputProps,
