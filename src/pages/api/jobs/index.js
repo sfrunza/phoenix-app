@@ -39,24 +39,26 @@ export default async function (req, res) {
             id: 'desc',
           },
         });
-        totalJobs = await prisma.job.findMany(  {where: {
-          customer: {
-            OR: [
-              {
-                firstName: {
-                  contains: search,
-                  mode: 'insensitive',
+        totalJobs = await prisma.job.findMany({
+          where: {
+            customer: {
+              OR: [
+                {
+                  firstName: {
+                    contains: search,
+                    mode: 'insensitive',
+                  },
                 },
-              },
-              {
-                lastName: {
-                  contains: search,
-                  mode: 'insensitive',
+                {
+                  lastName: {
+                    contains: search,
+                    mode: 'insensitive',
+                  },
                 },
-              },
-            ],
+              ],
+            },
           },
-        },});
+        });
       } else {
         jobs = await prisma.job.findMany({
           where: {
@@ -72,11 +74,13 @@ export default async function (req, res) {
           },
         });
 
-        totalJobs = await prisma.job.findMany( {where: {
-          id: {
-            equals: Number(search),
+        totalJobs = await prisma.job.findMany({
+          where: {
+            id: {
+              equals: Number(search),
+            },
           },
-        },});
+        });
       }
 
       total = totalJobs.length;
