@@ -99,6 +99,7 @@ export default async function (req, res) {
               lastName,
               email,
               phone,
+              password: '111111',
             },
           },
           addresses: {
