@@ -7,13 +7,40 @@ CREATE TYPE "Status" AS ENUM ('PENDING', 'CONFIRMED_BY_CUSTOMER', 'CONFIRMED_AND
 -- CreateTable
 CREATE TABLE "Job" (
     "id" SERIAL NOT NULL,
+    "moving_date" TEXT NOT NULL,
+    "delivery_date" TEXT NOT NULL,
+    "start_time" TEXT NOT NULL,
     "service" TEXT NOT NULL,
+    "size" TEXT NOT NULL,
+    "additional_info" TEXT NOT NULL,
+    "referral" TEXT NOT NULL,
     "status" "Status" NOT NULL DEFAULT E'PENDING',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
-    "customerId" INTEGER,
+    "customer_id" INTEGER,
 
     CONSTRAINT "Job_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Address" (
+    "id" SERIAL NOT NULL,
+    "address" TEXT,
+    "city" TEXT,
+    "state" TEXT,
+    "zip" TEXT NOT NULL,
+    "apt" TEXT,
+    "floor" TEXT,
+    "isOrigin" BOOLEAN NOT NULL DEFAULT false,
+    "isDestination" BOOLEAN NOT NULL DEFAULT false,
+    "isPickup" BOOLEAN NOT NULL DEFAULT false,
+    "isDropoff" BOOLEAN NOT NULL DEFAULT false,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+    "jobId" INTEGER,
+    "userId" INTEGER,
+
+    CONSTRAINT "Address_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -49,8 +76,9 @@ CREATE TABLE "sessions" (
 -- CreateTable
 CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
-    "firstName" TEXT,
-    "lastName" TEXT,
+    "first_name" TEXT,
+    "last_name" TEXT,
+    "name" TEXT,
     "phone" TEXT,
     "email" TEXT,
     "email_verified" TIMESTAMP(3),
@@ -58,7 +86,7 @@ CREATE TABLE "users" (
     "image" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
-    "isActive" CHAR(1) DEFAULT E'1',
+    "is_active" CHAR(1) DEFAULT E'1',
     "role" "Role" NOT NULL DEFAULT E'USER',
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
@@ -87,7 +115,13 @@ CREATE UNIQUE INDEX "verificationtokens_token_key" ON "verificationtokens"("toke
 CREATE UNIQUE INDEX "verificationtokens_identifier_token_key" ON "verificationtokens"("identifier", "token");
 
 -- AddForeignKey
-ALTER TABLE "Job" ADD CONSTRAINT "Job_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Job" ADD CONSTRAINT "Job_customer_id_fkey" FOREIGN KEY ("customer_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Address" ADD CONSTRAINT "Address_jobId_fkey" FOREIGN KEY ("jobId") REFERENCES "Job"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Address" ADD CONSTRAINT "Address_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "accounts" ADD CONSTRAINT "accounts_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

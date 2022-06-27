@@ -77,7 +77,7 @@ const Jobs = () => {
   return (
     <FixedLayout>
       <Head>
-        <title>Calendar | Phoenix Moving</title>
+        <title>Jobs | Phoenix Moving</title>
       </Head>
       <Box
         component="main"

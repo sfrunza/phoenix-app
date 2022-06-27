@@ -15,13 +15,13 @@ const getCityState = (addresses, type) => {
   if (type === 'origin') {
     let origin = addresses.find((a) => a.isOrigin);
     if (origin) {
-      cityState = origin.address + ' ' + origin.city + ', ' + origin.state;
+      cityState = origin.address + ' ' + origin.city + ', ' + origin.state + ', ' + origin.zip;
     }
   } else if (type === 'destination') {
     let destination = addresses.find((a) => a.isDestination);
     if (destination) {
       cityState =
-        destination.address + ' ' + destination.city + ', ' + destination.state;
+        destination.address + ' ' + destination.city + ', ' + destination.state + ', ' + destination.zip;
     }
   }
   return cityState;
@@ -38,7 +38,7 @@ const getAddresses = async (jobId) => {
 const Map = ({ jobId }) => {
   const { data: addresses, mutate } = useSWR(
     `/api/jobs/${jobId}/addresses`,
-    getAddresses(jobId),
+    getAddresses(jobId)
   );
   const [libraries] = useState(['places']);
   const { isLoaded } = useJsApiLoader({
@@ -51,6 +51,7 @@ const Map = ({ jobId }) => {
   const [distance, setDistance] = useState(null);
   const [duration, setDuration] = useState('');
   const [marker, setMarker] = useState(null);
+  const [error, setError] = useState(false);
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   // const originRef = useRef();
@@ -102,10 +103,14 @@ const Map = ({ jobId }) => {
         // eslint-disable-next-line no-undef
         travelMode: google.maps.TravelMode.DRIVING,
       });
-      // console.log(results);
-      setDirectionsResponse(results);
-      setDistance(results.routes[0].legs[0].distance.text);
-      setDuration(results.routes[0].legs[0].duration.text);
+      console.log(results);
+      if (results.status === 'OK') {
+        setDirectionsResponse(results);
+        setDistance(results.routes[0].legs[0].distance.text);
+        setDuration(results.routes[0].legs[0].duration.text);
+      } else {
+        setError(true);
+      }
     } else if (o && !d) {
       const geocoder = new google.maps.Geocoder();
       await geocoder.geocode({ address: o }, function (results, status) {
@@ -113,7 +118,7 @@ const Map = ({ jobId }) => {
           setMarker(results[0].geometry.location);
         } else {
           alert(
-            'Geocode was not successful for the following reason: ' + status,
+            'Geocode was not successful for the following reason: ' + status
           );
         }
       });
@@ -121,6 +126,7 @@ const Map = ({ jobId }) => {
   }
 
   if (!isLoaded) return null;
+  if (error) return null;
 
   return (
     <div
@@ -138,7 +144,6 @@ const Map = ({ jobId }) => {
           height: '30vh',
           width: '100%',
           margin: 'auto',
-          borderRadius: '10px',
         }}
         options={{
           zoomControl: false,

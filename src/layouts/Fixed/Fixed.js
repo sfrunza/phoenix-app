@@ -34,7 +34,7 @@ const Fixed = ({ children }) => {
         position={'fixed'}
         sx={{
           backgroundColor: theme.palette.background.paper,
-          borderBottom: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
+          borderBottom: `1px solid ${theme.palette.divider}`,
         }}
         elevation={0}
       >

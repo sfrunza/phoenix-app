@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
+import Link from 'next/link'
 
 import Container from 'components/Container';
 
@@ -13,6 +15,11 @@ const Hero = () => {
       minHeight={{ xs: 500, sm: 600, md: 700 }}
       display={'flex'}
       alignItems={'center'}
+      height={'auto'}
+      sx={{
+        marginTop: -13,
+        paddingTop: 13,
+      }}
     >
       <Image
         src={'/boston-3.jpeg'}
@@ -24,7 +31,7 @@ const Hero = () => {
         priority
       />
       <Container position={'relative'} zIndex={2}>
-        <Box>
+        <Box textAlign='center'>
           <Box marginBottom={4} data-aos="fade-up">
             <Typography
               variant="h3"
@@ -37,7 +44,8 @@ const Hero = () => {
               A Badass Moving Compnay in Boston
             </Typography>
 
-            <Box display={'flex'} justifyContent={'initial'} component="span">
+            <Box display={'flex'} justifyContent={'center'} alignItems="center" component="span" sx={{flexDirection: {xs:'column', md: "row"}}}>
+              <Box display="flex">
               {[1, 2, 3, 4, 5].map((item) => (
                 <Box
                   key={item}
@@ -58,6 +66,7 @@ const Hero = () => {
                   </svg>
                 </Box>
               ))}
+              </Box>
               <Typography
                 variant="h6"
                 component="span"
@@ -71,6 +80,11 @@ const Hero = () => {
                 Rated 5/5 based on 1234 reviews
               </Typography>
             </Box>
+            <Box mt={5}>
+              <Link href='/book' passHref>
+              <Button color='success' variant='contained' size='large'>Get a Quote</Button>
+                </Link>
+              </Box>
           </Box>
         </Box>
       </Container>

@@ -29,14 +29,14 @@ export default function InputField(props) {
 
   return (
     <>
-      <Typography
+      {/* <Typography
         variant={'subtitle1'}
         fontWeight={600}
         gutterBottom
         htmlFor={props.field}
       >
         {props.label}
-      </Typography>
+      </Typography> */}
       <StyledTextField
         {...field}
         {...rest}
@@ -61,7 +61,7 @@ export default function InputField(props) {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={2}
-                  width="22"
+                  width="20"
                 >
                   <path
                     strokeLinecap="round"
@@ -77,7 +77,7 @@ export default function InputField(props) {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={2}
-                  width="22"
+                  width="20"
                 >
                   <path
                     strokeLinecap="round"

@@ -7,7 +7,7 @@ import { SizeSelect, FloorSelect } from '../FormFields';
 
 const movingSizeOptions = [
   {
-    label: 'Please select...',
+    label: 'Moving size',
     value: '',
   },
   {
@@ -41,7 +41,8 @@ const movingSizeOptions = [
 
 export default function SecondStep(props) {
   const {
-    formField: { origin, destination, size },
+    formField: { originFloor, destinationFloor, size },
+    showDestination,
   } = props;
 
   return (
@@ -64,11 +65,13 @@ export default function SecondStep(props) {
           />
         </Grid>
       </Grid>
-      <FloorSelect name={origin.floor.name} label={origin.floor.name} />
-      <FloorSelect
-        name={destination.floor.name}
-        label={destination.floor.name}
-      />
+      <FloorSelect name={originFloor.name} label={originFloor.name} />
+      {showDestination && (
+        <FloorSelect
+          name={destinationFloor.name}
+          label={destinationFloor.name}
+        />
+      )}
     </React.Fragment>
   );
 }

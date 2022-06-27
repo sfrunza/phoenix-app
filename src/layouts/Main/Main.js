@@ -12,11 +12,17 @@ import { useRouter } from 'next/router';
 import Container from 'components/Container';
 // import TopNav from 'components/TopNav';
 
-import { Topbar, Sidebar, Footer, ServicesTopBar } from './components';
+import { Topbar, Sidebar, Footer } from './components';
 
 import pages from '../navigation';
 
-const Main = ({ title, description, children }) => {
+const Main = ({
+  title,
+  description,
+  children,
+  bgcolor = 'transparent',
+  colorInvert = false,
+}) => {
   const theme = useTheme();
   const router = useRouter();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
@@ -38,13 +44,12 @@ const Main = ({ title, description, children }) => {
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 38,
+    threshold: 46,
   });
 
   return (
     <Box
       sx={{
-        // minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -54,51 +59,30 @@ const Main = ({ title, description, children }) => {
         <title>{title ? `${title} - Phoenix Moving` : 'Phoenix Moving'}</title>
         {description && <meta name="description" content={description}></meta>}
       </Head>
-      {/* <Box
-        position={'relative'}
-        zIndex={theme.zIndex.appBar}
-        sx={{
-          backgroundColor: theme.palette.background.paper,
-        }}
-      >
-        <Container paddingTop={'8px !important'} paddingBottom={'0 !important'}>
-          <TopNav />
-        </Container>
-      </Box> */}
       <AppBar
         position={'sticky'}
         sx={{
           top: 0,
-          backgroundColor: theme.palette.background.paper,
-          // backdropFilter: 'saturate(180%) blur(5px)',
-          height: 54,
-          display: 'flex',
-          justifyContent: 'center',
+          backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
+          transition: 'background-color 0.1s ease-in',
         }}
         elevation={trigger ? 1 : 0}
       >
-        <Container paddingY={0} height={'100%'}>
-          <Topbar onSidebarOpen={handleSidebarOpen} pages={pages} />
+        <Container paddingY={1}>
+          <Topbar
+            onSidebarOpen={handleSidebarOpen}
+            pages={pages}
+            colorInvert={trigger ? false : colorInvert}
+          />
         </Container>
       </AppBar>
-      {router.route.includes('services') && <ServicesTopBar />}
       <Sidebar
         onClose={handleSidebarClose}
         open={open}
         variant="temporary"
         pages={pages}
       />
-      <Box
-        component="main"
-        // flex={1}
-        // sx={{
-        //   minHeight: {
-        //     md: 'calc(100vh - 80px)',
-        //     xs: '126vh',
-        //     position: 'relative',
-        //   },
-        // }}
-      >
+      <Box component="main">
         {children}
         {hide && <Divider />}
       </Box>

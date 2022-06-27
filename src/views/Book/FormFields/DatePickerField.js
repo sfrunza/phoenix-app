@@ -61,6 +61,7 @@ export default function DatePickerField(props) {
         // inputFormat="MMM dd, yyyy"
         value={selectedDate}
         onChange={_onChange}
+        disablePast
         renderInput={(params) => {
           return (
             <StyledTextField

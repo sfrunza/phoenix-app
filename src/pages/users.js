@@ -21,16 +21,13 @@ import useSWR from 'swr';
 // };
 
 const getUsers = async () => {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/users`);
+  const res = await fetch('/api/users');
   const data = await res.json();
   return data.users;
 };
 
 const Users = () => {
-  const { data, mutate } = useSWR(
-    `${process.env.NEXTAUTH_URL}/api/users`,
-    getUsers,
-  );
+  const { data, mutate } = useSWR('/api/users', getUsers);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -39,7 +36,7 @@ const Users = () => {
   console.log(process.env.NEXTAUTH_URL);
 
   const handleDeleteUser = async (id) => {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/${id}`, {
+    const res = await fetch('/api/users/${id}', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     });
@@ -58,7 +55,7 @@ const Users = () => {
     };
 
     try {
-      const res = await fetch(`${process.env.NEXTAUTH_URL}/api/users/${id}`, {
+      const res = await fetch('/api/users/${id}', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -78,7 +75,7 @@ const Users = () => {
 
   const handleCreateUser = async (body) => {
     try {
-      const resp = await fetch(`${process.env.NEXTAUTH_URL}/api/users/create`, {
+      const resp = await fetch('/api/users/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

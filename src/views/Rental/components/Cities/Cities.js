@@ -32,7 +32,7 @@ const Cities = () => {
         </Typography>
       </Box>
 
-      <Grid container spacing={0}>
+      <Grid container spacing={0}  data-aos={'fade-up'}>
         {cities.map((city, i) => {
           return (
             <Grid

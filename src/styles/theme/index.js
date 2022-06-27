@@ -12,8 +12,8 @@ const getTheme = (mode, themeToggler) =>
       },
       shadows: shadows(mode),
       typography: {
-        // fontFamily: '"Poppins", sans-serif',
-        fontFamily: '"CustomFontBook", sans-serif',
+        fontFamily: '"Poppins", sans-serif',
+        // fontFamily: '"CustomFontBook", sans-serif',
         fontDisplay: 'swap',
         // h1: {
         //   // fontWeight: 600,

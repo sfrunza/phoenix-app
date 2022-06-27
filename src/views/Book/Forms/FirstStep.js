@@ -32,14 +32,15 @@ const times = [
 export default function FirstStep(props) {
   const {
     formField: {
-      moveDate,
+      movingDate,
       deliveryDate,
       startTime,
-      origin,
-      destination,
+      originZip,
+      destinationZip,
       service,
     },
     showDeliveryDate,
+    showDestination
   } = props;
 
   return (
@@ -55,8 +56,8 @@ export default function FirstStep(props) {
       <Grid container spacing={2}>
         <Grid item xs={12} md={7}>
           <DatePickerField
-            name={moveDate.name}
-            label={moveDate.label}
+            name={movingDate.name}
+            label={movingDate.label}
             fullWidth
           />
         </Grid>
@@ -70,19 +71,19 @@ export default function FirstStep(props) {
         </Grid>
         <Grid item xs={6}>
           <ZipInputField
-            name={origin.zip.name}
-            label={origin.zip.label}
+            name={originZip.name}
+            label={originZip.label}
             placeholder="01234"
             fullWidth
           />
         </Grid>
         <Grid item xs={6}>
-          <ZipInputField
-            name={destination.zip.name}
-            label={destination.zip.label}
+         {showDestination && <ZipInputField
+            name={destinationZip.name}
+            label={destinationZip.label}
             placeholder="01234"
             fullWidth
-          />
+          />}
         </Grid>
       </Grid>
       {showDeliveryDate && (

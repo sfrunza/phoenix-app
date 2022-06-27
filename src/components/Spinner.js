@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 
-export default function Spinner(props) {
+export default function Spinner({withText=false, ...rest}) {
   return (
     <Box
       sx={{
@@ -17,7 +17,7 @@ export default function Spinner(props) {
         viewBox="0 0 2400 2400"
         width={24}
         height={24}
-        {...props}
+        {...rest}
       >
         <g
           strokeWidth={200}
@@ -50,7 +50,7 @@ export default function Spinner(props) {
           />
         </g>
       </svg>
-      <Typography variant="overline">loading</Typography>
+      {withText && <Typography variant="overline" color='textSecondary'>loading</Typography>}
     </Box>
   );
 }

@@ -31,14 +31,14 @@ function SizeSelect(props) {
   }
   return (
     <>
-      <Typography
+      {/* <Typography
         variant={'subtitle1'}
         fontWeight={600}
         gutterBottom
         htmlFor={props.field}
       >
         {props.label}
-      </Typography>
+      </Typography> */}
       <StyledTextField
         {...field}
         error={meta.touched && meta.error && true}
@@ -76,7 +76,7 @@ function SizeSelect(props) {
         }}
       >
         {data.map((item, index) => (
-          <option key={index} value={item.value}>
+          <option key={index} value={item.value} disabled={item.value === ''}>
             {item.label}
           </option>
         ))}

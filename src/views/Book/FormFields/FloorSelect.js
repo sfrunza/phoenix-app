@@ -22,7 +22,7 @@ const StyledTextField = styled((props) => <FormControlLabel {...props} />)(
       display: 'none',
       textAlign: 'center',
     },
-  }),
+  })
 );
 
 const CustomLabel = ({ label, value, checked }) => {
@@ -48,19 +48,27 @@ const CustomLabel = ({ label, value, checked }) => {
         color: checked
           ? theme.palette.primary.contrastText
           : theme.palette.text.secondary,
+          '&:hover': {
+            color: checked
+          ? theme.palette.primary.contrastText
+          : theme.palette.text.primary,
+
+          },
         // boxShadow: theme.shadows[1],
         // width: '100%',
         display: 'flex',
         boxShadow:
           '0 0 1px 0 rgb(0 0 0 / 31%), 0 3px 4px -2px rgb(0 0 0 / 25%)',
         justifyContent: 'center',
-        border: `1px solid ${theme.palette.divider}`,
+        border: checked ? `1px solid ${theme.palette.primary.main}`:`1px solid ${theme.palette.divider}`,
         borderRadius: `${theme.shape.borderRadius}px`,
-        marginRight: 'unset',
-        padding: { sm: '8px 16px', xs: '8px 16px' },
+        // marginRight: 'unset',
+        padding: { sm: '6px 4px', xs: '6px 2px' },
         // padding: 8px 16px;
-        width: 'fit-content',
-        marginLeft: 'unset',
+        // width: 'fit-content',
+        // marginLeft: 'unset',
+        margin: 0,
+        minWidth: { sm: 45, xs: 36 },
       }}
     />
   );
@@ -70,7 +78,8 @@ const FloorSelect = (props) => {
   const { errorText, ...rest } = props;
   const [field, meta] = useField(props);
   const val = field.value;
-  const name = field.name.split('.')[0]; //origin ||  destination
+  const name = field.name.split(/(?=[A-Z])/)[0]; //origin ||  destination
+  const { touched, error } = meta;
 
   return (
     <Box pt={3}>
@@ -82,8 +91,18 @@ const FloorSelect = (props) => {
           gutterBottom
           htmlFor={field.name}
           display="flex"
+          sx={{
+            color: touched && error ? 'error.main' : 'text.primary',
+          }}
         >
-          <Box color="text.primary" mr={1} position={'relative'} top={2}>
+          <Box
+            sx={{
+              color: touched && error ? 'error.main' : 'text.primary',
+            }}
+            mr={1}
+            position={'relative'}
+            top={2}
+          >
             <svg
               className="MuiSvgIcon-root jss215"
               focusable="false"
@@ -121,9 +140,7 @@ const FloorSelect = (props) => {
           <Box
             display="flex"
             justifyContent="space-between"
-            flexWrap="wrap"
-            gap={{ xs: '16px', md: '4px' }}
-            rowGap={{ xs: '16px', md: '14px' }}
+            gap={{ xs: 'unset', sm: '4px' }}
           >
             <Box>
               <CustomLabel
@@ -179,9 +196,6 @@ const FloorSelect = (props) => {
                 checked={val === 'storage'}
               />
             </Box>
-            <Box
-              sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}
-            ></Box>
           </Box>
         </RadioGroup>
       </FormControl>

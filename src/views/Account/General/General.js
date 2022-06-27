@@ -115,7 +115,7 @@ const General = () => {
   return (
     <Main>
       <Page>
-        <Box>
+        <Box paddingX={1}>
           <Typography variant="h6" fontWeight={700}>
             Change your private information
           </Typography>

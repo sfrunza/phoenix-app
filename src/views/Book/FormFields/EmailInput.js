@@ -28,14 +28,14 @@ export default function EmailInput(props) {
 
   return (
     <>
-      <Typography
+      {/* <Typography
         variant={'subtitle1'}
         fontWeight={600}
         gutterBottom
         htmlFor={props.field}
       >
         {props.label}
-      </Typography>
+      </Typography> */}
       <StyledTextField
         {...field}
         {...rest}

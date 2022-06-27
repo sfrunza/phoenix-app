@@ -21,7 +21,7 @@ import {
 
 const Rental = () => {
   return (
-    <Main>
+    <Main colorInvert>
       <Hero />
       <Box bgcolor={'alternate.main'}>
         <Container>

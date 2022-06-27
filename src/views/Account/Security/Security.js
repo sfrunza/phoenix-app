@@ -46,7 +46,7 @@ const Security = () => {
   return (
     <Main>
       <Page>
-        <Box>
+        <Box paddingX={1}>
           <Box
             display={'flex'}
             flexDirection={{ xs: 'column', md: 'row' }}

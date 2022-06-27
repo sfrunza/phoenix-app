@@ -41,6 +41,10 @@ const Info = ({ job }) => {
       job && job.additionalInfo,
       job && <Edit job={job} field={'additionalInfo'} />,
     ),
+    createData(
+      'Referral',
+      job && job.referral,
+    ),
   ];
 
   return (

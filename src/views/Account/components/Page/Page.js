@@ -39,7 +39,7 @@ const Page = ({ children }) => {
   const theme = useTheme();
 
   const { data: { user } = {}, error } = useCurrentUser();
-  const { data } = useSWR('/api/jobs');
+  const { data } = useSWR(user ? `/api/users/${user?.id}/jobs` : null);
   const jobs = data && data.jobs ? data.jobs.length : '0';
 
   useEffect(() => {
@@ -72,10 +72,10 @@ const Page = ({ children }) => {
           )}
         </Container>
       </Box>
-      <Container paddingTop={'0 !important'} marginTop={-8}>
+      <Container paddingTop={'0 !important'} marginTop={-8} paddingX={0}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={3}>
-            <Card sx={{ boxShadow: 3 }}>
+            <Card sx={{ boxShadow: 3, borderBottomRightRadius: 0, borderBottomLeftRadius: 0  }}>
               <List
                 disablePadding
                 sx={{
@@ -107,6 +107,10 @@ const Page = ({ children }) => {
                             activeLink === item.href
                               ? theme.palette.primary.main
                               : 'transparent',
+                              xs:
+                            activeLink === item.href
+                              ? theme.palette.primary.main
+                              : 'transparent',
                         },
                       }}
                     >
@@ -126,7 +130,7 @@ const Page = ({ children }) => {
                     </ListItem>
                   </Link>
                 ))}
-                <Box p={2} sx={{ display: { xs: 'none' } }}>
+                <Box p={2} sx={{ display: { xs: 'none', sm: 'inline' } }}>
                   <Divider />
                 </Box>
                 <ListItem
@@ -175,7 +179,7 @@ const Page = ({ children }) => {
             </Card>
           </Grid>
           <Grid item xs={12} md={9}>
-            <Card sx={{ boxShadow: 3, padding: { xs: 2, md: 4 } }}>
+            <Card sx={{ boxShadow: 3, paddingX: { xs: 1, md: 4 }, paddingY: { xs: 2, md: 4 }, borderBottomRightRadius: 0, borderBottomLeftRadius: 0 }}>
               {children}
             </Card>
           </Grid>

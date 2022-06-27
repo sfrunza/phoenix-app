@@ -21,8 +21,8 @@ export default {
       label: 'Phone',
       requiredErrorMsg: 'Phone is required',
     },
-    moveDate: {
-      name: 'moveDate',
+    movingDate: {
+      name: 'movingDate',
       label: 'Move date',
       requiredErrorMsg: 'Move date is required',
       invalidErrorMsg: 'Move date is not valid',
@@ -52,69 +52,72 @@ export default {
       name: 'additionalInfo',
       label: 'Additioanl info',
     },
-    origin: {
-      address: {
-        name: 'origin.address',
-        label: '',
-        requiredErrorMsg: 'Address is required',
-      },
-      city: {
-        name: 'origin.city',
-        label: '',
-        // requiredErrorMsg: 'Address is required',
-      },
-      state: {
-        name: 'origin.state',
-        label: '',
-        // requiredErrorMsg: 'State is required',
-      },
-      zip: {
-        name: 'origin.zip',
-        label: 'From zip',
-        requiredErrorMsg: 'Zip is required',
-        invalidErrorMsg: 'Zipcode is not valid (e.g. 01234)',
-      },
-      apt: {
-        name: 'origin.apt',
-        label: '',
-      },
-      floor: {
-        name: 'origin.floor',
-        label: '',
-        requiredErrorMsg: 'Floor is required',
-      },
+    referral: {
+      name: 'referral',
+      label: 'How did you hear about us?',
+      requiredErrorMsg: 'Please select one option',
     },
-    destination: {
-      address: {
-        name: 'destination.address',
-        label: '',
-        requiredErrorMsg: 'Address is required',
-      },
-      city: {
-        name: 'destination.city',
-        label: '',
-        // requiredErrorMsg: 'Address is required',
-      },
-      state: {
-        name: 'destination.state',
-        label: '',
-        // requiredErrorMsg: 'State is required',
-      },
-      zip: {
-        name: 'destination.zip',
-        label: 'To zip',
-        requiredErrorMsg: 'Zip is required',
-        invalidErrorMsg: 'Zipcode is not valid (e.g. 01234)',
-      },
-      apt: {
-        name: 'destination.apt',
-        label: '',
-      },
-      floor: {
-        name: 'destination.floor',
-        label: '',
-        requiredErrorMsg: 'Floor is required',
-      },
+
+    originAddress: {
+      name: 'originAddress',
+      label: '',
+      requiredErrorMsg: 'Address is required',
+    },
+    originCity: {
+      name: 'originCity',
+      label: '',
+      // requiredErrorMsg: 'Address is required',
+    },
+    originState: {
+      name: 'originState',
+      label: '',
+      // requiredErrorMsg: 'State is required',
+    },
+    originZip: {
+      name: 'originZip',
+      label: 'From zip',
+      requiredErrorMsg: 'From zip is required',
+      invalidErrorMsg: 'Invalid zip',
+    },
+    originFloor: {
+      name: 'originFloor',
+      label: '',
+      requiredErrorMsg: 'Floor is required',
+    },
+    originApt: {
+      name: 'originApt',
+      label: '',
+    },
+
+    destinationAddress: {
+      name: 'destinationAddress',
+      label: '',
+      requiredErrorMsg: 'Address is required',
+    },
+    destinationCity: {
+      name: 'destinationCity',
+      label: '',
+      // requiredErrorMsg: 'Address is required',
+    },
+    destinationState: {
+      name: 'destinationState',
+      label: '',
+      // requiredErrorMsg: 'State is required',
+    },
+    destinationZip: {
+      name: 'destinationZip',
+      label: 'To zip',
+      requiredErrorMsg: 'To zip is required',
+      invalidErrorMsg: 'Invalid zip',
+    },
+    destinationFloor: {
+      name: 'destinationFloor',
+      label: '',
+      requiredErrorMsg: 'Floor is required',
+    },
+    destinationApt: {
+      name: 'destinationApt',
+      label: '',
     },
     //   address1: {
     //     name: 'address1',

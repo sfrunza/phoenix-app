@@ -8,7 +8,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import { useField } from 'formik';
+import { useField, useFormikContext } from 'formik';
 
 const CustomLabel = ({ label, value, checked }) => {
   const theme = useTheme();
@@ -61,7 +61,7 @@ const CustomLabel = ({ label, value, checked }) => {
           display: 'flex',
           boxShadow:
             '0 0 1px 0 rgb(0 0 0 / 31%), 0 3px 4px -2px rgb(0 0 0 / 25%)',
-          border: `1px solid ${theme.palette.divider}`,
+          border: checked ? 'none' : `1px solid ${theme.palette.divider}`,
           borderRadius: `${theme.shape.borderRadius}px`,
           marginRight: 'unset',
           // padding: theme.spacing(1),
@@ -75,6 +75,7 @@ const ServiceSelect = (props) => {
   const { errorText, ...rest } = props;
   const [field, meta] = useField(props);
   const val = field.value;
+  const formikProps = useFormikContext();
 
   return (
     <Box pt={3}>
@@ -88,6 +89,22 @@ const ServiceSelect = (props) => {
           aria-labelledby="services-select-group-label"
           {...field}
           {...rest}
+          onChange={(e) => {
+            field.onChange(e);
+            if (
+              e.target.value === 'moving' ||
+              e.target.value === 'withStorage'
+            ) {
+              return;
+            } else {
+              formikProps.setFieldValue(`destinationAddress`, '');
+              formikProps.setFieldValue(`destinationCity`, '');
+              formikProps.setFieldValue(`destinationState`, '');
+              formikProps.setFieldValue(`destinationZip`, '');
+              formikProps.setFieldValue(`destinationFloor`, '');
+              formikProps.setFieldValue(`destinationApt`, '');
+            }
+          }}
         >
           <Grid container spacing={2} sx={{ marginLeft: '-8px' }}>
             <CustomLabel
@@ -101,6 +118,11 @@ const ServiceSelect = (props) => {
               checked={val === 'withStorage'}
             />
             <CustomLabel
+              label="Packing"
+              value="packingOnly"
+              checked={val === 'packingOnly'}
+            />
+            <CustomLabel
               label="Loading"
               value="loadingOnly"
               checked={val === 'loadingOnly'}
@@ -109,11 +131,6 @@ const ServiceSelect = (props) => {
               label="Unloading"
               value="unloadingOnly"
               checked={val === 'unloadingOnly'}
-            />
-            <CustomLabel
-              label="Packing"
-              value="packingOnly"
-              checked={val === 'packingOnly'}
             />
             <CustomLabel
               label="Inside h"

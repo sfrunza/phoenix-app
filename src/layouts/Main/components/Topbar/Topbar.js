@@ -10,7 +10,7 @@ import { useSession } from 'next-auth/react';
 import { NavItem, UserPopover } from './components';
 import { useCurrentUser } from 'lib/user';
 
-const Topbar = ({ onSidebarOpen, pages }) => {
+const Topbar = ({ onSidebarOpen, pages, colorInvert }) => {
   const theme = useTheme();
   const { data, status } = useSession();
 
@@ -48,7 +48,7 @@ const Topbar = ({ onSidebarOpen, pages }) => {
           }}
         >
           <Image
-            src={mode === 'light' ? '/logo-o.png' : '/logo-white.png'}
+            src={colorInvert ? '/logo-white.png' : '/logo-o.png'}
             alt="Phoenix Moving Logo"
             layout={'fill'}
             objectFit="contain"
@@ -66,40 +66,67 @@ const Topbar = ({ onSidebarOpen, pages }) => {
         alignItems={'center'}
       >
         <Box>
-          <NavItem title={'Home'} id={'landing-pages'} items={landingPages} />
+          <NavItem
+            title={'Home'}
+            id={'landing-pages'}
+            items={landingPages}
+            colorInvert={colorInvert}
+          />
         </Box>
         <Box marginLeft={2}>
           <NavItem
             title={'Services'}
             id={'services-pages'}
             items={servicesPages}
+            colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={2}>
-          <NavItem title={'About us'} id={'about-pages'} items={aboutPages} />
+          <NavItem
+            title={'About us'}
+            id={'about-pages'}
+            items={aboutPages}
+            colorInvert={colorInvert}
+          />
         </Box>
         <Box marginLeft={2}>
           <NavItem
             title={'Pricing'}
             id={'pricing-pages'}
             items={pricingPages}
+            colorInvert={colorInvert}
           />
         </Box>
         <Box marginLeft={2}>
-          <NavItem title={'FAQ'} id={'faq-pages'} items={faqPages} />
+          <NavItem
+            title={'FAQ'}
+            id={'faq-pages'}
+            items={faqPages}
+            colorInvert={colorInvert}
+          />
         </Box>
         <Box marginLeft={2}>
-          <NavItem title={'Book'} id={'bookPages'} items={bookPages} />
+          <NavItem
+            title={'Book'}
+            id={'bookPages'}
+            items={bookPages}
+            colorInvert={colorInvert}
+          />
         </Box>
       </Box>
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-        <Box sx={{ minWidth: '114px' }}>
+      <Box
+        sx={{ display: { xs: 'none', md: 'flex' } }}
+        alignItems={'center'}
+        justifyContent={'end'}
+      >
+        <Box sx={{ minWidth: '150px' }} justifyContent={'end'} display={'flex'}>
           {user && user.id && <UserPopover />}
           {user && !user.id && (
             <NavItem
               title={'Client login'}
               id={'login-pages'}
               items={loginPages}
+              colorInvert={colorInvert}
             />
           )}
         </Box>
@@ -115,13 +142,18 @@ const Topbar = ({ onSidebarOpen, pages }) => {
           aria-label="Menu"
           variant={'outlined'}
           sx={{
-            borderRadius: 'shape.borderRadius',
             minWidth: 'auto',
             padding: 0.5,
-            borderColor: alpha(theme.palette.divider, 0.2),
+            border: 'none',
+            color: colorInvert? 'inherit' :'text.secondary',
+            "&:hover": {
+              border: 'none',
+            }
           }}
         >
-          <MenuIcon />
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} width='24'>
+  <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
+</svg>
         </Button>
       </Box>
     </Box>

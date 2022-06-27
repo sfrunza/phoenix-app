@@ -9,10 +9,15 @@ import Container from 'components/Container';
 const Hero = () => {
   return (
     <Box
-      position={'relative'}
-      minHeight={{ xs: 500, sm: 600, md: 700 }}
-      display={'flex'}
-      alignItems={'center'}
+    position={'relative'}
+    minHeight={{ xs: 500, sm: 600, md: 700 }}
+    display={'flex'}
+    alignItems={'center'}
+    height={'auto'}
+    sx={{
+      marginTop: -13,
+      paddingTop: 13,
+    }}
     >
       <Image
         src={'/boston-3.jpeg'}

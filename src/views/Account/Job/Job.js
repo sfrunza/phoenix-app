@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import Spinner from 'components/Spinner';
 
 import Page from '../components/Page';
@@ -20,10 +20,15 @@ const Job = ({ id }) => {
 
   const showMap = addresses && addresses.length > 0;
 
+  const goBack = (e) => {
+    e.preventDefault();
+    router.back();
+  };
+
   return (
     <Main>
       <Page>
-        <Box>
+        <Box marginX={{ xs: -1, md: 0 }}>
           <Box
             display={'flex'}
             // flexDirection={{ xs: 'column', md: 'row' }}
@@ -33,13 +38,13 @@ const Job = ({ id }) => {
             <Button
               // sx={{ marginTop: { xs: 2, md: 0 } }}
               startIcon={<ChevronLeftRoundedIcon />}
-              onClick={() => router.back()}
+              onClick={goBack}
               color={'inherit'}
             >
               Back
             </Button>
             {data && data.job && (
-              <Typography variant="h6" fontWeight={700} color={'textSecondary'}>
+              <Typography variant="h6" fontWeight={600}>
                 Request# {data.job.id}
               </Typography>
             )}
@@ -69,7 +74,7 @@ const Job = ({ id }) => {
           </Box>
           {!data && (
             <Box paddingY={2}>
-              <Spinner />
+              <Spinner withText />
             </Box>
           )}
           {data && data.error && <div>{data.error}</div>}

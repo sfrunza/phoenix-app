@@ -8,8 +8,9 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from 'next/link';
+import { alpha } from '@mui/material/styles';
 
-const NavItem = ({ title, id, items }) => {
+const NavItem = ({ title, id, items, colorInvert }) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -37,7 +38,13 @@ const NavItem = ({ title, id, items }) => {
       return items[0].href === activeLink;
     }
   };
-  const linkColor = hasActiveLink() ? 'text.primary' : 'text.secondary';
+  // const linkColor = hasActiveLink() ? 'primary.main' : 'text.primary';
+  const linkColor =
+    hasActiveLink() && !colorInvert
+      ? 'primary.main'
+      : colorInvert
+      ? 'common.white'
+      : 'text.primary';
 
   return (
     <Box>
@@ -53,12 +60,16 @@ const NavItem = ({ title, id, items }) => {
             transition: 'background-color 0.3s ease',
             borderRadius: `${theme.shape.borderRadius}px`,
             '&:hover': {
-              backgroundColor: theme.palette.background.level2,
+              backgroundColor: colorInvert
+                ? alpha(theme.palette.alternate.main, 0.15)
+                : theme.palette.alternate.main,
             },
           }}
           onClick={(e) => handleClick(e, id)}
         >
-          <Typography color={linkColor}>{title}</Typography>
+          <Typography color={linkColor} fontWeight={600} variant="body2">
+            {title}
+          </Typography>
           <ExpandMoreIcon
             sx={{
               marginLeft: theme.spacing(1 / 4),
@@ -82,17 +93,38 @@ const NavItem = ({ title, id, items }) => {
               transition: 'background-color 0.3s ease',
               borderRadius: `${theme.shape.borderRadius}px`,
               '&:hover': {
-                backgroundColor: theme.palette.background.level2,
+                backgroundColor: colorInvert
+                  ? alpha(theme.palette.alternate.main, 0.15)
+                  : theme.palette.alternate.main,
               },
             }}
             component={'a'}
             href={items[0].href}
           >
-            <Typography
-              // fontWeight={openedPopoverId === id || hasActiveLink() ? 600 : 500}
-              color={linkColor}
-              // variant="body1"
-            >
+            {title === 'Client login' && (
+              <Box
+                sx={{
+                  color: linkColor,
+                  display: 'flex',
+                  mr: 0.5,
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  width="20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Box>
+            )}
+            <Typography fontWeight={600} color={linkColor} variant="body2">
               {title}
             </Typography>
           </Box>
@@ -131,12 +163,12 @@ const NavItem = ({ title, id, items }) => {
                     fullWidth
                     sx={{
                       justifyContent: 'flex-start',
-                      fontSize: '1rem',
-                      fontWeight: 500,
+                      fontSize: '0.875rem',
+                      fontWeight: 600,
                       color:
                         activeLink === p.href
-                          ? theme.palette.text.primary
-                          : theme.palette.text.secondary,
+                          ? theme.palette.primary.main
+                          : theme.palette.text.primary,
                     }}
                   >
                     {p.title}

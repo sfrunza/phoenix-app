@@ -13,7 +13,7 @@ const getTheme = (mode, themeToggler) =>
       },
       shadows: shadows(mode),
       typography: {
-        fontFamily: '"CustomFontBook", sans-serif',
+        fontFamily: 'HelveticaNeue',
         fontDisplay: 'swap',
         button: {
           textTransform: 'none',
@@ -29,6 +29,15 @@ const getTheme = (mode, themeToggler) =>
           styleOverrides: {
             root: {
               fontWeight: 600,
+              // borderRadius: 18,
+            },
+            containedSecondary: mode === 'light' ? { color: 'white' } : {},
+          },
+        },
+        MuiTypography: {
+          styleOverrides: {
+            root: {
+              fontWeight: 500,
               // borderRadius: 18,
             },
             containedSecondary: mode === 'light' ? { color: 'white' } : {},
@@ -78,7 +87,7 @@ const getTheme = (mode, themeToggler) =>
         },
       },
       themeToggler,
-    }),
+    })
   );
 
 export default getTheme;

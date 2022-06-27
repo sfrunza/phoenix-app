@@ -9,13 +9,18 @@ const {
     lastName,
     email,
     phone,
-    moveDate,
+    movingDate,
     deliveryDate,
     startTime,
-    origin,
-    destination,
     service,
     size,
+    referral,
+    originAddress,
+    originZip,
+    originFloor,
+    destinationAddress,
+    destinationZip,
+    destinationFloor,
     // address1,
     // city,
     // zipcode,
@@ -41,10 +46,10 @@ const findCity = (zip) => {
 
 export default [
   Yup.object().shape({
-    [moveDate.name]: Yup.string()
+    [movingDate.name]: Yup.string()
       .nullable()
-      .required(`${moveDate.requiredErrorMsg}`)
-      .test('moveDate', moveDate.invalidErrorMsg, (val) => {
+      .required(`${movingDate.requiredErrorMsg}`)
+      .test('movingDate', movingDate.invalidErrorMsg, (val) => {
         if (val) {
           const startDate = new Date();
           const endDate = new Date(2050, 12, 31);
@@ -66,34 +71,51 @@ export default [
     [startTime.name]: Yup.string()
       .nullable()
       .required(`${startTime.requiredErrorMsg}`),
-    origin: Yup.object().shape({
-      zip: Yup.string()
-        .required(`${origin.zip.requiredErrorMsg}`)
-        .test('len', `${origin.zip.invalidErrorMsg}`, (val) => findCity(val)),
-    }),
-    destination: Yup.object().shape({
-      zip: Yup.string()
-        .required(`${origin.zip.requiredErrorMsg}`)
-        .test('len', `${origin.zip.invalidErrorMsg}`, (val) => findCity(val)),
+
+    [originZip.name]: Yup.string()
+      .required(`${originZip.requiredErrorMsg}`)
+      .test('len', `${originZip.invalidErrorMsg}`, (val) => findCity(val)),
+    [destinationZip.name]: Yup.string().when('service', {
+      is: (service) => service === 'withStorage' || service === 'moving',
+      then: Yup.string()
+        .nullable()
+        .required(`${destinationZip.requiredErrorMsg}`)
+        .test('len', `${destinationZip.invalidErrorMsg}`, (val) =>
+          findCity(val)
+        ),
     }),
 
-    [service.name]: Yup.string()
-      .nullable()
-      .required(`${service.requiredErrorMsg}`),
+    [service.name]: Yup.string().required(`${service.requiredErrorMsg}`),
   }),
   Yup.object().shape({
     [size.name]: Yup.string().required(`${size.requiredErrorMsg}`),
+    [originFloor.name]: Yup.string().required(
+      `${originFloor.requiredErrorMsg}`
+    ),
+    [destinationFloor.name]: Yup.string().when('service', {
+      is: (service) => service === 'withStorage' || service === 'moving',
+      then: Yup.string()
+        .nullable()
+        .required(
+          `${destinationFloor.requiredErrorMsg}`
+        )
+    }),
   }),
   Yup.object().shape({
     [firstName.name]: Yup.string().required(`${firstName.requiredErrorMsg}`),
     [lastName.name]: Yup.string().required(`${lastName.requiredErrorMsg}`),
-    [email.name]: Yup.string().required(`${email.requiredErrorMsg}`).email(),
+    [email.name]: Yup.string()
+      .required(`${email.requiredErrorMsg}`)
+      .email('Email must be valid'),
     [phone.name]: Yup.string()
       .trim()
-      .required('Phone is required.')
+      .required('Phone is required')
       .matches(
         /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)$/,
-        'Invalid phone number.',
+        'Invalid phone number'
       ),
+    [referral.name]: Yup.string()
+      .nullable()
+      .required(`${referral.requiredErrorMsg}`),
   }),
 ];

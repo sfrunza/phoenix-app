@@ -9,36 +9,109 @@ export default async function (req, res) {
     size,
     service,
     additionalInfo,
-    userId,
+    referral,
+    firstName,
+    lastName,
+    email,
+    phone,
+    originAddress,
+    originCity,
+    originState,
+    originZip,
+    originFloor,
+    originApt,
+    destinationAddress,
+    destinationCity,
+    destinationState,
+    destinationZip,
+    destinationFloor,
+    destinationApt,
   } = req.body;
-  //   const session = await getSession({ req });
-  //   let currentUser = null;
 
-  //   if (session) {
-  //     currentUser = await prisma.user.findUnique({
-  //       where: { email: session.user.email },
-  //     });
-  //   }
+  const prevCustomer = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+  });
 
-  console.log(req.body);
+  let origin = {
+    address: originAddress,
+    city: originCity,
+    state: originState,
+    zip: originZip,
+    apt: originApt,
+    floor: originFloor,
+    isOrigin: true,
+  };
+  let destination = {
+    address: destinationAddress,
+    city: destinationCity,
+    state: destinationState,
+    zip: destinationZip,
+    apt: destinationApt,
+    floor: destinationFloor,
+    isDestination: true,
+  };
+
+  let includeDestination = destinationZip.length === 5 ? true : false;
+
+  let addressArray = [];
+
+  if (includeDestination) {
+    addressArray.push(origin, destination);
+  } else {
+    addressArray.push(origin);
+  }
+
+  console.log(addressArray);
 
   try {
-    const result = await prisma.job.create({
-      data: {
-        movingDate,
-        deliveryDate,
-        startTime,
-        size,
-        service,
-        additionalInfo,
-        customer: { connect: { id: userId } },
-      },
-    });
-    res.json(result);
+    if (prevCustomer) {
+      const result = await prisma.job.create({
+        data: {
+          movingDate,
+          deliveryDate,
+          startTime,
+          size,
+          service,
+          additionalInfo,
+          referral,
+          customerId: prevCustomer.id,
+          addresses: {
+            create: addressArray,
+          },
+        },
+      });
+      res.json(result);
+    } else {
+      const result = await prisma.job.create({
+        data: {
+          movingDate,
+          deliveryDate,
+          startTime,
+          size,
+          service,
+          additionalInfo,
+          referral,
+          customer: {
+            create: {
+              firstName,
+              lastName,
+              email,
+              phone,
+            },
+          },
+          addresses: {
+            create: addressArray,
+          },
+        },
+      });
+      res.json(result);
+    }
   } catch (e) {
     console.error(e);
     res.status(500);
-    res.json({ error: 'sorry unsable to create user' });
+    res.json({ error: 'Oops, Something went wrong, please try again later' });
   } finally {
     await prisma.$disconnect();
   }

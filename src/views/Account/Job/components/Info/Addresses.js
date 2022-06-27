@@ -24,7 +24,7 @@ function Addresses({ jobId }) {
 
   const { data: addresses, mutate } = useSWR(
     `/api/jobs/${jobId}/addresses`,
-    getAddresses(jobId),
+    getAddresses(jobId)
   );
   const origin = addresses ? addresses.find((address) => address.isOrigin) : {};
   const destination = addresses
@@ -101,7 +101,7 @@ function Addresses({ jobId }) {
               sx={{ maxWidth: '115px', textAlign: 'initial' }}
               variant="body2"
             >
-              {!destination ? 'Addresses' : 'Origin'}
+              {!destination ? 'Address' : 'Origin'}
             </TimelineOppositeContent>
             <TimelineSeparator>
               <TimelineDot color="success" variant="outlined" />

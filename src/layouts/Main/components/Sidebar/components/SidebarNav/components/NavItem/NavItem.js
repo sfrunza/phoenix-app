@@ -41,8 +41,9 @@ const NavItem = ({ title, items }) => {
             sx={{ padding: 0 }}
           >
             <Typography
-              fontWeight={hasActiveLink() ? 600 : 400}
+              fontWeight={600}
               color={hasActiveLink() ? 'primary' : 'text.primary'}
+              variant='body2'
             >
               {title}
             </Typography>
@@ -51,9 +52,10 @@ const NavItem = ({ title, items }) => {
           <Link href={items[0].href}>
             <a>
               <Typography
-                fontWeight={hasActiveLink() ? 600 : 400}
+                fontWeight={600}
                 color={hasActiveLink() ? 'primary' : 'text.primary'}
                 sx={{ padding: '12px 0px', cursor: 'pointer' }}
+                variant='body2'
               >
                 {title}
               </Typography>
@@ -74,12 +76,13 @@ const NavItem = ({ title, items }) => {
                         color:
                           activeLink === p.href
                             ? theme.palette.primary.main
-                            : theme.palette.text.primary,
+                            : theme.palette.text.secondary,
                         backgroundColor:
                           activeLink === p.href
                             ? alpha(theme.palette.primary.main, 0.1)
                             : 'transparent',
-                        fontWeight: activeLink === p.href ? 600 : 400,
+                        fontWeight: 600,
+                        fontSize: '0.875rem'
                       }}
                     >
                       {p.title}

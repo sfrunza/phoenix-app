@@ -35,6 +35,7 @@ export default function ZipInputField(props) {
   const { errorText, label = null, ...rest } = props;
   const [field, meta, helper, form] = useField(props);
   const formikProps = useFormikContext();
+  const name = field.name.split(/(?=[A-Z])/)[0]; //origin ||  destination
 
   function _renderHelperText() {
     const { touched, error } = meta;
@@ -42,13 +43,15 @@ export default function ZipInputField(props) {
       return error;
     }
   }
+  // console.log(name);
+  // console.log(meta);
+  // console.log(field);
 
   function notify(v) {
-    const name = field.name.split('.')[0]; //origin ||  destination
     let obj = findCity(v);
     if (obj) {
-      formikProps.setFieldValue(`${name}.city`, obj.c);
-      formikProps.setFieldValue(`${name}.state`, obj.s);
+      formikProps.setFieldValue(`${name}City`, obj.c);
+      formikProps.setFieldValue(`${name}State`, obj.s);
       toast(
         () => (
           <span>
@@ -60,10 +63,10 @@ export default function ZipInputField(props) {
         ),
         {
           icon: '🚚',
-        },
+        }
       );
     } else {
-      toast.error('Sorry Zipcode Not found.');
+      toast.error('Invalid zip code');
     }
   }
 
@@ -80,7 +83,7 @@ export default function ZipInputField(props) {
       <StyledTextField
         {...field}
         {...rest}
-        size='small'
+        size="small"
         placeholder={props.placeholder}
         error={meta.touched && Boolean(meta.error)}
         helperText={_renderHelperText()}
