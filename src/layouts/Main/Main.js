@@ -84,9 +84,7 @@ const Main = ({
       />
       <Box component="main">
         {children}
-        {hide && <Divider />}
       </Box>
-      {hide && (
         <Container paddingY={4}>
           <Footer />
         </Container>
