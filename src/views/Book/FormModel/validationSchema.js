@@ -48,18 +48,7 @@ export default [
   Yup.object().shape({
     [movingDate.name]: Yup.string()
       .nullable()
-      .required(`${movingDate.requiredErrorMsg}`)
-      .test('movingDate', movingDate.invalidErrorMsg, (val) => {
-        if (val) {
-          const startDate = new Date();
-          const endDate = new Date(2050, 12, 31);
-          if (moment(val, moment.ISO_8601).isValid()) {
-            return moment(val).isBetween(startDate, endDate);
-          }
-          return false;
-        }
-        return false;
-      }),
+      .required(`${movingDate.requiredErrorMsg}`),
     [deliveryDate.name]: Yup.string()
       .ensure()
       .when(['service'], {
@@ -96,9 +85,7 @@ export default [
       is: (service) => service === 'withStorage' || service === 'moving',
       then: Yup.string()
         .nullable()
-        .required(
-          `${destinationFloor.requiredErrorMsg}`
-        )
+        .required(`${destinationFloor.requiredErrorMsg}`),
     }),
   }),
   Yup.object().shape({

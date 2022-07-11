@@ -92,9 +92,9 @@ export const dark = {
 
 export const light = {
   alternate: {
-        main: '#f7faff',
-        dark: '#edf1f7',
-      },
+    main: '#f7faff',
+    dark: '#edf1f7',
+  },
   action: {
     active: 'rgba(0, 0, 0, 0.54)',
     hover: 'rgba(0, 0, 0, 0.04)',
@@ -176,8 +176,8 @@ export const light = {
   },
   secondary: {
     main: '#0faf6a',
-    light: '#ba68c8',
-    dark: '#7b1fa2',
+    // light: '#ba68c8',
+    // dark: '#7b1fa2',
     contrastText: '#fff',
   },
   success: {

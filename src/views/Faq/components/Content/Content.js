@@ -57,9 +57,8 @@ const FaqGroupItem = ({ items }) => {
             >
               <Typography
                 variant="h6"
-                color={
-                  expanded === `panel+${i}` ? 'textPrimary' : 'textSecondary'
-                }
+                fontWeight={600}
+                color={expanded === `panel+${i}` ? 'primary' : 'textPrimary'}
               >
                 {item.title}
               </Typography>

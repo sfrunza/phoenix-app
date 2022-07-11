@@ -4,7 +4,7 @@ export { default as Introduction } from './Introduction';
 // export { default as QuickStartGatsbyJS } from './QuickStartGatsbyJS';
 // export { default as Support } from './Support';
 // export { default as ChangeLog } from './ChangeLog';
-export { default as Colors } from './Colors';
+export { default as Colors } from './Calendar';
 export { default as Customers } from './Customers';
 export { default as Jobs } from './Jobs';
 export { default as Employees } from './Employees';

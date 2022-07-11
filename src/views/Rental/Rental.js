@@ -1,37 +1,69 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-
 import Main from 'layouts/Main';
 import Container from 'components/Container';
+import dynamic from 'next/dynamic';
 
 import {
   Advantages,
-  Articles,
-  AskExpert,
+  // Articles,
+  Pricing,
   Hero,
   Partners,
   Places,
   Reviews,
   Search,
-  Teaser,
+  // Teaser,
   Cities,
   Services,
   Features,
+  QuoteSection,
 } from './components';
+
+// const Advantages = dynamic(() => import('./components/Advantages'), {
+//   ssr: false,
+// });
+// const Pricing = dynamic(() => import('./components/Pricing'), {
+//   ssr: false,
+// });
+// const Hero = dynamic(() => import('./components/Hero'), {
+//   ssr: false,
+// });
+// const Partners = dynamic(() => import('./components/Partners'), {
+//   ssr: false,
+// });
+// const Places = dynamic(() => import('./components/Places'), {
+//   ssr: false,
+// });
+// const Reviews = dynamic(() => import('./components/Reviews'), {
+//   ssr: false,
+// });
+// const Search = dynamic(() => import('./components/Search'), {
+//   ssr: false,
+// });
+// const Cities = dynamic(() => import('./components/Cities'), {
+//   ssr: false,
+// });
+// const Services = dynamic(() => import('./components/Services'), {
+//   ssr: false,
+// });
+// const Features = dynamic(() => import('./components/Features'), {
+//   ssr: false,
+// });
+// const QuoteSection = dynamic(() => import('./components/QuoteSection'), {
+//   ssr: false,
+// });
 
 const Rental = () => {
   return (
     <Main colorInvert>
       <Hero />
-      <Box bgcolor={'alternate.main'}>
-        <Container>
-          <Partners />
-        </Container>
-      </Box>
-      <Container>
-        <Services />
-      </Container>
-      <Box bgcolor={'alternate.main'}>
+      <Partners />
+      <Services />
+      <Pricing />
+      <QuoteSection />
+
+      {/* <Box bgcolor={'alternate.main'}>
         <Container>
           <Cities />
         </Container>
@@ -45,32 +77,12 @@ const Rental = () => {
         </Container>
       </Box>
       <Container>
-        <Teaser />
-      </Container>
-      <Container sx={{ paddingTop: '0 !important' }}>
-        <Articles />
-      </Container>
-      {/* <Box bgcolor={'primary.main'}>
-        <Container>
-          <FeaturedProducts />
-        </Container>
-      </Box> */}
-      <Container>
         <Places />
       </Container>
-      <Box bgcolor={'alternate.main'}>
-        <Container>
-          <Reviews />
-        </Container>
-      </Box>
+      <Reviews />
       <Container>
         <Advantages />
-      </Container>
-      <Box bgcolor={'alternate.main'}>
-        <Container>
-          <AskExpert />
-        </Container>
-      </Box>
+      </Container> */}
     </Main>
   );
 };

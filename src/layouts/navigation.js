@@ -58,7 +58,7 @@ const pages = {
   ],
   book: [
     {
-      title: 'Book',
+      title: 'Book a Move',
       href: '/book',
     },
   ],

@@ -59,7 +59,7 @@ function _renderStepContent(step, values) {
 }
 
 export default function Book() {
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
@@ -171,15 +171,15 @@ export default function Book() {
                           {isLastStep ? 'Submit request' : 'Continue'}
                         </Button> */}
                         <LoadingButton
-          loading={isSubmitting}
-          loadingIndicator="Submitting..."
-          type="submit"
+                          loading={isSubmitting}
+                          loadingIndicator="Submitting..."
+                          type="submit"
                           variant="contained"
                           color="primary"
                           size="large"
-        >
-           {isLastStep ? 'Submit request' : 'Continue'}
-        </LoadingButton>
+                        >
+                          {isLastStep ? 'Submit request' : 'Continue'}
+                        </LoadingButton>
                       </Box>
                     </Form>
                   );

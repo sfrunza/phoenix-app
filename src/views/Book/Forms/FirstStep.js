@@ -92,7 +92,6 @@ export default function FirstStep(props) {
             <DatePickerField
               name={deliveryDate.name}
               label={deliveryDate.label}
-              //   labelText={'Delivery date'}
               fullWidth
             />
           </Grid>

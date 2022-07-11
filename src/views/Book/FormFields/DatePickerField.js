@@ -5,6 +5,9 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import DatePicker from '@mui/lab/DatePicker';
 import { styled } from '@mui/material/styles';
+import moment from 'moment';
+import { format } from 'date-fns';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 const StyledTextField = styled((props) => (
   <TextField InputProps={{ disableUnderline: true }} {...props} />
@@ -32,17 +35,23 @@ export default function DatePickerField(props) {
   }, [value]);
 
   function _onChange(date) {
-    if (date) {
-      setSelectedDate(date);
-      try {
-        const ISODateString = date.toISOString();
-        setValue(ISODateString);
-      } catch (error) {
-        setValue(date);
-      }
-    } else {
-      setValue(date);
-    }
+    // if (date) {
+    //   setSelectedDate(date);
+    //   // setValue(date);
+    //   const newDate = new Date(date);
+    //   setValue(format(newDate, 'yyyy-MM-dd'));
+    //   // try {
+    //   //   const ISODateString = date.toLocaleDateString();
+    //   //   setValue(ISODateString);
+    //   // } catch (error) {
+    //   //   setValue(date);
+    //   // }
+    // } else {
+    //   const newDate = new Date(date);
+    //   setValue(format(newDate, 'yyyy-MM-dd'));
+    // }
+    setSelectedDate(date);
+    setValue(date);
   }
 
   return (
@@ -55,10 +64,10 @@ export default function DatePickerField(props) {
       >
         {props.label}
       </Typography>
-      <DatePicker
+      <DesktopDatePicker
         {...field}
         {...rest}
-        // inputFormat="MMM dd, yyyy"
+        // inputFormat="MM/d/yyyy"
         value={selectedDate}
         onChange={_onChange}
         disablePast

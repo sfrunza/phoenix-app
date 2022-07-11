@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import AdapterDateFns from '@mui/lab/AdapterMoment';
 import { SWRConfig } from 'swr';
 import nProgress from 'nprogress';
 import Router from 'next/router';
 import { SnackbarProvider } from 'notistack';
 import { Toaster } from 'react-hot-toast';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import Page from '../components/Page';
 
@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }) {
           <SWRConfig
             value={{ fetcher: (url) => fetch(url).then((res) => res.json()) }}
           >
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider dateAdapter={AdapterMoment}>
               <SnackbarProvider maxSnack={2}>
                 <Component {...pageProps} />
                 <Toaster />

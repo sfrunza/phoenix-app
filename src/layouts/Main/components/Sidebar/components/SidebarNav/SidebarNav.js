@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -57,11 +58,16 @@ const SidebarNav = ({ pages }) => {
         <Box>
           <NavItem title={'FAQ'} items={faqPages} />
         </Box>
-        <Box>
-          <NavItem title={'Book'} items={bookPages} />
-        </Box>
-        <Box>
-          <NavItem title={'Client login'} items={loginPages} />
+        <Divider />
+        <Box marginTop={2}>
+          <Link href='/account'>
+            <Button
+              size={'large'}
+              fullWidth
+            >
+              Client login
+            </Button>
+          </Link>
         </Box>
         <Box marginTop={2}>
           <Button
@@ -69,23 +75,22 @@ const SidebarNav = ({ pages }) => {
             variant="outlined"
             fullWidth
             component="a"
-            href="/docs/introduction"
+            href="tel:(123) 123-1234"
           >
-            Documentation
+            (123) 123-1234
           </Button>
         </Box>
-        <Box marginTop={1}>
-          <Button
-            size={'large'}
-            variant="contained"
-            color="primary"
-            fullWidth
-            component="a"
-            target="blank"
-            href="https://mui.com/store/items/the-front-landing-page/"
-          >
-            Purchase now
-          </Button>
+        <Box marginTop={2}>
+          <Link href='/book'>
+            <Button
+              size={'large'}
+              variant="contained"
+              color="primary"
+              fullWidth
+            >
+              Get a Quote
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Box>

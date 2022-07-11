@@ -1,92 +1,69 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import ListItemText from '@mui/material/ListItemText';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
-const mock = [
-  {
-    title: 'Coworking communities',
-    subtitle:
-      'Connect in spaces designed to bring incredible people together. Learn with them and take your project to new heights.',
-  },
-  {
-    title: 'Flexible contracts',
-    subtitle:
-      'Stay as little as 3 months with rolling contracts. Like it here? This is your space, so stay as long as you want.',
-  },
-  {
-    title: 'All inclusive',
-    subtitle:
-      'Monthly fee covers everything you need hassle free. Keep cool and focus on what matters to you.',
-  },
-  {
-    title: 'Hospitality service',
-    subtitle:
-      '24/7 support. No more hidden prices. It is your workingplace, playground, relax room.',
-  },
-];
+import Container from 'components/Container';
 
 const Advantages = () => {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+    defaultMatches: true,
+  });
+
   return (
-    <Box>
-      <Grid container spacing={4}>
-        {mock.map((item, i) => (
-          <Grid
-            key={i}
-            item
-            xs={12}
-            md={3}
-            sx={{ display: 'flex', flexDirection: 'column' }}
+    <Container>
+      <Box>
+        <Typography
+          variant="h3"
+          color="text.primary"
+          gutterBottom
+          sx={{
+            fontWeight: 700,
+          }}
+        >
+          Turn your ideas into the{' '}
+          <Typography
+            color={'primary'}
+            component={'span'}
+            variant={'inherit'}
+            sx={{
+              fontWeight: 700,
+            }}
           >
-            <ListItemText
-              primary={item.title}
-              secondary={item.subtitle}
-              primaryTypographyProps={{
-                variant: 'h5',
-                gutterBottom: true,
-                component: 'p',
-              }}
-              secondaryTypographyProps={{
-                variant: 'subtitle1',
-                component: 'p',
-              }}
-              sx={{
-                '& .MuiListItemText-primary': {
-                  fontWeight: 700,
-                },
-                margin: 0,
-              }}
-            />
-            <Box sx={{ flexGrow: 1 }} />
-            <Box marginTop={1}>
-              <Button
-                endIcon={
-                  <Box
-                    component={'svg'}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    width={24}
-                    height={24}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </Box>
-                }
-              >
-                Learn more
-              </Button>
-            </Box>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+            future.
+          </Typography>
+        </Typography>
+        <Typography
+          variant="h6"
+          component="p"
+          color="text.secondary"
+          sx={{ fontWeight: 400 }}
+        >
+          theFront will make your product look modern and professional while
+          saving you precious time.
+        </Typography>
+        <Box
+          display="flex"
+          flexDirection={{ xs: 'column', sm: 'row' }}
+          alignItems={{ xs: 'stretched', sm: 'flex-start' }}
+          marginTop={4}
+        >
+          <Button
+            component={'a'}
+            variant="contained"
+            color="primary"
+            size="large"
+            fullWidth={isMd ? false : true}
+            href={'/home'}
+          >
+            Get a Quote
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 

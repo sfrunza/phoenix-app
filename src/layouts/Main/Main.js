@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-
 import Container from 'components/Container';
-// import TopNav from 'components/TopNav';
-
-import { Topbar, Sidebar, Footer } from './components';
-
 import pages from '../navigation';
+import { Topbar } from './components';
+
+const Sidebar = dynamic(() => import('./components/Sidebar'), {
+  ssr: false,
+});
+const Footer = dynamic(() => import('./components/Footer'), {
+  ssr: false,
+});
 
 const Main = ({
   title,
@@ -25,7 +28,7 @@ const Main = ({
 }) => {
   const theme = useTheme();
   const router = useRouter();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+  const isLg = useMediaQuery(theme.breakpoints.up('lg'), {
     defaultMatches: true,
   });
 
@@ -39,7 +42,7 @@ const Main = ({
     setOpenSidebar(false);
   };
 
-  const open = isMd ? false : openSidebar;
+  const open = isLg ? false : openSidebar;
   const hide = router.pathname !== '/book';
 
   const trigger = useScrollTrigger({
@@ -82,13 +85,12 @@ const Main = ({
         variant="temporary"
         pages={pages}
       />
-      <Box component="main">
-        {children}
-      </Box>
+      <Box component="main">{children}</Box>
+      <Box sx={{ backgroundColor: 'rgb(25, 25, 25)' }}>
         <Container paddingY={4}>
           <Footer />
         </Container>
-      )}
+      </Box>
     </Box>
   );
 };

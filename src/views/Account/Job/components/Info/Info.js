@@ -18,17 +18,30 @@ function createData(title, data, edit) {
 const Info = ({ job }) => {
   const theme = useTheme();
   const rows = [
-    createData('Moving date', job && job.movingDate),
-    createData('Start time', job && job.startTime),
+    createData(
+      'Moving date',
+      job && job.movingDate,
+      <Edit job={job} field={'movingDate'} />
+    ),
+    createData(
+      'Delivery date',
+      job && job.deliveryDate,
+      <Edit job={job} field={'deliveryDate'} />
+    ),
+    createData(
+      'Start time',
+      job && job.startTime,
+      <Edit job={job} field={'startTime'} />
+    ),
     createData(
       'Service',
       job && job.service,
-      job && <Edit job={job} field={'service'} />,
+      job && <Edit job={job} field={'service'} />
     ),
     createData(
       'Move size',
       job && job.size,
-      job && <Edit job={job} field={'size'} />,
+      job && <Edit job={job} field={'size'} />
     ),
     createData('Crew', '2 movers'),
     createData('Hourly rate', '$130/hour'),
@@ -39,12 +52,9 @@ const Info = ({ job }) => {
     createData(
       'Additional info',
       job && job.additionalInfo,
-      job && <Edit job={job} field={'additionalInfo'} />,
+      job && <Edit job={job} field={'additionalInfo'} />
     ),
-    createData(
-      'Referral',
-      job && job.referral,
-    ),
+    createData('Referral', job && job.referral),
   ];
 
   return (

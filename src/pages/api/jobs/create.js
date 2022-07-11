@@ -1,5 +1,6 @@
 import prisma from 'lib/prisma';
 // import { getSession } from 'next-auth/react';
+import { format, parseISO } from 'date-fns';
 
 export default async function (req, res) {
   const {
@@ -69,8 +70,8 @@ export default async function (req, res) {
     if (prevCustomer) {
       const result = await prisma.job.create({
         data: {
-          movingDate,
-          deliveryDate,
+          movingDate: format(parseISO(movingDate), 'yyyy-MM-dd'),
+          deliveryDate: format(parseISO(deliveryDate), 'yyyy-MM-dd'),
           startTime,
           size,
           service,
@@ -86,8 +87,8 @@ export default async function (req, res) {
     } else {
       const result = await prisma.job.create({
         data: {
-          movingDate,
-          deliveryDate,
+          movingDate: format(parseISO(movingDate), 'yyyy-MM-dd'),
+          deliveryDate: format(parseISO(deliveryDate), 'yyyy-MM-dd'),
           startTime,
           size,
           service,

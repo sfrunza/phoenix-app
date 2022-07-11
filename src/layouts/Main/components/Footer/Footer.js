@@ -2,112 +2,243 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Image from 'next/image';
 import Link from 'next/link';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
-import Image from 'next/image';
+import Divider from '@mui/material/Divider';
 
 const Footer = () => {
   const theme = useTheme();
   const { mode } = theme.palette;
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
+    <>
+      <Box display="flex" alignItems={'center'} justifyContent="space-between">
+      <Link href="/">
         <Box
           display={'flex'}
-          justifyContent={'space-between'}
-          alignItems={'center'}
-          width={1}
-          flexDirection={{ xs: 'column', sm: 'row' }}
+          sx={{
+            position: 'relative',
+            width: { xs: 130, lg: 150 },
+            height: { xs: 50, lg: 50 },
+            cursor: 'pointer',
+          }}
         >
-          <Box
-            display={'flex'}
-            component="a"
-            href="/"
-            title="PhoenixMoving"
-            sx={{
-              position: 'relative',
-              width: { xs: 130, md: 150 },
-              height: { xs: 50, md: 50 },
-              cursor: 'pointer',
-            }}
-          >
-            <Image
-              src={mode === 'light' ? '/logo-o.png' : '/logo-white.png'}
-              alt="Phoenix Moving Logo"
-              layout={'fill'}
-              objectFit="contain"
-              priority
-            />
-          </Box>
-          <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
-            <Box sx={{ marginTop: { xs: 3, md: 1 } }} marginRight={2}>
-              <Link href="/">
-                <a>
-                  <Typography
-                    color="text.primary"
-                    variant={'subtitle2'}
-                    component={'p'}
-                    sx={{ cursor: 'pointer' }}
-                  >
-                    Home
-                  </Typography>
-                </a>
-              </Link>
-            </Box>
-            <Box sx={{ marginTop: { xs: 3, md: 1 } }} marginRight={2}>
-              <Link href="/company-terms">
-                <a>
-                  <Typography
-                    color="text.primary"
-                    variant={'subtitle2'}
-                    component={'p'}
-                    sx={{ cursor: 'pointer' }}
-                  >
-                    Terms
-                  </Typography>
-                </a>
-              </Link>
-            </Box>
-            <Box sx={{ marginTop: { xs: 3, md: 1 } }}>
-              <Button
-                variant="outlined"
-                color="primary"
-                component="a"
-                target="blank"
-                href="/"
-                size="small"
-              >
-                Book now
-              </Button>
-            </Box>
-          </Box>
+          <Image
+            src={'/logo-white.png'}
+            alt="Phoenix Moving Logo"
+            layout={'fill'}
+            objectFit="contain"
+            priority
+          />
         </Box>
+      </Link>
+        <Box marginTop={1}>
+          <Button
+            variant="contained"
+            color="secondary"
+            disableElevation
+            size="small"
+          >
+            Book Online
+          </Button>
+        </Box>
+      </Box>
+      <Box marginY={3}>
+        <Divider />
+      </Box>
+
+      <Grid container spacing={1}>
+        <Grid item xs={6} md={3}>
+          <Box display={'flex'} flexDirection={'column'}>
+            <Typography
+              sx={{ color: '#fff', fontWeight: 600, marginBottom: 1 }}
+            >
+              All Services
+            </Typography>
+            <Typography
+              underline="none"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Local Moving
+            </Typography>
+            <Typography
+              underline="none"
+              color="textSecondary"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Interstate Moving
+            </Typography>
+            <Typography
+              underline="none"
+              color="textSecondary"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Packing Services
+            </Typography>
+            <Typography
+              underline="none"
+              color="textSecondary"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Storage Solutions
+            </Typography>
+            <Typography
+              underline="none"
+              color="textSecondary"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Junk Removal
+            </Typography>
+            <Typography
+              underline="none"
+              color="textSecondary"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Boston to New York
+            </Typography>
+          </Box>
+        </Grid>
+
+        {/* --------------------------------------------------------------- */}
+
+        <Grid item xs={6} md={3}>
+          <Box display={'flex'} flexDirection={'column'}>
+            <Typography
+              sx={{ color: '#fff', fontWeight: 600, marginBottom: 1 }}
+            >
+              Locations
+            </Typography>
+            <Typography
+              underline="none"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Boston
+            </Typography>
+            <Typography
+              underline="none"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Waltham
+            </Typography>
+            <Typography
+              underline="none"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Natick
+            </Typography>
+            <Typography
+              underline="none"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Wellesley
+            </Typography>
+          </Box>
+        </Grid>
+
+        {/* --------------------------------------------------------------- */}
+        <Grid item xs={6} md={3}>
+          <Box display={'flex'} flexDirection={'column'}>
+            <Typography
+              sx={{ color: '#fff', fontWeight: 600, marginBottom: 1 }}
+            >
+              Company
+            </Typography>
+            <Typography
+              underline="none"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              About us
+            </Typography>
+            <Typography
+              underline="none"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Client Login
+            </Typography>
+            <Typography
+              underline="none"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              FAQ
+            </Typography>
+            <Typography
+              underline="none"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              Book Now
+            </Typography>
+          </Box>
+        </Grid>
+
+        {/* --------------------------------------------------------------- */}
+
+        <Grid item xs={6} md={3}>
+          <Box display={'flex'} flexDirection={'column'}>
+            <Typography
+              sx={{ color: '#fff', fontWeight: 600, marginBottom: 1 }}
+            >
+              Contact Us
+            </Typography>
+            <Typography
+              underline="none"
+              component={'a'}
+              href="mailto:info@gophoenixmoving.com"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1, wordWrap: 'break-word' }}
+            >
+              info@gophoenixmoving.com
+            </Typography>
+            <Typography
+              underline="none"
+              component={'a'}
+              href="tel:(508) 315-9458"
+              variant={'body2'}
+              sx={{ color: '#fff', marginBottom: 1 }}
+            >
+              (508) 315-9458
+            </Typography>
+          </Box>
+        </Grid>
+
+        {/* --------------------------------------------------------------- */}
       </Grid>
-      <Grid item xs={12} marginTop={3}>
-        <Typography
-          align={'center'}
-          variant={'subtitle2'}
-          component={'p'}
-          color="text.secondary"
-          gutterBottom
-        >
-          &copy; PhoenixMoving. 2022. All rights reserved
-        </Typography>
-        <Typography
-          align={'center'}
-          variant={'caption'}
-          color="text.secondary"
-          component={'p'}
-        >
-          When you visit or interact with our sites, services or tools, we or
-          our authorised service providers may use cookies for storing
-          information to help provide you with a better, faster and safer
-          experience and for marketing purposes.
-        </Typography>
-      </Grid>
-    </Grid>
+      <Box marginY={3}>
+        <Divider />
+      </Box>
+      <Typography sx={{ color: '#fff' }}>© Copyright</Typography>
+      <Typography sx={{ color: '#fff' }}>
+        Phoenix Moving Inc. is fully licensed, bonded and insured.
+      </Typography>
+      <Typography sx={{ color: '#fff' }}>
+        We carry general liability, cargo and workers' compensation.
+      </Typography>
+      <Typography sx={{ color: '#fff', marginTop: 2 }}>
+        Phoenix Moving Inc. is licensed by the Massachusetts Department of
+        Public Utilities, Transportation Oversight Division, certificate number
+        32054 (MA).
+      </Typography>
+      <Typography sx={{ color: '#fff', marginTop: 2 }}>
+        Phoenix Moving Inc. is licensed by the Federal Motor Carrier Safety
+        Administration U.S. DOT# 3868109, MC# 01415308. Phoenix Moving Inc. All
+        rights reserved
+      </Typography>
+    </>
   );
 };
 

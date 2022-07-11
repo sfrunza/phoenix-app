@@ -1,6 +1,6 @@
 export { default as Advantages } from './Advantages';
 export { default as Articles } from './Articles';
-export { default as AskExpert } from './AskExpert';
+export { default as Pricing } from './Pricing';
 export { default as FeaturedProperties } from './FeaturedProperties';
 export { default as FeaturedProducts } from './FeaturedProducts';
 export { default as Hero } from './Hero';
@@ -12,3 +12,4 @@ export { default as Teaser } from './Teaser';
 export { default as Cities } from './Cities';
 export { default as Services } from './Services';
 export { default as Features } from './Features';
+export { default as QuoteSection } from './QuoteSection';

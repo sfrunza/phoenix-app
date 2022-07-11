@@ -1,29 +1,21 @@
 import React from 'react';
-import { getSession } from 'next-auth/react';
-import Colors from 'dash/Colors';
+import CalendarComp from 'dash/Calendar';
+import { format } from 'date-fns';
 
-const Calendar = ({ session }) => {
-  return <Colors />;
+const Calendar = ({ month, year }) => {
+  return <CalendarComp month={month} year={year} />;
 };
 
-export const getServerSideProps = async (context) => {
-  const session = await getSession(context);
+export default Calendar;
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/dashboard/login',
-        permanent: false,
-      },
-    };
-  } else if (session && session.user.role !== 'ADMIN') {
-    return {
-      redirect: { destination: '/404' },
-    };
+export async function getServerSideProps(ctx) {
+  let mo = format(new Date(), 'MM');
+  let yr = format(new Date(), 'yyyy');
+
+  if (ctx.query.month || ctx.query.year) {
+    mo = ctx.query.month;
+    yr = ctx.query.year;
   }
 
-  return {
-    props: { session },
-  };
-};
-export default Calendar;
+  return { props: { month: mo, year: yr } };
+}
