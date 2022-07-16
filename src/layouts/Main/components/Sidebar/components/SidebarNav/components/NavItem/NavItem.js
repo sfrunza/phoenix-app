@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 
-const NavItem = ({ title, items }) => {
+const NavItem = ({ page }) => {
   const theme = useTheme();
   const [activeLink, setActiveLink] = useState('');
   useEffect(() => {
@@ -19,10 +19,10 @@ const NavItem = ({ title, items }) => {
   }, []);
 
   const hasActiveLink = () => {
-    if (items.length >= 2) {
-      return items.find((i) => i.href === activeLink);
+    if (page.items) {
+      return page.items.find((i) => i.href === activeLink);
     } else {
-      return items[0].href === activeLink;
+      return page.href === activeLink;
     }
   };
 
@@ -33,7 +33,7 @@ const NavItem = ({ title, items }) => {
         elevation={0}
         sx={{ backgroundColor: 'transparent' }}
       >
-        {items.length > 1 ? (
+        {page.items ? (
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -43,28 +43,28 @@ const NavItem = ({ title, items }) => {
             <Typography
               fontWeight={600}
               color={hasActiveLink() ? 'primary' : 'text.primary'}
-              variant='body2'
+              variant="body2"
             >
-              {title}
+              {page.title}
             </Typography>
           </AccordionSummary>
         ) : (
-          <Link href={items[0].href}>
+          <Link href={page.href}>
             <a>
               <Typography
                 fontWeight={600}
                 color={hasActiveLink() ? 'primary' : 'text.primary'}
                 sx={{ padding: '12px 0px', cursor: 'pointer' }}
-                variant='body2'
+                variant="body2"
               >
-                {title}
+                {page.title}
               </Typography>
             </a>
           </Link>
         )}
         <AccordionDetails sx={{ padding: 0 }}>
           <Grid container spacing={1}>
-            {items.map((p, i) => (
+            {page.items?.map((p, i) => (
               <Grid item key={i} xs={12}>
                 <Link href={p.href}>
                   <a>
@@ -76,13 +76,13 @@ const NavItem = ({ title, items }) => {
                         color:
                           activeLink === p.href
                             ? theme.palette.primary.main
-                            : theme.palette.text.secondary,
+                            : theme.palette.text.primary,
                         backgroundColor:
                           activeLink === p.href
                             ? alpha(theme.palette.primary.main, 0.1)
                             : 'transparent',
                         fontWeight: 600,
-                        fontSize: '0.875rem'
+                        fontSize: '0.875rem',
                       }}
                     >
                       {p.title}
@@ -115,9 +115,7 @@ const NavItem = ({ title, items }) => {
 };
 
 NavItem.propTypes = {
-  items: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired,
-  onClose: PropTypes.func,
+  page: PropTypes.object.isRequired,
 };
 
 export default NavItem;

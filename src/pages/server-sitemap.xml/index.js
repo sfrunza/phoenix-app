@@ -1,5 +1,5 @@
 import { getServerSideSitemap } from 'next-sitemap';
-import { cities } from 'views/Rental/components/Cities/data';
+import { cities } from 'views/LandingPage/components/Cities/data';
 
 export const getServerSideProps = async (ctx) => {
   const fields = cities.map((city) => ({

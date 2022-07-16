@@ -5,35 +5,62 @@ import Button from '@mui/material/Button';
 import Image from 'next/image';
 import Link from 'next/link';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 
-const Footer = () => {
-  const theme = useTheme();
-  const { mode } = theme.palette;
+const CustomLink = ({ text, link }) => {
+  return (
+    <Link href={link}>
+      <Typography
+        underline="none"
+        variant={'body2'}
+        sx={{
+          color: 'primary.contrastText',
+          wordWrap: 'break-word',
+          marginBottom: 1,
+          '&:hover': { textDecoration: 'underline' },
+        }}
+        component="a"
+        href={link}
+      >
+        {text}
+      </Typography>
+    </Link>
+  );
+};
 
+const CustomHeader = ({ text }) => {
+  return (
+    <Typography
+      sx={{ color: 'primary.contrastText', fontWeight: 600, marginBottom: 1 }}
+    >
+      {text}
+    </Typography>
+  );
+};
+
+const Footer = () => {
   return (
     <>
       <Box display="flex" alignItems={'center'} justifyContent="space-between">
-      <Link href="/">
-        <Box
-          display={'flex'}
-          sx={{
-            position: 'relative',
-            width: { xs: 130, lg: 150 },
-            height: { xs: 50, lg: 50 },
-            cursor: 'pointer',
-          }}
-        >
-          <Image
-            src={'/logo-white.png'}
-            alt="Phoenix Moving Logo"
-            layout={'fill'}
-            objectFit="contain"
-            priority
-          />
-        </Box>
-      </Link>
+        <Link href="/">
+          <Box
+            display={'flex'}
+            sx={{
+              position: 'relative',
+              width: { xs: 130, lg: 150 },
+              height: { xs: 50, lg: 50 },
+              cursor: 'pointer',
+            }}
+          >
+            <Image
+              src={'/logo-white.png'}
+              alt="Phoenix Moving Logo"
+              layout={'fill'}
+              objectFit="contain"
+              priority
+            />
+          </Box>
+        </Link>
         <Box marginTop={1}>
           <Button
             variant="contained"
@@ -52,58 +79,20 @@ const Footer = () => {
       <Grid container spacing={1}>
         <Grid item xs={6} md={3}>
           <Box display={'flex'} flexDirection={'column'}>
-            <Typography
-              sx={{ color: '#fff', fontWeight: 600, marginBottom: 1 }}
-            >
-              All Services
-            </Typography>
-            <Typography
-              underline="none"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Local Moving
-            </Typography>
-            <Typography
-              underline="none"
-              color="textSecondary"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Interstate Moving
-            </Typography>
-            <Typography
-              underline="none"
-              color="textSecondary"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Packing Services
-            </Typography>
-            <Typography
-              underline="none"
-              color="textSecondary"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Storage Solutions
-            </Typography>
-            <Typography
-              underline="none"
-              color="textSecondary"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Junk Removal
-            </Typography>
-            <Typography
-              underline="none"
-              color="textSecondary"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Boston to New York
-            </Typography>
+            <CustomHeader text="All Services" />
+            <CustomLink text="Local Moving" link="/services/local-moving" />
+            <CustomLink
+              text="Interstate Moving"
+              link="/services/interstate-moving"
+            />
+            <CustomLink
+              text="Packing Services"
+              link="/services/packing-services"
+            />
+            <CustomLink
+              text="Storage Solutions"
+              link="/services/storage-solutions"
+            />
           </Box>
         </Grid>
 
@@ -111,78 +100,22 @@ const Footer = () => {
 
         <Grid item xs={6} md={3}>
           <Box display={'flex'} flexDirection={'column'}>
-            <Typography
-              sx={{ color: '#fff', fontWeight: 600, marginBottom: 1 }}
-            >
-              Locations
-            </Typography>
-            <Typography
-              underline="none"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Boston
-            </Typography>
-            <Typography
-              underline="none"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Waltham
-            </Typography>
-            <Typography
-              underline="none"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Natick
-            </Typography>
-            <Typography
-              underline="none"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Wellesley
-            </Typography>
+            <CustomHeader text="Locations" />
+            <CustomLink text="Boston" link="/Boston-Movers" />
+            <CustomLink text="Waltham" link="/Waltham-Movers" />
+            <CustomLink text="Natick" link="/Natick-Movers" />
+            <CustomLink text="Wellesley" link="/Wellesley-Movers" />
           </Box>
         </Grid>
 
         {/* --------------------------------------------------------------- */}
         <Grid item xs={6} md={3}>
           <Box display={'flex'} flexDirection={'column'}>
-            <Typography
-              sx={{ color: '#fff', fontWeight: 600, marginBottom: 1 }}
-            >
-              Company
-            </Typography>
-            <Typography
-              underline="none"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              About us
-            </Typography>
-            <Typography
-              underline="none"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Client Login
-            </Typography>
-            <Typography
-              underline="none"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              FAQ
-            </Typography>
-            <Typography
-              underline="none"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              Book Now
-            </Typography>
+            <CustomHeader text="Company" />
+            <CustomLink text="About us" link="/about" />
+            <CustomLink text="Client Login" link="/account" />
+            <CustomLink text="FAQ" link="/faq" />
+            <CustomLink text="Book now" link="/book" />
           </Box>
         </Grid>
 
@@ -190,29 +123,12 @@ const Footer = () => {
 
         <Grid item xs={6} md={3}>
           <Box display={'flex'} flexDirection={'column'}>
-            <Typography
-              sx={{ color: '#fff', fontWeight: 600, marginBottom: 1 }}
-            >
-              Contact Us
-            </Typography>
-            <Typography
-              underline="none"
-              component={'a'}
-              href="mailto:info@gophoenixmoving.com"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1, wordWrap: 'break-word' }}
-            >
-              info@gophoenixmoving.com
-            </Typography>
-            <Typography
-              underline="none"
-              component={'a'}
-              href="tel:(508) 315-9458"
-              variant={'body2'}
-              sx={{ color: '#fff', marginBottom: 1 }}
-            >
-              (508) 315-9458
-            </Typography>
+            <CustomHeader text="Contact Us" />
+            <CustomLink
+              text="info@gophoenixmoving.com"
+              link="mailto:info@gophoenixmoving.com"
+            />
+            <CustomLink text="(508) 315-9458" link="tel:(508) 315-9458" />
           </Box>
         </Grid>
 
@@ -221,19 +137,21 @@ const Footer = () => {
       <Box marginY={3}>
         <Divider />
       </Box>
-      <Typography sx={{ color: '#fff' }}>© Copyright</Typography>
-      <Typography sx={{ color: '#fff' }}>
+      <Typography sx={{ color: 'primary.contrastText' }}>
+        © Copyright
+      </Typography>
+      <Typography sx={{ color: 'primary.contrastText' }}>
         Phoenix Moving Inc. is fully licensed, bonded and insured.
       </Typography>
-      <Typography sx={{ color: '#fff' }}>
+      <Typography sx={{ color: 'primary.contrastText' }}>
         We carry general liability, cargo and workers' compensation.
       </Typography>
-      <Typography sx={{ color: '#fff', marginTop: 2 }}>
+      <Typography sx={{ color: 'primary.contrastText', marginTop: 2 }}>
         Phoenix Moving Inc. is licensed by the Massachusetts Department of
         Public Utilities, Transportation Oversight Division, certificate number
         32054 (MA).
       </Typography>
-      <Typography sx={{ color: '#fff', marginTop: 2 }}>
+      <Typography sx={{ color: 'primary.contrastText', marginTop: 2 }}>
         Phoenix Moving Inc. is licensed by the Federal Motor Carrier Safety
         Administration U.S. DOT# 3868109, MC# 01415308. Phoenix Moving Inc. All
         rights reserved

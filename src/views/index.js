@@ -12,7 +12,7 @@ export { default as LocalMoving } from './LocalMoving';
 export { default as NotFound } from './NotFound';
 export { default as PackingServices } from './PackingServices';
 export { default as Pricing } from './Pricing';
-export { default as Rental } from './Rental';
+export { default as LandingPage } from './LandingPage';
 export { default as ServerError } from './ServerError';
 export { default as SigninCover } from './SigninCover';
 export { default as StorageSolutions } from './StorageSolutions';

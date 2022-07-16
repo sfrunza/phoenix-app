@@ -7,7 +7,6 @@ import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
 import Container from 'components/Container';
 import pages from '../navigation';
 import { Topbar } from './components';
@@ -27,7 +26,6 @@ const Main = ({
   colorInvert = false,
 }) => {
   const theme = useTheme();
-  const router = useRouter();
   const isLg = useMediaQuery(theme.breakpoints.up('lg'), {
     defaultMatches: true,
   });
@@ -43,7 +41,6 @@ const Main = ({
   };
 
   const open = isLg ? false : openSidebar;
-  const hide = router.pathname !== '/book';
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,

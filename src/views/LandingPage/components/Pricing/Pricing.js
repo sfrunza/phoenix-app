@@ -58,7 +58,7 @@ const local = [
 
 const interstate = [
   {
-    title: 'New York NY',
+    title: 'New York',
     price: '$950',
     features: [
       'Same day delivery',
@@ -190,6 +190,7 @@ const Pricing = () => {
                       display={'flex'}
                       justifyContent={'space-between'}
                       alignItems={'baseline'}
+                      mb={6}
                     >
                       <Typography
                         component={'p'}
@@ -216,7 +217,7 @@ const Pricing = () => {
                         </Typography>
                       </Box>
                     </Box>
-                    <Grid container spacing={1}>
+                    <Grid container spacing={2}>
                       {item.features.map((feature, j) => (
                         <Grid item xs={12} key={j}>
                           <Box
@@ -305,6 +306,7 @@ const Pricing = () => {
                       display={'flex'}
                       justifyContent={'space-between'}
                       alignItems={'baseline'}
+                      mb={6}
                     >
                       <Typography
                         variant={'body1'}
@@ -322,7 +324,7 @@ const Pricing = () => {
                         {item.price}
                       </Typography>
                     </Box>
-                    <Grid container spacing={1}>
+                    <Grid container spacing={2}>
                       {item.features.map((feature, j) => (
                         <Grid item xs={12} key={j}>
                           <Box
@@ -383,6 +385,15 @@ const Pricing = () => {
             ))}
           </Grid>
         </TabPanel>
+        <Box textAlign={'center'} mt={6}>
+          <Link href="/pricing">
+            <a>
+              <Button variant="link" size="large">
+                View More
+              </Button>
+            </a>
+          </Link>
+        </Box>
       </Container>
     </Box>
   );

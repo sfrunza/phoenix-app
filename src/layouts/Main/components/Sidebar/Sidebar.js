@@ -34,7 +34,7 @@ Sidebar.propTypes = {
   onClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
   variant: PropTypes.string.isRequired,
-  pages: PropTypes.object.isRequired,
+  pages: PropTypes.array.isRequired,
 };
 
 export default Sidebar;

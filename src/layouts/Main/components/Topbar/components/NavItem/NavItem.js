@@ -10,20 +10,20 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from 'next/link';
 import { alpha } from '@mui/material/styles';
 
-const NavItem = ({ title, id, items, colorInvert }) => {
+const NavItem = ({ page, colorInvert }) => {
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
-  const [openedPopoverId, setOpenedPopoverId] = useState(null);
+  const [openedPopover, setOpenedPopover] = useState(false);
 
-  const handleClick = (event, popoverId) => {
+  const handleClick = (event) => {
     setAnchorEl(event.target);
-    setOpenedPopoverId(popoverId);
+    setOpenedPopover(true);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
-    setOpenedPopoverId(null);
+    setOpenedPopover(false);
   };
 
   const [activeLink, setActiveLink] = useState('');
@@ -32,10 +32,10 @@ const NavItem = ({ title, id, items, colorInvert }) => {
   }, []);
 
   const hasActiveLink = () => {
-    if (items.length >= 2) {
-      return items.find((i) => i.href === activeLink);
+    if (page.items) {
+      return page.items.find((i) => i.href === activeLink);
     } else {
-      return items[0].href === activeLink;
+      return page.href === activeLink;
     }
   };
   // const linkColor = hasActiveLink() ? 'primary.main' : 'text.primary';
@@ -48,11 +48,11 @@ const NavItem = ({ title, id, items, colorInvert }) => {
 
   return (
     <Box>
-      {items.length > 1 ? (
+      {page.items ? (
         <Box
           display={'flex'}
           alignItems={'center'}
-          aria-describedby={id}
+          aria-describedby={page.title}
           paddingY={1}
           paddingX={2}
           sx={{
@@ -65,27 +65,27 @@ const NavItem = ({ title, id, items, colorInvert }) => {
                 : theme.palette.alternate.main,
             },
           }}
-          onClick={(e) => handleClick(e, id)}
+          onClick={handleClick}
         >
           <Typography color={linkColor} fontWeight={600} variant="body2">
-            {title}
+            {page.title}
           </Typography>
           <ExpandMoreIcon
             sx={{
               marginLeft: theme.spacing(1 / 4),
               width: 16,
               height: 16,
-              transform: openedPopoverId === id ? 'rotate(180deg)' : 'none',
+              transform: openedPopover ? 'rotate(180deg)' : 'none',
               color: linkColor,
             }}
           />
         </Box>
       ) : (
-        <Link href={items[0].href}>
+        <Link href={page.href}>
           <Box
             display={'flex'}
             alignItems={'center'}
-            aria-describedby={id}
+            aria-describedby={page.title}
             paddingY={1}
             paddingX={2}
             sx={{
@@ -99,41 +99,18 @@ const NavItem = ({ title, id, items, colorInvert }) => {
               },
             }}
             component={'a'}
-            href={items[0].href}
+            href={page.href}
           >
-            {title === 'Client login' && (
-              <Box
-                sx={{
-                  color: linkColor,
-                  display: 'flex',
-                  mr: 0.5,
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  width="20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Box>
-            )}
             <Typography fontWeight={600} color={linkColor} variant="body2">
-              {title}
+              {page.title}
             </Typography>
           </Box>
         </Link>
       )}
       <Popover
         elevation={3}
-        id={id}
-        open={openedPopoverId === id}
+        id={page.title}
+        open={openedPopover}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
@@ -146,7 +123,7 @@ const NavItem = ({ title, id, items, colorInvert }) => {
         }}
         sx={{
           '.MuiPaper-root': {
-            maxWidth: items.length > 12 ? 350 : 250,
+            maxWidth: 250,
             padding: 2,
             marginTop: 2,
             boxShadow:
@@ -155,8 +132,8 @@ const NavItem = ({ title, id, items, colorInvert }) => {
         }}
       >
         <Grid container spacing={0.5}>
-          {items.map((p, i) => (
-            <Grid item key={i} xs={items.length > 12 ? 6 : 12}>
+          {page.items?.map((p, i) => (
+            <Grid item key={i} xs={12}>
               <Link href={p.href}>
                 <a>
                   <Button
@@ -206,9 +183,8 @@ const NavItem = ({ title, id, items, colorInvert }) => {
 };
 
 NavItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired,
+  colorInvert: PropTypes.bool,
+  page: PropTypes.object.isRequired,
 };
 
 export default NavItem;

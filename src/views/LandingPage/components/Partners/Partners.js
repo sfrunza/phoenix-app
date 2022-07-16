@@ -85,14 +85,14 @@ const Partners = () => {
           })}
         </Box>
         <Box pt={7}>
-          <Box marginBottom={7}>
+          <Box marginBottom={4}>
             <Typography
               variant="h6"
               align={'center'}
               color={'text.secondary'}
               component={'p'}
             >
-              Which? Trusted Traders customer reviews summary
+              Yelp and Google customer reviews summary
             </Typography>
           </Box>
           <Grid

@@ -1,8 +1,8 @@
 import React from 'react';
-import Book from 'views/Book';
+// import Book from 'views/Book';
 
 const BookPage = () => {
-  return <Book />;
+  return <div>book Page</div>;
 };
 
 export default BookPage;

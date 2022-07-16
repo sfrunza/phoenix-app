@@ -1,7 +1,7 @@
 import React from 'react';
 import City from 'views/City';
 import PropTypes from 'prop-types';
-import { cities } from 'views/Rental/components/Cities/data';
+import { cities } from 'views/LandingPage/components/Cities/data';
 
 const CityPage = ({ city }) => {
   return <City city={city} />;

@@ -12,16 +12,6 @@ const SidebarNav = ({ pages }) => {
   const theme = useTheme();
   const { mode } = theme.palette;
 
-  const {
-    landings: landingPages,
-    pricing: pricingPages,
-    services: servicesPages,
-    about: aboutPages,
-    login: loginPages,
-    faq: faqPages,
-    book: bookPages,
-  } = pages;
-
   return (
     <Box>
       <Box width={1} paddingX={2} paddingY={1}>
@@ -43,28 +33,17 @@ const SidebarNav = ({ pages }) => {
         </Link>
       </Box>
       <Box paddingX={2} paddingY={2}>
-        <Box>
-          <NavItem title={'Home'} items={landingPages} />
-        </Box>
-        <Box>
-          <NavItem title={'Services'} items={servicesPages} />
-        </Box>
-        <Box>
-          <NavItem title={'About us'} items={aboutPages} />
-        </Box>
-        <Box>
-          <NavItem title={'Pricing'} items={pricingPages} />
-        </Box>
-        <Box>
-          <NavItem title={'FAQ'} items={faqPages} />
-        </Box>
+        {pages.map((page, i) => {
+          return (
+            <Box key={i}>
+              <NavItem page={page} />
+            </Box>
+          );
+        })}
         <Divider />
         <Box marginTop={2}>
-          <Link href='/account'>
-            <Button
-              size={'large'}
-              fullWidth
-            >
+          <Link href="/account">
+            <Button size={'large'} fullWidth>
               Client login
             </Button>
           </Link>
@@ -81,7 +60,7 @@ const SidebarNav = ({ pages }) => {
           </Button>
         </Box>
         <Box marginTop={2}>
-          <Link href='/book'>
+          <Link href="/book">
             <Button
               size={'large'}
               variant="contained"
@@ -98,7 +77,7 @@ const SidebarNav = ({ pages }) => {
 };
 
 SidebarNav.propTypes = {
-  pages: PropTypes.object.isRequired,
+  pages: PropTypes.array.isRequired,
 };
 
 export default SidebarNav;

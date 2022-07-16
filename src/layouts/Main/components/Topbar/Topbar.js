@@ -45,8 +45,6 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert }) => {
             layout={'fill'}
             objectFit="contain"
             priority={true}
-            width={150}
-            height={50}
           />
         </Box>
       </Link>
@@ -59,46 +57,13 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert }) => {
         }}
         alignItems={'center'}
       >
-        <Box>
-          <NavItem
-            title={'Home'}
-            id={'landing-pages'}
-            items={landingPages}
-            colorInvert={colorInvert}
-          />
-        </Box>
-        <Box marginLeft={2}>
-          <NavItem
-            title={'Services'}
-            id={'services-pages'}
-            items={servicesPages}
-            colorInvert={colorInvert}
-          />
-        </Box>
-        <Box marginLeft={2}>
-          <NavItem
-            title={'About us'}
-            id={'about-pages'}
-            items={aboutPages}
-            colorInvert={colorInvert}
-          />
-        </Box>
-        <Box marginLeft={2}>
-          <NavItem
-            title={'Pricing'}
-            id={'pricing-pages'}
-            items={pricingPages}
-            colorInvert={colorInvert}
-          />
-        </Box>
-        <Box marginLeft={2}>
-          <NavItem
-            title={'FAQ'}
-            id={'faq-pages'}
-            items={faqPages}
-            colorInvert={colorInvert}
-          />
-        </Box>
+        {pages.map((page, i) => {
+          return (
+            <Box key={i} marginLeft={i>0 ? 2 :0}>
+              <NavItem page={page} colorInvert={colorInvert} />
+            </Box>
+          );
+        })}
         <Box marginLeft={2}>
           <Link href="/book">
             <Button variant={colorInvert ? 'contained' : 'outlined'}>
@@ -123,7 +88,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert }) => {
         alignItems={'center'}
         justifyContent={'end'}
       >
-        <Box sx={{ minWidth: '150px' }} justifyContent={'end'} display={'flex'}>
+        {/* <Box sx={{ minWidth: '150px' }} justifyContent={'end'} display={'flex'}>
           {user && user.id && <UserPopover />}
           {user && !user.id && (
             <NavItem
@@ -133,7 +98,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert }) => {
               colorInvert={colorInvert}
             />
           )}
-        </Box>
+        </Box> */}
         {/* <Box marginLeft={2}>
           <Button variant="contained" color="primary">
             Get started
@@ -149,7 +114,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert }) => {
             minWidth: 'auto',
             padding: 0.5,
             border: 'none',
-            color: colorInvert ? 'inherit' : 'text.secondary',
+            color: colorInvert ? 'inherit' : 'text.primary',
             '&:hover': {
               border: 'none',
             },
@@ -178,7 +143,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert }) => {
 
 Topbar.propTypes = {
   onSidebarOpen: PropTypes.func,
-  pages: PropTypes.object,
+  pages: PropTypes.array,
 };
 
 export default Topbar;

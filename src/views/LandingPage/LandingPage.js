@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
 import dynamic from 'next/dynamic';
@@ -61,7 +62,10 @@ const Rental = () => {
       <Partners />
       <Services />
       <Pricing />
+      <Search />
       <QuoteSection />
+      {/* <Advantages /> */}
+      {/* <Divider /> */}
 
       {/* <Box bgcolor={'alternate.main'}>
         <Container>

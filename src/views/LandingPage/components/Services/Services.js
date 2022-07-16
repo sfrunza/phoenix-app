@@ -1,13 +1,10 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
-import Avatar from '@mui/material/Avatar';
 import Link from 'next/link';
 
 import Container from 'components/Container';
@@ -80,8 +77,9 @@ const Services = () => {
                   width={1}
                   height={1}
                   sx={{
-                    textDecoration: 'none',
                     transition: 'all .2s ease-in-out',
+                    boxShadow: '2px 4px 16px rgb(0 0 0 / 32%)',
+                    borderRadius: theme.shape.borderRadius,
                     '&:hover': {
                       transform: `translateY(-${theme.spacing(1 / 2)})`,
                     },
