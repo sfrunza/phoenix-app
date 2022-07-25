@@ -64,6 +64,8 @@ const Rental = () => {
       <Pricing />
       <Search />
       <QuoteSection />
+      <Divider />
+      <Cities />
       {/* <Advantages /> */}
       {/* <Divider /> */}
 

@@ -4,10 +4,11 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from 'next/link';
+import Container from 'components/Container';
 
 const Cities = () => {
   return (
-    <>
+    <Container>
       <Box marginBottom={4}>
         {/* <Typography
           sx={{
@@ -32,7 +33,7 @@ const Cities = () => {
         </Typography>
       </Box>
 
-      <Grid container spacing={0}  data-aos={'fade-up'}>
+      <Grid container spacing={0}>
         {cities.map((city, i) => {
           return (
             <Grid
@@ -62,7 +63,7 @@ const Cities = () => {
           );
         })}
       </Grid>
-    </>
+    </Container>
   );
 };
 

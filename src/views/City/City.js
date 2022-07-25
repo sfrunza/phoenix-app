@@ -1,25 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
 import Main from 'layouts/Main';
-import Container from 'components/Container';
-import { Application, Newsletter, Hero } from './components';
+import { Info, Hero } from './components';
+import Head from 'next/head';
 
 const City = ({ city }) => {
   const cityName = city?.shortName;
   const state = city?.state;
   return (
-    <Main title={`Movers in ${cityName} ${state}`}>
-      <Hero title={city.fullName} />
-      <Box bgcolor={'alternate.main'}>
-        <Container>
-          <Application />
-        </Container>
-      </Box>
-      <Container>
-        <Newsletter />
-      </Container>
-    </Main>
+    <>
+      <Head>
+        <title>
+          Movers in {cityName} {state} | Phoenix Moving
+        </title>
+        <meta
+          name="description"
+          content={`Brave Movers team is covering end-to-end moving and storage services in ${cityName}, ${state} and entire state of Massachusetts. We provide and manage moving solutions for thousands of customers every year – from the small move to the large relocations. Moving to/from ${cityName}, ${state} must be easy and stress free, convenient and safe!`}
+        />
+        <meta
+          property="og:title"
+          content={`Movers in ${cityName} ${state} | Phoenix Moving`}
+        />
+        <meta
+          property="og:description"
+          content={`Brave Movers team is covering end-to-end moving and storage services in ${cityName}, ${state} and entire state of Massachusetts. We provide and manage moving solutions for thousands of customers every year – from the small move to the large relocations. Moving to/from ${cityName}, ${state} must be easy and stress free, convenient and safe!`}
+        />
+      </Head>
+      <Main colorInvert>
+        <Hero title={city.fullName} />
+        <Info city={city} />
+      </Main>
+    </>
   );
 };
 

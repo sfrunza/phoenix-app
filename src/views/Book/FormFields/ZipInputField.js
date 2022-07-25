@@ -31,6 +31,16 @@ const StyledTextField = styled((props) => (
   },
 }));
 
+// function convertToCSV(arr) {
+//   const array = [Object.keys(arr[0])].concat(arr);
+
+//   return array
+//     .map((it) => {
+//       return Object.values(it).toString();
+//     })
+//     .join('\n');
+// }
+
 export default function ZipInputField(props) {
   const { errorText, label = null, ...rest } = props;
   const [field, meta, helper, form] = useField(props);
@@ -46,6 +56,29 @@ export default function ZipInputField(props) {
   // console.log(name);
   // console.log(meta);
   // console.log(field);
+
+  // function exportJSONToCSV(objArray) {
+  //   var arr = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
+  //   var str =
+  //     `${Object.keys(arr[0])
+  //       .map((value) => `"${value}"`)
+  //       .join(',')}` + '\r\n';
+  //   var csvContent = arr.reduce((st, next) => {
+  //     st +=
+  //       `${Object.values(next)
+  //         .map((value) => `"${value}"`)
+  //         .join(',')}` + '\r\n';
+  //     return st;
+  //   }, str);
+  //   var element = document.createElement('a');
+  //   element.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+  //   element.target = '_blank';
+  //   element.download = 'export.csv';
+  //   element.click();
+  // }
+
+  // console.log(convertToCSV(jsonCityState));
+  // console.log(exportJSONToCSV(jsonCityState));
 
   function notify(v) {
     let obj = findCity(v);

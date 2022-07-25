@@ -56,6 +56,7 @@ const Footer = () => {
               src={'/logo-white.png'}
               alt="Phoenix Moving Logo"
               layout={'fill'}
+              sizes="50vw"
               objectFit="contain"
               priority
             />

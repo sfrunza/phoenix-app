@@ -77,6 +77,7 @@ const Partners = () => {
                 <Image
                   layout={'fill'}
                   objectFit="contain"
+                  sizes="50vw"
                   src={item}
                   alt={`partner-${name}`}
                 />

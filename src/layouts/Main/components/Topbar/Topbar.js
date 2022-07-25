@@ -43,6 +43,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert }) => {
             src={colorInvert ? '/logo-white.png' : '/logo-o.png'}
             alt="Phoenix Moving Logo"
             layout={'fill'}
+            sizes="50vw"
             objectFit="contain"
             priority={true}
           />
@@ -59,7 +60,7 @@ const Topbar = ({ onSidebarOpen, pages, colorInvert }) => {
       >
         {pages.map((page, i) => {
           return (
-            <Box key={i} marginLeft={i>0 ? 2 :0}>
+            <Box key={i} marginLeft={i > 0 ? 2 : 0}>
               <NavItem page={page} colorInvert={colorInvert} />
             </Box>
           );

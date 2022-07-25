@@ -1,11 +1,72 @@
+// import acton from '/cities/acton.png';
+// import albany from '/cities/albany.png';
+// import allston from '/cities/allston.png';
+// import andover from '/cities/andover.png';
+// import arlington from '/cities/arlington.png';
+// import bedford from '/cities/bedford.png';
+// import belmont from '/cities/belmont.png';
+// import billerica from '/cities/billerica.png';
+// import boston from '/cities/boston.png';
+// import braintree from '/cities/braintree.png';
+// import brighton from '/cities/brighton.png';
+// import brookline from '/cities/brookline.png';
+// import burlington from '/cities/burlington.png';
+// import cambridge from '/cities/cambridge.png';
+// import canton from '/cities/canton.png';
+// import capecod from '/cities/capecod.png';
+// import charlestown from '/cities/charlestown.png';
+// import concord from '/cities/concord.png';
+// import danvers from '/cities/danvers.png';
+// import dedham from '/cities/dedham.png';
+// import dover from '/cities/dover.png';
+// import foxborough from '/cities/foxborough.png';
+// import framingham from '/cities/framingham.png';
+// import franklin from '/cities/franklin.png';
+// import holliston from '/cities/holliston.png';
+// import lexington from '/cities/lexington.png';
+// import lincoln from '/cities/lincoln.png';
+// import malden from '/cities/malden.png';
+// import marlborough from '/cities/marlborough.png';
+// import maynard from '/cities/maynard.png';
+// import medford from '/cities/medford.png';
+// import millis from '/cities/millis.png';
+// import natick from '/cities/natick.png';
+// import needham from '/cities/needham.png';
+// import newburyport from '/cities/newburyport.png';
+// import newhampshire from '/cities/newhampshire.png';
+// import newton from '/cities/newton.png';
+// import norfolk from '/cities/norfolk.png';
+// import norwood from '/cities/norwood.png';
+// import peabody from '/cities/peabody.png';
+// import quincy from '/cities/quincy.png';
+// import reading from '/cities/reading.png';
+// import rhodeisland from '/cities/rhodeisland.png';
+// import salem from '/cities/salem.png';
+// import sharon from '/cities/sharon.png';
+// import somerville from '/cities/somerville.png';
+// import sudbury from '/cities/sudbury.png';
+// import vermont from '/cities/vermont.png';
+// import walpole from '/cities/walpole.png';
+// import waltham from '/cities/waltham.png';
+// import watertown from '/cities/watertown.png';
+// import wayland from '/cities/wayland.png';
+// import wellesley from '/cities/wellesley.png';
+// import westwood from '/cities/westwood.png';
+// import weymouth from '/cities/weymouth.png';
+// import winchester from '/cities/winchester.png';
+// import woburn from '/cities/woburn.png';
+// import dennis from '/cities/dennis.jpeg';
+// import provincetown from '/cities/provincetown.jpeg';
+
 export const cities = [
   {
     fullName: 'Acton Movers',
     shortName: 'Acton',
     state: 'MA',
-    description: '',
+    description:
+      'Brave Movers team is covering end-to-end moving and storage services in Acton, MA and entire state of Massachusetts. We provide and manage moving solutions for thousands of customers every year - from the small move to the large relocations. Moving to/from Acton, MA must be easy and stress free, convenient and safe!',
     slug: 'Acton-Movers',
-    icon: '',
+    icon: '/cities/acton.png',
   },
   {
     fullName: 'Boston Movers',
@@ -13,7 +74,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Boston-Movers',
-    icon: '',
+    icon: '/cities/boston.png',
   },
   {
     fullName: 'Cambridge Movers',
@@ -21,7 +82,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Cambridge-Movers',
-    icon: '',
+    icon: '/cities/cambridge.png',
   },
   {
     fullName: 'Waltham Movers',
@@ -29,7 +90,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Waltham-Movers',
-    icon: '',
+    icon: '/cities/waltham.png',
   },
   {
     fullName: 'Burlington Movers',
@@ -37,7 +98,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Burlington-Movers',
-    icon: '',
+    icon: '/cities/burlington.png',
   },
   {
     fullName: 'Woburn Movers',
@@ -45,7 +106,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Woburn-Movers',
-    icon: '',
+    icon: '/cities/woburn.png',
   },
   {
     fullName: 'Newton Movers',
@@ -53,7 +114,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Newton-Movers',
-    icon: '',
+    icon: '/cities/newton.png',
   },
   {
     fullName: 'Lexington Movers',
@@ -61,7 +122,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Lexington-Movers',
-    icon: '',
+    icon: '/cities/lexington.png',
   },
   {
     fullName: 'Wellesley Movers',
@@ -69,7 +130,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Wellesley-Movers',
-    icon: '',
+    icon: '/cities/wellesley.png',
   },
   {
     fullName: 'Framingham Movers',
@@ -77,7 +138,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Framingham-Movers',
-    icon: '',
+    icon: '/cities/framingham.png',
   },
   {
     fullName: 'Marlborough Movers',
@@ -85,7 +146,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Marlborough-Movers',
-    icon: '',
+    icon: '/cities/marlborough.png',
   },
   {
     fullName: 'Bedford Movers',
@@ -93,7 +154,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Bedford-Movers',
-    icon: '',
+    icon: '/cities/bedford.png',
   },
   {
     fullName: 'Somerville Movers',
@@ -101,7 +162,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Somerville-Movers',
-    icon: '',
+    icon: '/cities/somerville.png',
   },
   {
     fullName: 'Andover Movers',
@@ -109,7 +170,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Andover-Movers',
-    icon: '',
+    icon: '/cities/andover.png',
   },
   {
     fullName: 'Needham Movers',
@@ -117,7 +178,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Needham-Movers',
-    icon: '',
+    icon: '/cities/needham.png',
   },
   {
     fullName: 'Watertown Movers',
@@ -125,7 +186,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Watertown-Movers',
-    icon: '',
+    icon: '/cities/watertown.png',
   },
   {
     fullName: 'Concord Movers',
@@ -133,7 +194,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Concord-Movers',
-    icon: '',
+    icon: '/cities/concord.png',
   },
   {
     fullName: 'Quincy Movers',
@@ -141,7 +202,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Quincy-Movers',
-    icon: '',
+    icon: '/cities/quincy.png',
   },
   {
     fullName: 'Billerica Movers',
@@ -149,7 +210,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Billerica-Movers',
-    icon: '',
+    icon: '/cities/billerica.png',
   },
   {
     fullName: 'Brookline Movers',
@@ -157,7 +218,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Brookline-Movers',
-    icon: '',
+    icon: '/cities/brookline.png',
   },
   {
     fullName: 'Natick Movers',
@@ -165,7 +226,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Natick-Movers',
-    icon: '',
+    icon: '/cities/natick.png',
   },
   {
     fullName: 'Medford Movers',
@@ -173,7 +234,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Medford-Movers',
-    icon: '',
+    icon: '/cities/medford.png',
   },
   {
     fullName: 'Canton Movers',
@@ -181,7 +242,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Canton-Movers',
-    icon: '',
+    icon: '/cities/canton.png',
   },
   {
     fullName: 'Maynard Movers',
@@ -189,7 +250,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Maynard-Movers',
-    icon: '',
+    icon: '/cities/maynard.png',
   },
   {
     fullName: 'Andover Movers',
@@ -197,7 +258,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Andover-Movers',
-    icon: '',
+    icon: '/cities/andover.png',
   },
   {
     fullName: 'Westwood Movers',
@@ -205,7 +266,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Westwood-Movers',
-    icon: '',
+    icon: '/cities/westwood.png',
   },
   {
     fullName: 'Salem Movers',
@@ -213,7 +274,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Salem-Movers',
-    icon: '',
+    icon: '/cities/salem.png',
   },
   {
     fullName: 'Braintree Movers',
@@ -221,7 +282,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Braintree-Movers',
-    icon: '',
+    icon: '/cities/braintree.png',
   },
   {
     fullName: 'Charlestown Movers',
@@ -229,7 +290,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Charlestown-Movers',
-    icon: '',
+    icon: '/cities/charlestown.png',
   },
   {
     fullName: 'Danvers Movers',
@@ -237,7 +298,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Danvers-Movers',
-    icon: '',
+    icon: '/cities/danvers.png',
   },
   {
     fullName: 'Norwood Movers',
@@ -245,7 +306,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Norwood-Movers',
-    icon: '',
+    icon: '/cities/norwood.png',
   },
   {
     fullName: 'Sudbury Movers',
@@ -253,7 +314,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Sudbury-Movers',
-    icon: '',
+    icon: '/cities/sudbury.png',
   },
   {
     fullName: 'Franklin Movers',
@@ -261,7 +322,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Franklin-Movers',
-    icon: '',
+    icon: '/cities/franklin.png',
   },
   {
     fullName: 'Dedham Movers',
@@ -269,7 +330,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Dedham-Movers',
-    icon: '',
+    icon: '/cities/dedham.png',
   },
   {
     fullName: 'Belmont Movers',
@@ -277,7 +338,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Belmont-Movers',
-    icon: '',
+    icon: '/cities/belmont.png',
   },
   {
     fullName: 'Allston Movers',
@@ -285,7 +346,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Allston-Movers',
-    icon: '',
+    icon: '/cities/allston.png',
   },
   {
     fullName: 'Newburyport Movers',
@@ -293,7 +354,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Newburyport-Movers',
-    icon: '',
+    icon: '/cities/newburyport.png',
   },
   {
     fullName: 'Wayland Movers',
@@ -301,7 +362,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Wayland-Movers',
-    icon: '',
+    icon: '/cities/wayland.png',
   },
   {
     fullName: 'Cape Cod Movers',
@@ -309,7 +370,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Cape-Cod-Movers',
-    icon: '',
+    icon: '/cities/capecod.png',
   },
   {
     fullName: 'Peabody Movers',
@@ -317,7 +378,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Peabody-Movers',
-    icon: '',
+    icon: '/cities/peabody.png',
   },
   {
     fullName: 'Weymouth Movers',
@@ -325,7 +386,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Weymouth-Movers',
-    icon: '',
+    icon: '/cities/weymouth.png',
   },
   {
     fullName: 'Lincoln Movers',
@@ -333,7 +394,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Lincoln-Movers',
-    icon: '',
+    icon: '/cities/lincoln.png',
   },
   {
     fullName: 'Brighton Movers',
@@ -341,7 +402,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Brighton-Movers',
-    icon: '',
+    icon: '/cities/brighton.png',
   },
   {
     fullName: 'Dover Movers',
@@ -349,7 +410,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Dover-Movers',
-    icon: '',
+    icon: '/cities/dover.png',
   },
   {
     fullName: 'Holliston Movers',
@@ -357,7 +418,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Holliston-Movers',
-    icon: '',
+    icon: '/cities/holliston.png',
   },
   {
     fullName: 'Malden Movers',
@@ -365,7 +426,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Malden-Movers',
-    icon: '',
+    icon: '/cities/malden.png',
   },
   {
     fullName: 'Foxboro Movers',
@@ -373,7 +434,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Foxboro-Movers',
-    icon: '',
+    icon: '/cities/foxborough.png',
   },
   {
     fullName: 'Reading Movers',
@@ -381,7 +442,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Reading-Movers',
-    icon: '',
+    icon: '/cities/reading.png',
   },
   {
     fullName: 'Walpole Movers',
@@ -389,7 +450,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Walpole-Movers',
-    icon: '',
+    icon: '/cities/walpole.png',
   },
   {
     fullName: 'Winchester Movers',
@@ -397,7 +458,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Winchester-Movers',
-    icon: '',
+    icon: '/cities/winchester.png',
   },
   {
     fullName: 'Arlington Movers',
@@ -405,7 +466,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Arlington-Movers',
-    icon: '',
+    icon: '/cities/arlington.png',
   },
   {
     fullName: 'Millis Movers',
@@ -413,7 +474,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Millis-Movers',
-    icon: '',
+    icon: '/cities/millis.png',
   },
   {
     fullName: 'Sharon Movers',
@@ -421,7 +482,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Sharon-Movers',
-    icon: '',
+    icon: '/cities/sharon.png',
   },
   {
     fullName: 'Norfolk Movers',
@@ -429,7 +490,7 @@ export const cities = [
     state: 'MA',
     description: '',
     slug: 'Norfolk-Movers',
-    icon: '',
+    icon: '/cities/norfolk.png',
   },
   {
     fullName: 'Rhode Island Movers',
@@ -437,7 +498,7 @@ export const cities = [
     state: 'RI',
     description: '',
     slug: 'Rhode-Island-Movers',
-    icon: '',
+    icon: '/cities/rhodeisland.png',
   },
   {
     fullName: 'New Hampshire Movers',
@@ -445,7 +506,7 @@ export const cities = [
     state: 'NH',
     description: '',
     slug: 'New-Hampshire-Movers',
-    icon: '',
+    icon: '/cities/newhampshire.png',
   },
   {
     fullName: 'Vermont Movers',
@@ -453,7 +514,7 @@ export const cities = [
     state: 'VT',
     description: '',
     slug: 'Vermont-Movers',
-    icon: '',
+    icon: '/cities/vermont.png',
   },
   {
     fullName: 'Albany Movers',
@@ -461,6 +522,22 @@ export const cities = [
     state: 'NY',
     description: '',
     slug: 'Albany-Movers',
-    icon: '',
+    icon: '/cities/albany.png',
+  },
+  {
+    fullName: 'Dennis Movers',
+    shortName: 'Dennis',
+    state: 'MA',
+    description: '',
+    slug: 'Dennis-Movers',
+    icon: '/cities/dennis.png',
+  },
+  {
+    fullName: 'Provincetown Movers',
+    shortName: 'Provincetown',
+    state: 'MA',
+    description: '',
+    slug: 'Provincetown-Movers',
+    icon: '/cities/provincetown.jpeg',
   },
 ];

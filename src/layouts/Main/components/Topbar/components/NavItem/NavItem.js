@@ -59,6 +59,10 @@ const NavItem = ({ page, colorInvert }) => {
             cursor: 'pointer',
             transition: 'background-color 0.3s ease',
             borderRadius: `${theme.shape.borderRadius}px`,
+            backgroundColor:
+            colorInvert && hasActiveLink()
+              ? alpha(theme.palette.alternate.main, 0.15)
+              : 'unset',
             '&:hover': {
               backgroundColor: colorInvert
                 ? alpha(theme.palette.alternate.main, 0.15)
@@ -92,6 +96,10 @@ const NavItem = ({ page, colorInvert }) => {
               cursor: 'pointer',
               transition: 'background-color 0.3s ease',
               borderRadius: `${theme.shape.borderRadius}px`,
+              backgroundColor:
+                colorInvert && hasActiveLink()
+                  ? alpha(theme.palette.alternate.main, 0.15)
+                  : 'unset',
               '&:hover': {
                 backgroundColor: colorInvert
                   ? alpha(theme.palette.alternate.main, 0.15)

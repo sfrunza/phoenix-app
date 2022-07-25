@@ -19,6 +19,19 @@ const Hero = () => {
       sx={{
         marginTop: -13,
         paddingTop: 13,
+        '&:after': {
+          position: 'absolute',
+          content: '" "',
+          width: '100%',
+          height: '100%',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          zIndex: 1,
+          background: '#161c2d',
+          opacity: 0.6,
+        },
       }}
     >
       <Image

@@ -22,8 +22,15 @@ const Search = () => {
       <Container>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
-            <Box>
-              <Box marginBottom={2}>
+            <Box
+              sx={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-around',
+              }}
+            >
+              <Box marginBottom={2} textAlign={{ xs: 'center', md: 'initial' }}>
                 <Typography
                   variant="h4"
                   sx={{
@@ -34,7 +41,7 @@ const Search = () => {
                   Have a moving need?
                 </Typography>
               </Box>
-              <Box marginBottom={3}>
+              <Box marginBottom={3} textAlign={{ xs: 'center', md: 'initial' }}>
                 <Typography
                   variant="h6"
                   component="p"
@@ -146,6 +153,7 @@ const Search = () => {
                         src={'/book-img2.png'}
                         alt="booking form image"
                         layout={'fill'}
+                        sizes="50vw"
                         objectFit="contain"
                         priority={true}
                       />

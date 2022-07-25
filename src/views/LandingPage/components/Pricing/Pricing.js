@@ -34,7 +34,7 @@ const local = [
     title: '3 Movers',
     price: '$160',
     features: [
-      '2 Proffesional Movers',
+      '3 Proffesional Movers',
       'Clean, fully stocked moving trucks',
       'Delicate handling of your belongings',
       'Free Furniture Protection',

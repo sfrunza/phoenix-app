@@ -11,9 +11,9 @@ const StorageSolutions = () => {
   const image =
     'https://media.istockphoto.com/photos/locked-self-storage-unit-picture-id160321684';
   return (
-    <Main title="Storage Solutions">
+    <Main title="Storage Solutions" colorInvert>
       <Hero
-        bgImage={image}
+        bgImage={'/images/storage1.jpg'}
         title="Storage Solutions"
         subtitle="Move with us and get First 10 Days FREE Storage. Valid September
         through May."

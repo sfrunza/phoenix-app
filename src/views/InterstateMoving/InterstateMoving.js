@@ -11,9 +11,9 @@ const InterstateMoving = () => {
   const image =
     'https://media.istockphoto.com/photos/traffic-on-highway-with-cars-picture-id513106144';
   return (
-    <Main title="Interstate Moving">
+    <Main title="Interstate Moving" colorInvert>
       <Hero
-        bgImage={image}
+        bgImage={'/images/inter.jpeg'}
         title="Interstate Moving"
         subtitle="Flat Rate Moving. Gas, mileage, tolls, insurance are included. No
             hidden fees."

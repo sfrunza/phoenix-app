@@ -11,9 +11,9 @@ const PackingServices = () => {
   const image =
     'https://media.istockphoto.com/photos/package-of-parcels-picture-id1144393365';
   return (
-    <Main title="Packing Services">
+    <Main title="Packing Services" colorInvert>
       <Hero
-        bgImage={image}
+        bgImage={'/images/packing.jpeg'}
         title="Packing Services"
         subtitle="Let us make your move even easier with our full home packing
         services."

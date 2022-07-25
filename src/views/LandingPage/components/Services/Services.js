@@ -25,14 +25,14 @@ const mock = [
     href: '/services/interstate-moving',
   },
   {
-    image: '/images/packing.webp',
+    image: '/images/packing.jpeg',
     description:
       'Moving Packing Solutions. Phoenix Moving Company provides all kind of boxes and carefully pack your stuff.',
     title: 'Packing Servcies',
     href: '/services/packing-services',
   },
   {
-    image: '/images/storage.webp',
+    image: '/images/storage1.jpg',
     description:
       'All types of storages for your move with Phoenix Moving Company. Short and Long terms available.',
     title: 'Storage Solutions',

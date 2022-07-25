@@ -13,9 +13,9 @@ const LocalMoving = () => {
   const image =
     'https://media.istockphoto.com/photos/closeup-of-two-delivery-men-carrying-cardboard-box-picture-id928084870';
   return (
-    <Main title="Local Moving">
+    <Main title="Local Moving" colorInvert>
       <Hero
-        bgImage={image}
+        bgImage={'/images/local.webp'}
         title="Local Moving"
         subtitle="Hourly based full moving services in Metro Boston and 150 miles around it."
       />
