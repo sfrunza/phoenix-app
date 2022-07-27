@@ -56,13 +56,17 @@ const Main = ({
       }}
     >
       <Head>
-        <title>{title ? `${title} - Phoenix Moving` : 'Phoenix Moving'}</title>
+        <title>
+          {title
+            ? `${title} - Brave Movers`
+            : 'Brave Movers - The Legit Boston Moving Company'}
+        </title>
         {description ? (
           <meta name="description" content={description}></meta>
         ) : (
           <meta
             name="description"
-            content="Brave Movers provides and manages moving solutions for thousands of customers every year, from the small move to the large relocations. Get a FREE Estimate!"
+            content="✅ Brave Movers provides and manages moving solutions for thousands of customers every year. FREE Estimate Online!"
           ></meta>
         )}
       </Head>
